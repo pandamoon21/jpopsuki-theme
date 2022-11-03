@@ -1,6 +1,9 @@
 # jpopsuki-theme
 Just a collection of jpopsuki external css theme - Compiled from jps forum & github, credit to the original author.
 
+## How to Use
+Use jsdelivr cdn url below in list, input it in **External CSS** box in **Edit** page
+
 **TODO: add more screenshots**
 
 #### layer_cake_dark_1 - `https://github.com/0xAB51NTH/JpopsukiTheme`
