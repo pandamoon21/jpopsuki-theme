@@ -1,0 +1,4309 @@
+/* https://dl.dropboxusercontent.com/s/osrmt164uwaajq2/paper-plain_jps_dark.css */
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i&subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese');
+
+/**
+ * Author: thequasar
+ * Version: 1.0
+ */
+
+/* Global variables */
+
+:root {
+    /** 
+     * CSS variable usage example: 
+     * 
+     * background-color: var(--main-bg-color);
+     */
+     
+     
+    /* Colors */
+    --main-bg-color: #fff;
+    --top-nav-bg-color: #fff;
+    --body-bg-color: #fafafa;
+    --body-bg-grad-color: linear-gradient(135deg, #6c7484 0%, #3b404e 100%);
+    --menu-bg-color: #f5f5f5;
+    --sec-bg-color: #f5f5f5;
+    --box-bg-color: #fff;
+    --layer-ontop-color: rgba(0, 0, 0, 0.06);
+    --layer-ontop-semi-soft-color: rgba(0, 0, 0, 0.03);
+    --layer-ontop-soft-color: rgba(0, 0, 0, 0.01);
+    --accent-color: #02a9cc;
+    --accent-color-highlight: rgba(244, 251, 252, 0.4);
+    --accent-color-darken: #0099b9;
+    --accent-color-grad: linear-gradient(85deg, #02A9CC 0%, #42E3E1 100%);
+    /* --report-bg-grad: linear-gradient(135deg, #c0002f 0%, #e59038 100%); */
+    --report-bg-grad: linear-gradient(222deg, #eabd14 0%, #e87600 100%);
+    --text-color: #333;
+    --text-color-inverted: #fff;
+    --text-description-color: rgba(0, 0, 0, 0.4);
+    --text-description-soft-color: rgba(0, 0, 0, 0.25);
+    --label-color: #444;
+    --link-color: #444;
+    --input-border-color: rgba(0, 0, 0, 0.15);
+    --input-select-border-color: rgba(0, 0, 0, 0.15);
+    --input-hover-bg-color: #f5f5f5;
+    --error-color: #eb3737;
+    --error-color-highlight: rgba(235, 55, 55, 0.04);
+    --cta-btn-color: #fff;
+    --unread-color: rgba(248, 126, 132, 1);
+    --unread-soft-color: rgba(248, 126, 132, 0.35); /* for torrent group child item */
+    --td-border: rgba(0, 0, 0, 0.07);
+    --helptext-bg: rgba(0, 0, 0, 0.65);
+    
+    /* Font size */
+    --fs-header-xxl: 30px;
+    --fs-header-xl: 26px;
+    --fs-header-l: 24px;
+    --fs-header: 20px;
+    --fs-header-s: 18px;
+    --fs-default: 16px;
+    --fs-paragraph: 16px;
+    --fs-paragraph-s: 14px;
+    --fs-paragraph-xs: 12px;
+    --fs-label: 16px;
+    --fs-label-s: 14px;
+    --fs-label-xs: 12px;
+    --fs-button: 14px;
+    --fs-button-s: 12px;
+    
+    /* Font-weight */
+    --fw-default: 500;
+    
+    /* Elements */
+    --top-nav-height: 55px;
+    --box-floating-shadow: 0 5px 7px rgba(0, 0, 0, 0.07);
+    --box-onflat-shadow: 0 1px 2px rgba(0,0,0,.1);
+    --button-floating-shadow: 0 3px 7px rgba(0, 0, 0, 0.2);
+    --menu-width: 170px;
+    --rounded-corners: 8px;
+    --soft-corners: 4px;
+    --sharp-corners: 2px;
+    --main-content-width: 95%;
+    
+    
+    /* Logo */
+
+    --logo-symbol: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MjAuNSAxODgiPjxwYXRoIGZpbGw9IiMyMzFmMjAiIGQ9Ik0xOTUuNSAxNjF2LTIxaDMuNHYxOC41aDEyLjZ2Mi41ek0yMjYuNyAxNjFsOS44LTIxaDMuNmwxMC41IDIxaC0zLjhsLTMtNi40SDIzM2wtMi44IDYuNHptNy40LTguN2g4LjZsLTIuNi01LjhjLS45LTEuOC0xLjUtMy4yLTEuOS00LjRhMjMuOSAyMy45IDAgMCAxLTEuMyA0ek0yNjcuMSAxNjF2LTIxaDkuNmExNCAxNCAwIDAgMSA0LjcuNiA1LjkgNS45IDAgMCAxIDIuOCAyIDQuNSA0LjUgMCAwIDEgMSAyLjcgNC4xIDQuMSAwIDAgMS0uOSAyLjYgNi4xIDYuMSAwIDAgMS0yLjcgMiA2LjkgNi45IDAgMCAxIDMuNiAxLjggNC41IDQuNSAwIDAgMSAxLjMgMy4yIDUuMyA1LjMgMCAwIDEtLjggMi44IDUuNiA1LjYgMCAwIDEtMS45IDIgOC45IDguOSAwIDAgMS0yLjggMSAyMC4yIDIwLjIgMCAwIDEtNC4xLjN6bTMuNC0xMi4yaDUuNmExNS4yIDE1LjIgMCAwIDAgMy4yLS4zIDMuNyAzLjcgMCAwIDAgMi0xIDIuNiAyLjYgMCAwIDAgLjYtMS44IDMgMyAwIDAgMC0uNi0xLjkgMy4xIDMuMSAwIDAgMC0xLjgtMSAxNy40IDE3LjQgMCAwIDAtMy45LS40aC01djYuNHptMCA5LjdoNi40YTE5LjIgMTkuMiAwIDAgMCAyLjMgMCA2LjUgNi41IDAgMCAwIDItLjcgMy40IDMuNCAwIDAgMCAxLjMtMS4xIDMuMiAzLjIgMCAwIDAgLjUtMS44IDMgMyAwIDAgMC0uNy0yIDMuOSAzLjkgMCAwIDAtMi0xLjIgMTUgMTUgMCAwIDAtMy44LS40aC02djcuM3pNMzA0IDE1MC43YTEwLjMgMTAuMyAwIDAgMSAzLjQtOC4yIDEzIDEzIDAgMCAxIDguOS0zIDE0LjMgMTQuMyAwIDAgMSA2LjMgMS40IDEwLjEgMTAuMSAwIDAgMSA0LjQgMy45IDEwLjcgMTAuNyAwIDAgMSAxLjUgNS42IDEwLjYgMTAuNiAwIDAgMS0xLjYgNS44IDkuOCA5LjggMCAwIDEtNC40IDMuOCAxNC45IDE0LjkgMCAwIDEtNi4yIDEuMyAxNC4xIDE0LjEgMCAwIDEtNi41LTEuNCAxMC4yIDEwLjIgMCAwIDEtNS44LTkuMnptMy41IDBhNy42IDcuNiAwIDAgMCAyLjUgNiAxMCAxMCAwIDAgMCAxMi41IDAgOCA4IDAgMCAwIDIuNS02LjIgOSA5IDAgMCAwLTEtNC41IDcuMiA3LjIgMCAwIDAtMy0zIDEwLjQgMTAuNCAwIDAgMC0xMC44IDFxLTIuNyAyLTIuNyA2Ljh6TTM0Ni45IDE2MXYtMjFoMTEuM2ExOCAxOCAwIDAgMSA1LjIuNSA1LjUgNS41IDAgMCAxIDIuOSAyIDUuMiA1LjIgMCAwIDEgMSAzLjIgNC44IDQuOCAwIDAgMS0xLjcgMy43IDEwIDEwIDAgMCAxLTUuNSAyIDguOCA4LjggMCAwIDEgMiAxIDE1LjIgMTUuMiAwIDAgMSAyLjkgMi44bDQuNCA1LjhoLTQuMmwtMy40LTQuNGE0MiA0MiAwIDAgMC0yLjUtMyA3LjIgNy4yIDAgMCAwLTEuNy0xLjMgNS43IDUuNyAwIDAgMC0xLjUtLjYgMTIgMTIgMCAwIDAtMiAwaC0zLjl2OS4zem0zLjQtMTEuOGg3LjNhMTMuMyAxMy4zIDAgMCAwIDMuNi0uNCAzLjkgMy45IDAgMCAwIDItMS4yIDMgMyAwIDAgMCAuNy0yIDMgMyAwIDAgMC0xLjMtMi40IDcuMiA3LjIgMCAwIDAtNC4yLTFoLTguMXpNMzgzLjggMTYxbDkuOC0yMWgzLjdsMTAuNCAyMUg0MDRsLTMtNi40aC0xMC43bC0yLjggNi40em03LjQtOC43aDguN2wtMi43LTUuOC0xLjgtNC40YTIzLjkgMjMuOSAwIDAgMS0xLjQgNHpNNDI4LjMgMTYxdi0xOC42aC04LjV2LTIuNWgyMC4zdjIuNWgtOC41VjE2MXpNNDU1LjkgMTUwLjdhMTAuMyAxMC4zIDAgMCAxIDMuNC04LjIgMTMgMTMgMCAwIDEgOC44LTMgMTQuMyAxNC4zIDAgMCAxIDYuNCAxLjQgMTAgMTAgMCAwIDEgNC4zIDMuOSAxMC43IDEwLjcgMCAwIDEgMS41IDUuNiAxMC42IDEwLjYgMCAwIDEtMS41IDUuOCA5LjggOS44IDAgMCAxLTQuNSAzLjggMTQuOSAxNC45IDAgMCAxLTYuMiAxLjMgMTQuMSAxNC4xIDAgMCAxLTYuNS0xLjQgMTAuMiAxMC4yIDAgMCAxLTUuNy05LjJ6bTMuNSAwYTcuNiA3LjYgMCAwIDAgMi41IDYgMTAgMTAgMCAwIDAgMTIuNSAwIDggOCAwIDAgMCAyLjUtNi4yIDkuMiA5LjIgMCAwIDAtMS4xLTQuNSA3LjMgNy4zIDAgMCAwLTMtMyA5LjggOS44IDAgMCAwLTQuNy0xIDkuNyA5LjcgMCAwIDAtNi4xIDJxLTIuNiAyLTIuNiA2Ljh6TTQ5OC43IDE2MXYtMjFoMTEuNGExOCAxOCAwIDAgMSA1LjIuNSA1LjUgNS41IDAgMCAxIDIuOCAyIDUuMiA1LjIgMCAwIDEgMSAzLjIgNC44IDQuOCAwIDAgMS0xLjcgMy43IDkuOSA5LjkgMCAwIDEtNS40IDIgOC42IDguNiAwIDAgMSAyIDEgMTUuNSAxNS41IDAgMCAxIDIuOCAyLjhsNC40IDUuOEg1MTdsLTMuNC00LjQtMi40LTNhNy40IDcuNCAwIDAgMC0xLjctMS4zIDYgNiAwIDAgMC0xLjYtLjYgMTIgMTIgMCAwIDAtMS45IDBoLTMuOXY5LjN6bTMuNC0xMS44aDcuM2ExMy4yIDEzLjIgMCAwIDAgMy42LS40IDMuOCAzLjggMCAwIDAgMi0xLjIgMyAzIDAgMCAwIC43LTIgMyAzIDAgMCAwLTEuMy0yLjQgNy4xIDcuMSAwIDAgMC00LjItMWgtOHY3ek01MzkgMTYxdi0yMWgzLjR2MjF6TTU2Mi40IDE2MXYtMjFoMTguNXYyLjRoLTE1LjF2Ni41aDE0LjF2Mi40aC0xNC4xdjcuMmgxNS43djIuNXpNNTk5IDE1NC4ybDMuMi0uMmE1LjIgNS4yIDAgMCAwIDEgMi42IDUuOCA1LjggMCAwIDAgMi42IDEuNiAxMS44IDExLjggMCAwIDAgNCAuNiAxMS41IDExLjUgMCAwIDAgMy40LS40IDUgNSAwIDAgMCAyLjItMS4zIDIuNyAyLjcgMCAwIDAgLjctMS44IDIuNCAyLjQgMCAwIDAtLjctMS44IDUuMyA1LjMgMCAwIDAtMi4zLTEuMiA0OCA0OCAwIDAgMC00LjYtMSAyNi43IDI2LjcgMCAwIDEtNC45LTEuMyA2LjggNi44IDAgMCAxLTIuNy0yIDQuMiA0LjIgMCAwIDEtMS0yLjcgNC43IDQuNyAwIDAgMSAxLjItMyA2LjcgNi43IDAgMCAxIDMuMi0yIDE0LjUgMTQuNSAwIDAgMSA0LjctLjggMTUuMSAxNS4xIDAgMCAxIDUgLjggNyA3IDAgMCAxIDMuMyAyLjIgNS42IDUuNiAwIDAgMSAxLjMgMy4zbC0zLjMuMmE0LjEgNC4xIDAgMCAwLTEuNy0zIDggOCAwIDAgMC00LjUtMSA4LjQgOC40IDAgMCAwLTQuNSAxIDIuNyAyLjcgMCAwIDAtMS40IDIuMiAyLjIgMi4yIDAgMCAwIDEgMS44Yy43LjUgMi40IDEgNS4xIDEuNWEzOS43IDM5LjcgMCAwIDEgNS43IDEuNCA3LjYgNy42IDAgMCAxIDMuMyAyLjEgNC42IDQuNiAwIDAgMSAxIDMgNSA1IDAgMCAxLTEuMSAzLjIgNy41IDcuNSAwIDAgMS0zLjQgMi4zIDEzLjcgMTMuNyAwIDAgMS01IC44IDE3LjcgMTcuNyAwIDAgMS01LjctLjggOCA4IDAgMCAxLTMuNy0yLjUgNi4yIDYuMiAwIDAgMS0xLjQtMy44ek0xNTEuNCA4OS41TDEzNCA5LjFhOTQuMiA5NC4yIDAgMCAxIDQyLjggNDEuNHpNOTguMiAxNTEuN2w4MC4zLTE3LjNhOTQuMiA5NC4yIDAgMCAxLTQxLjQgNDN6TTU2LjIgMTM4bDY5IDQ0LjZhOTMuOSA5My45IDAgMCAxLTU5LjYgMXpNMzYuMiA5OC41bDE3LjMgODAuNGE5NC4yIDk0LjIgMCAwIDEtNDIuOS00MS40ek00OS45IDU2LjRsLTQ0LjUgNjlhOTQuNSA5NC41IDAgMCAxLTEtNTkuNnpNODkuMyAzNi4zTDkuMSA1My42YTk0LjIgOTQuMiAwIDAgMSA0MS4zLTQzek0xMzEuMyA1MGwtNjktNDQuNmE5My45IDkzLjkgMCAwIDEgNTkuNi0xek0yMDEgOTcuOGEzOC43IDM4LjcgMCAwIDEtMy43IDkuNSAyNS4xIDI1LjEgMCAwIDEtMTQuNyAxMS45IDM3LjMgMzcuMyAwIDAgMS0xMS40IDEuNSAyNS43IDI1LjcgMCAwIDEtMi42LS4xbC0yLjktLjRhMjkgMjkgMCAwIDEtMi43LS41IDE5LjQgMTkuNCAwIDAgMS0yLS42bDIuOC0xMS41YTExLjYgMTEuNiAwIDAgMCAxLjcuOSAxNC45IDE0LjkgMCAwIDAgMi4xLjggMjEuNyAyMS43IDAgMCAwIDIuMi41IDExLjkgMTEuOSAwIDAgMCAyLjIuMiAxMi42IDEyLjYgMCAwIDAgOC43LTNxMy40LTMgNS05LjZsOC43LTMyLjdoMTUuM3pNMjcwLjIgODAuM2ExOC4xIDE4LjEgMCAwIDEtMS43IDcuOCAxNy43IDE3LjcgMCAwIDEtNS41IDYuNSAyOC41IDI4LjUgMCAwIDEtOS40IDQuNSA0OC4yIDQ4LjIgMCAwIDEtMTMuNSAxLjdoLTkuNWwtNSAxOWgtMTUuNGwxNC41LTU1LjFoMjMuMmEzNi42IDM2LjYgMCAwIDEgMTAgMS4yIDIwLjUgMjAuNSAwIDAgMSA3IDMuMyAxMy4zIDEzLjMgMCAwIDEgNCA1IDE0LjcgMTQuNyAwIDAgMSAxLjMgNi4xem0tMTYuMi45YTYgNiAwIDAgMC0yLjYtNS4xcS0yLjctMi03LjgtMmgtNkwyMzMgOTEuNWg3YTIxIDIxIDAgMCAwIDYuMi0uOSAxMi43IDEyLjcgMCAwIDAgNC40LTIuMiA5IDkgMCAwIDAgMi41LTMuMiA5LjQgOS40IDAgMCAwIC44LTR6TTM0MC40IDg3LjRhMzIuNyAzMi43IDAgMCAxLTIuOCAxMy4xIDMyLjkgMzIuOSAwIDAgMS0zLjYgNiAzMC41IDMwLjUgMCAwIDEtNC44IDUuMyAzNS4zIDM1LjMgMCAwIDEtNS4yIDMuNyAzMy40IDMzLjQgMCAwIDEtNiAyLjggNDMuMyA0My4zIDAgMCAxLTcuMiAxLjggNTEgNTEgMCAwIDEtOC4zLjYgMzYuNyAzNi43IDAgMCAxLTEyLTEuOCAyNi4xIDI2LjEgMCAwIDEtOC45LTUgMjEuMiAyMS4yIDAgMCAxLTUuNS03LjUgMjMuMiAyMy4yIDAgMCAxLTItOS40IDMzLjQgMzMuNCAwIDAgMSAuOC03IDMwLjQgMzAuNCAwIDAgMSAyLjMtNi44IDMyIDMyIDAgMCAxIDMuOS02IDMyLjcgMzIuNyAwIDAgMSA1LjMtNS40IDM1LjIgMzUuMiAwIDAgMSA1LTMuMyAzOC42IDM4LjYgMCAwIDEgNi0yLjUgNDAuNCA0MC40IDAgMCAxIDYuOC0xLjYgNDkuMyA0OS4zIDAgMCAxIDcuOC0uNiAzOC43IDM4LjcgMCAwIDEgMTEuNSAxLjYgMjYgMjYgMCAwIDEgOSA0LjcgMjEuMyAyMS4zIDAgMCAxIDUuOCA3LjQgMjIuOSAyMi45IDAgMCAxIDIgMTB6bS0xNi4yLjRhMTUgMTUgMCAwIDAtMS01LjUgMTEuNSAxMS41IDAgMCAwLTIuOC00LjIgMTEuOSAxMS45IDAgMCAwLTQuMy0yLjYgMTcuNiAxNy42IDAgMCAwLTUuOS0xIDE4LjQgMTguNCAwIDAgMC03LjEgMS41IDE5LjQgMTkuNCAwIDAgMC02LjEgNCAxNy42IDE3LjYgMCAwIDAtMi44IDMuNSAyNS4xIDI1LjEgMCAwIDAtMi4xIDQuMyAyNi4zIDI2LjMgMCAwIDAtMS4zIDQuNSAyNC4xIDI0LjEgMCAwIDAtLjUgNC42IDE1IDE1IDAgMCAwIDEgNS42IDExIDExIDAgMCAwIDIuOCA0LjEgMTIgMTIgMCAwIDAgNC4zIDIuNiAxNyAxNyAwIDAgMCA1LjcuOSAyMC4xIDIwLjEgMCAwIDAgNy40LTEuNCAxNy4zIDE3LjMgMCAwIDAgNi4xLTQuMSAxOC42IDE4LjYgMCAwIDAgMy0zLjcgMjQgMjQgMCAwIDAgMi00LjIgMjggMjggMCAwIDAgMS4xLTQuNCAyMy4yIDIzLjIgMCAwIDAgLjUtNC41ek00MDQuNyA4MC4zYTE4IDE4IDAgMCAxLTEuOCA3LjggMTcuNiAxNy42IDAgMCAxLTUuNCA2LjUgMjguMyAyOC4zIDAgMCAxLTkuNCA0LjUgNDguMSA0OC4xIDAgMCAxLTEzLjYgMS43SDM2NWwtNSAxOWgtMTUuM2wxNC40LTU1LjFoMjMuM2EzNi42IDM2LjYgMCAwIDEgMTAgMS4yIDIwLjYgMjAuNiAwIDAgMSA3IDMuMyAxMy4yIDEzLjIgMCAwIDEgNCA1IDE0LjcgMTQuNyAwIDAgMSAxLjMgNi4xem0tMTYuMi45YTYgNiAwIDAgMC0yLjctNS4xcS0yLjYtMi03LjgtMmgtNmwtNC40IDE3LjNoN2EyMSAyMSAwIDAgMCA2LjItLjkgMTIuNiAxMi42IDAgMCAwIDQuMy0yLjIgOC45IDguOSAwIDAgMCAyLjYtMy4yIDkuNCA5LjQgMCAwIDAgLjgtNHpNNDUzLjggNzcuNGMtMS0uNS0yLTEtMy4yLTEuNGEzMyAzMyAwIDAgMC0zLjgtMS4zIDQwIDQwIDAgMCAwLTQuMi0uOSAzMC4xIDMwLjEgMCAwIDAtNC42LS4zIDE1LjIgMTUuMiAwIDAgMC00LjUuNiA5IDkgMCAwIDAtMyAxLjUgNS40IDUuNCAwIDAgMC0xLjUgMS45IDQuNSA0LjUgMCAwIDAtLjUgMS45IDUuNCA1LjQgMCAwIDAgLjUgMi4zIDYuNiA2LjYgMCAwIDAgMS41IDIgMTYuMyAxNi4zIDAgMCAwIDIuOCAybDQuMiAyLjNhNTYuOCA1Ni44IDAgMCAxIDUuNyAzLjIgMjMuMiAyMy4yIDAgMCAxIDQuMiAzLjUgMTMuMiAxMy4yIDAgMCAxIDIuNyA0IDEyLjggMTIuOCAwIDAgMSAuOSA1IDE1IDE1IDAgMCAxLS41IDMuNSAxNC4zIDE0LjMgMCAwIDEtMS41IDMuOCAxNS41IDE1LjUgMCAwIDEtMyAzLjcgMTguMiAxOC4yIDAgMCAxLTQuOCAzIDMxIDMxIDAgMCAxLTcgMi4yIDQ3IDQ3IDAgMCAxLTkuNC45IDUxLjIgNTEuMiAwIDAgMS01LjgtLjMgNTMuOCA1My44IDAgMCAxLTUuNS0xcS0yLjYtLjUtNC44LTEuMmEzOS4yIDM5LjIgMCAwIDEtMy45LTEuNGwyLjYtMTFhMzguNSAzOC41IDAgMCAwIDMuOCAyIDM4IDM4IDAgMCAwIDQuMyAxLjcgMzMuMSAzMy4xIDAgMCAwIDQuNyAxIDMwLjUgMzAuNSAwIDAgMCA0LjguNCAxOC40IDE4LjQgMCAwIDAgNC42LS41IDkuMiA5LjIgMCAwIDAgMy0xLjMgNSA1IDAgMCAwIDEuOC0yIDUuNiA1LjYgMCAwIDAgLjUtMi40IDUuMSA1LjEgMCAwIDAtLjUtMi4zIDYuMiA2LjIgMCAwIDAtMS42LTIgMjAgMjAgMCAwIDAtMy0ybC00LjYtMi4zYTQzIDQzIDAgMCAxLTUuMy0yLjggMjAuNCAyMC40IDAgMCAxLTQtMy40IDE0IDE0IDAgMCAxLTIuNy00IDEzLjIgMTMuMiAwIDAgMS0xLTUgMTQuNCAxNC40IDAgMCAxIDEuNS02LjQgMTUuNSAxNS41IDAgMCAxIDQuNi01LjUgMjQuNyAyNC43IDAgMCAxIDgtMy45IDM5LjggMzkuOCAwIDAgMSAxMS41LTEuNCA1NS4yIDU1LjIgMCAwIDEgMTQuOSAxLjlsMy44IDF6TTUxOC45IDk3LjNhNDcuOCA0Ny44IDAgMCAxLTMuNiA5LjggMjMgMjMgMCAwIDEtNiA3LjQgMjUuNCAyNS40IDAgMCAxLTkgNC42IDQ3LjQgNDcuNCAwIDAgMS0xMy4zIDEuNyAzNy43IDM3LjcgMCAwIDEtMTAuMi0xLjMgMjIuNiAyMi42IDAgMCAxLTcuNy0zLjcgMTYuNCAxNi40IDAgMCAxLTQuOS01LjggMTcuNCAxNy40IDAgMCAxLTEuNy03LjkgMjcuNiAyNy42IDAgMCAxIC40LTQuNCA0MC41IDQwLjUgMCAwIDEgMS00LjRsNy41LTI4LjdoMTUuNGwtNy42IDI4LjctMSA0LjFhMTcuNiAxNy42IDAgMCAwLS40IDMuNSA4LjggOC44IDAgMCAwIC44IDQgNy45IDcuOSAwIDAgMCAyLjMgMi44IDEwLjcgMTAuNyAwIDAgMCAzLjUgMS43IDE1IDE1IDAgMCAwIDQuNC42IDE4LjMgMTguMyAwIDAgMCA1LS42IDExLjUgMTEuNSAwIDAgMCA0LjEtMi4yIDE0IDE0IDAgMCAwIDMuMy00IDI1IDI1IDAgMCAwIDIuMy02LjFsOC42LTMyLjVoMTUuNHpNNTkzLjIgNjhsLTUuNCA0LjdxLTMgMi43LTYuNSA1LjRBOTA5LjcgOTA5LjcgMCAwIDAgNTY2IDkxLjVhNDAgNDAgMCAwIDAgMiAzLjZsMy4yIDVxMS44IDIuOCA0IDUuNmwzLjggNS43IDMuMiA1YTQwIDQwIDAgMCAxIDIgMy41aC0xOC41YTI5IDI5IDAgMCAwLTEuNS0zbC0yLjUtNC4xLTMtNC44LTMtNC45TDU1MyA5OWEyNSAyNSAwIDAgMS0xLjYtMyAxMC43IDEwLjcgMCAwIDEtLjctMS41bC0uNS0xLjNoLS4ybC02LjggMjYuNmgtMTUuNWwxNC41LTU1LjJoMTUuNGwtNi43IDI1LjdoLjJhNDEuOCA0MS44IDAgMCAxIDIuMy0yLjVsMy0yLjdjMS4yLTEuMyAyLjctMi42IDQuMy00LjFsNS4xLTQuNyA1LjItNC43cTIuNS0yLjIgNC4zLTQuMWwyLjgtMi44aDE4LjdsLTMuNiAzLjJ6TTYwNi4yIDExOS44aC0xNS40TDYwNSA2NC43aDE1LjR6Ii8+PC9zdmc+);
+    
+    --loading-spinner: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJsZHMtZ29vZXlyaW5nIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJ4TWlkWU1pZCIgdmlld0JveD0iMCAwIDEwMCAxMDAiPiAgPGRlZnM+ICAgIDxmaWx0ZXIgaWQ9ImEiIHdpZHRoPSIzMDAlIiBoZWlnaHQ9IjMwMCUiIHg9Ii0xMDAlIiB5PSItMTAwJSIgY29sb3ItaW50ZXJwb2xhdGlvbi1maWx0ZXJzPSJzUkdCIj4gICAgICA8ZmVHYXVzc2lhbkJsdXIgaW49IlNvdXJjZUdyYXBoaWMiIHN0ZERldmlhdGlvbj0iMiIvPiAgICAgIDxmZUNvbXBvbmVudFRyYW5zZmVyIHJlc3VsdD0iY3V0b2ZmIj4gICAgICAgIDxmZUZ1bmNBIGludGVyY2VwdD0iLTUiIHNsb3BlPSIxMCIgdHlwZT0ibGluZWFyIi8+ICAgICAgPC9mZUNvbXBvbmVudFRyYW5zZmVyPiAgICA8L2ZpbHRlcj4gIDwvZGVmcz4gIDxnIGZpbHRlcj0idXJsKCNhKSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNTAgNTApIj4gICAgPGcgdHJhbnNmb3JtPSJyb3RhdGUoNjUpIj4gICAgICA8Y2lyY2xlIGN4PSIxNyIgcj0iNSIgZmlsbD0iIzA4ZDFkOSI+ICAgICAgICA8YW5pbWF0ZSBhdHRyaWJ1dGVOYW1lPSJyIiBiZWdpbj0iLTYuNnMiIGR1cj0iNi42cyIga2V5VGltZXM9IjA7MC41OzEiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIiB2YWx1ZXM9IjMuNTk5OTk5OTk5OTk5OTk5Njs4LjM5OTk5OTk5OTk5OTk5OTszLjU5OTk5OTk5OTk5OTk5OTYiLz4gICAgICA8L2NpcmNsZT4gICAgICA8YW5pbWF0ZVRyYW5zZm9ybSBhdHRyaWJ1dGVOYW1lPSJ0cmFuc2Zvcm0iIGJlZ2luPSIwcyIgZHVyPSI2LjZzIiBrZXlUaW1lcz0iMDsxIiByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSIgdHlwZT0icm90YXRlIiB2YWx1ZXM9IjA7MzYwIi8+ICAgIDwvZz4gICAgPGcgdHJhbnNmb3JtPSJyb3RhdGUoMjczKSI+ICAgICAgPGNpcmNsZSBjeD0iMTciIHI9IjQiIGZpbGw9IiMwM2E4Y2IiPiAgICAgICAgPGFuaW1hdGUgYXR0cmlidXRlTmFtZT0iciIgYmVnaW49Ii01LjI3OTk5OTk5OTk5OTk5OXMiIGR1cj0iMy4zcyIga2V5VGltZXM9IjA7MC41OzEiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIiB2YWx1ZXM9IjMuNTk5OTk5OTk5OTk5OTk5Njs4LjM5OTk5OTk5OTk5OTk5OTszLjU5OTk5OTk5OTk5OTk5OTYiLz4gICAgICA8L2NpcmNsZT4gICAgICA8YW5pbWF0ZVRyYW5zZm9ybSBhdHRyaWJ1dGVOYW1lPSJ0cmFuc2Zvcm0iIGJlZ2luPSItMS4zMTk5OTk5OTk5OTk5OTk4cyIgZHVyPSIzLjNzIiBrZXlUaW1lcz0iMDsxIiByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSIgdHlwZT0icm90YXRlIiB2YWx1ZXM9IjA7MzYwIi8+ICAgIDwvZz4gICAgPGcgdHJhbnNmb3JtPSJyb3RhdGUoMjY2KSI+ICAgICAgPGNpcmNsZSBjeD0iMTciIHI9IjciIGZpbGw9IiMzYThiYmIiPiAgICAgICAgPGFuaW1hdGUgYXR0cmlidXRlTmFtZT0iciIgYmVnaW49Ii0zLjk1OTk5OTk5OTk5OTk5OTVzIiBkdXI9IjIuMTk5OTk5OTk5OTk5OTk5N3MiIGtleVRpbWVzPSIwOzAuNTsxIiByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSIgdmFsdWVzPSIzLjU5OTk5OTk5OTk5OTk5OTY7OC4zOTk5OTk5OTk5OTk5OTk7My41OTk5OTk5OTk5OTk5OTk2Ii8+ICAgICAgPC9jaXJjbGU+ICAgICAgPGFuaW1hdGVUcmFuc2Zvcm0gYXR0cmlidXRlTmFtZT0idHJhbnNmb3JtIiBiZWdpbj0iLTIuNjM5OTk5OTk5OTk5OTk5N3MiIGR1cj0iMi4xOTk5OTk5OTk5OTk5OTk3cyIga2V5VGltZXM9IjA7MSIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiIHR5cGU9InJvdGF0ZSIgdmFsdWVzPSIwOzM2MCIvPiAgICA8L2c+ICAgIDxnIHRyYW5zZm9ybT0icm90YXRlKDQyKSI+ICAgICAgPGNpcmNsZSBjeD0iMTciIHI9IjciIGZpbGw9IiMwNjgyYzYiPiAgICAgICAgPGFuaW1hdGUgYXR0cmlidXRlTmFtZT0iciIgYmVnaW49Ii0yLjYzOTk5OTk5OTk5OTk5OTdzIiBkdXI9IjEuNjVzIiBrZXlUaW1lcz0iMDswLjU7MSIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiIHZhbHVlcz0iMy41OTk5OTk5OTk5OTk5OTk2OzguMzk5OTk5OTk5OTk5OTk5OzMuNTk5OTk5OTk5OTk5OTk5NiIvPiAgICAgIDwvY2lyY2xlPiAgICAgIDxhbmltYXRlVHJhbnNmb3JtIGF0dHJpYnV0ZU5hbWU9InRyYW5zZm9ybSIgYmVnaW49Ii0zLjk1OTk5OTk5OTk5OTk5OTVzIiBkdXI9IjEuNjVzIiBrZXlUaW1lcz0iMDsxIiByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSIgdHlwZT0icm90YXRlIiB2YWx1ZXM9IjA7MzYwIi8+ICAgIDwvZz4gICAgPGcgdHJhbnNmb3JtPSJyb3RhdGUoMzIzKSI+ICAgICAgPGNpcmNsZSBjeD0iMTciIHI9IjUiIGZpbGw9IiNhOWVjZjQiPiAgICAgICAgPGFuaW1hdGUgYXR0cmlidXRlTmFtZT0iciIgYmVnaW49Ii0xLjMxOTk5OTk5OTk5OTk5OThzIiBkdXI9IjEuMzE5OTk5OTk5OTk5OTk5OHMiIGtleVRpbWVzPSIwOzAuNTsxIiByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSIgdmFsdWVzPSIzLjU5OTk5OTk5OTk5OTk5OTY7OC4zOTk5OTk5OTk5OTk5OTk7My41OTk5OTk5OTk5OTk5OTk2Ii8+ICAgICAgPC9jaXJjbGU+ICAgICAgPGFuaW1hdGVUcmFuc2Zvcm0gYXR0cmlidXRlTmFtZT0idHJhbnNmb3JtIiBiZWdpbj0iLTUuMjc5OTk5OTk5OTk5OTk5cyIgZHVyPSIxLjMxOTk5OTk5OTk5OTk5OThzIiBrZXlUaW1lcz0iMDsxIiByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSIgdHlwZT0icm90YXRlIiB2YWx1ZXM9IjA7MzYwIi8+ICAgIDwvZz4gIDwvZz48L3N2Zz4=);
+    
+    /* Icons */
+    --upload-icon: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjMDAwMDAwIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+ICAgIDxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz4gICAgPHBhdGggZD0iTTkgMTZoNnYtNmg0bC03LTctNyA3aDR6bS00IDJoMTR2Mkg1eiIvPjwvc3ZnPg==);
+    --invite-icon: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjMDAwMDAwIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+ICAgIDxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz4gICAgPHBhdGggZD0iTTE1IDEyYzIuMjEgMCA0LTEuNzkgNC00cy0xLjc5LTQtNC00LTQgMS43OS00IDQgMS43OSA0IDQgNHptLTktMlY3SDR2M0gxdjJoM3YzaDJ2LTNoM3YtMkg2em05IDRjLTIuNjcgMC04IDEuMzQtOCA0djJoMTZ2LTJjMC0yLjY2LTUuMzMtNC04LTR6Ii8+PC9zdmc+);
+    --donate-icon: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjMDAwMDAwIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+ICAgIDxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz4gICAgPHBhdGggZD0iTTE2LjUgM2MtMS43NCAwLTMuNDEuODEtNC41IDIuMDlDMTAuOTEgMy44MSA5LjI0IDMgNy41IDMgNC40MiAzIDIgNS40MiAyIDguNWMwIDMuNzggMy40IDYuODYgOC41NSAxMS41NEwxMiAyMS4zNWwxLjQ1LTEuMzJDMTguNiAxNS4zNiAyMiAxMi4yOCAyMiA4LjUgMjIgNS40MiAxOS41OCAzIDE2LjUgM3ptLTQuNCAxNS41NWwtLjEuMS0uMS0uMUM3LjE0IDE0LjI0IDQgMTEuMzkgNCA4LjUgNCA2LjUgNS41IDUgNy41IDVjMS41NCAwIDMuMDQuOTkgMy41NyAyLjM2aDEuODdDMTMuNDYgNS45OSAxNC45NiA1IDE2LjUgNWMyIDAgMy41IDEuNSAzLjUgMy41IDAgMi44OS0zLjE0IDUuNzQtNy45IDEwLjA1eiIvPjwvc3ZnPg==);
+    --user-settings-icon: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjMDAwMDAwIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+ICAgIDxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz4gICAgPHBhdGggZD0iTTE5LjQzIDEyLjk4Yy4wNC0uMzIuMDctLjY0LjA3LS45OHMtLjAzLS42Ni0uMDctLjk4bDIuMTEtMS42NWMuMTktLjE1LjI0LS40Mi4xMi0uNjRsLTItMy40NmMtLjEyLS4yMi0uMzktLjMtLjYxLS4yMmwtMi40OSAxYy0uNTItLjQtMS4wOC0uNzMtMS42OS0uOThsLS4zOC0yLjY1QzE0LjQ2IDIuMTggMTQuMjUgMiAxNCAyaC00Yy0uMjUgMC0uNDYuMTgtLjQ5LjQybC0uMzggMi42NWMtLjYxLjI1LTEuMTcuNTktMS42OS45OGwtMi40OS0xYy0uMjMtLjA5LS40OSAwLS42MS4yMmwtMiAzLjQ2Yy0uMTMuMjItLjA3LjQ5LjEyLjY0bDIuMTEgMS42NWMtLjA0LjMyLS4wNy42NS0uMDcuOThzLjAzLjY2LjA3Ljk4bC0yLjExIDEuNjVjLS4xOS4xNS0uMjQuNDItLjEyLjY0bDIgMy40NmMuMTIuMjIuMzkuMy42MS4yMmwyLjQ5LTFjLjUyLjQgMS4wOC43MyAxLjY5Ljk4bC4zOCAyLjY1Yy4wMy4yNC4yNC40Mi40OS40Mmg0Yy4yNSAwIC40Ni0uMTguNDktLjQybC4zOC0yLjY1Yy42MS0uMjUgMS4xNy0uNTkgMS42OS0uOThsMi40OSAxYy4yMy4wOS40OSAwIC42MS0uMjJsMi0zLjQ2Yy4xMi0uMjIuMDctLjQ5LS4xMi0uNjRsLTIuMTEtMS42NXpNMTIgMTUuNWMtMS45MyAwLTMuNS0xLjU3LTMuNS0zLjVzMS41Ny0zLjUgMy41LTMuNSAzLjUgMS41NyAzLjUgMy41LTEuNTcgMy41LTMuNSAzLjV6Ii8+PC9zdmc+);
+    --logout-icon: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjMDAwMDAwIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+ICAgIDxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz4gICAgPHBhdGggZD0iTTEwLjA5IDE1LjU5TDExLjUgMTdsNS01LTUtNS0xLjQxIDEuNDFMMTIuNjcgMTFIM3YyaDkuNjdsLTIuNTggMi41OXpNMTkgM0g1Yy0xLjExIDAtMiAuOS0yIDJ2NGgyVjVoMTR2MTRINXYtNEgzdjRjMCAxLjEuODkgMiAyIDJoMTRjMS4xIDAgMi0uOSAyLTJWNWMwLTEuMS0uOS0yLTItMnoiLz48L3N2Zz4=);
+    --search-icon: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjMDAwMDAwIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+ICAgIDxwYXRoIGQ9Ik0xNS41IDE0aC0uNzlsLS4yOC0uMjdDMTUuNDEgMTIuNTkgMTYgMTEuMTEgMTYgOS41IDE2IDUuOTEgMTMuMDkgMyA5LjUgM1MzIDUuOTEgMyA5LjUgNS45MSAxNiA5LjUgMTZjMS42MSAwIDMuMDktLjU5IDQuMjMtMS41N2wuMjcuMjh2Ljc5bDUgNC45OUwyMC40OSAxOWwtNC45OS01em0tNiAwQzcuMDEgMTQgNSAxMS45OSA1IDkuNVM3LjAxIDUgOS41IDUgMTQgNy4wMSAxNCA5LjUgMTEuOTkgMTQgOS41IDE0eiIvPiAgICA8cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIi8+PC9zdmc+);
+    --tags-icon: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+ICAgIDxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz4gICAgPHBhdGggZD0iTTIxLjQxIDExLjU4bC05LTlDMTIuMDUgMi4yMiAxMS41NSAyIDExIDJINGMtMS4xIDAtMiAuOS0yIDJ2N2MwIC41NS4yMiAxLjA1LjU5IDEuNDJsOSA5Yy4zNi4zNi44Ni41OCAxLjQxLjU4LjU1IDAgMS4wNS0uMjIgMS40MS0uNTlsNy03Yy4zNy0uMzYuNTktLjg2LjU5LTEuNDEgMC0uNTUtLjIzLTEuMDYtLjU5LTEuNDJ6TTUuNSA3QzQuNjcgNyA0IDYuMzMgNCA1LjVTNC42NyA0IDUuNSA0IDcgNC42NyA3IDUuNSA2LjMzIDcgNS41IDd6Ii8+PC9zdmc+);
+    --sort-icon: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjMDAwMDAwIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+ICAgIDxwYXRoIGQ9Ik0zIDE4aDZ2LTJIM3Yyek0zIDZ2MmgxOFY2SDN6bTAgN2gxMnYtMkgzdjJ6Ii8+ICAgIDxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz48L3N2Zz4=);
+    --up-arrow: url(data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+ICAgIDxwYXRoIGQ9Ik0wIDBoMjR2MjRIMFYweiIgZmlsbD0ibm9uZSIvPiAgICA8cGF0aCBkPSJNNCAxMmwxLjQxIDEuNDFMMTEgNy44M1YyMGgyVjcuODNsNS41OCA1LjU5TDIwIDEybC04LTgtOCA4eiIvPjwvc3ZnPg==);
+    --down-arrow: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjMDAwMDAwIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+ICAgIDxwYXRoIGQ9Ik0wIDBoMjR2MjRIMFYweiIgZmlsbD0ibm9uZSIvPiAgICA8cGF0aCBkPSJNMjAgMTJsLTEuNDEtMS40MUwxMyAxNi4xN1Y0aC0ydjEyLjE3bC01LjU4LTUuNTlMNCAxMmw4IDggOC04eiIgZmlsbD0iIzAxMDEwMSIvPjwvc3ZnPg==);
+    --up-down-arrow: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjMDAwMDAwIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+ICAgIDxwYXRoIGQ9Ik0xNiAxNy4wMVYxMGgtMnY3LjAxaC0zTDE1IDIxbDQtMy45OWgtM3pNOSAzTDUgNi45OWgzVjE0aDJWNi45OWgzTDkgM3oiLz4gICAgPHBhdGggZD0iTTAgMGgyNHYyNEgweiIgZmlsbD0ibm9uZSIvPjwvc3ZnPg==);
+    --dollar-icon: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjMDAwMDAwIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+ICAgIDxwYXRoIGQ9Ik0xMS44IDEwLjljLTIuMjctLjU5LTMtMS4yLTMtMi4xNSAwLTEuMDkgMS4wMS0xLjg1IDIuNy0xLjg1IDEuNzggMCAyLjQ0Ljg1IDIuNSAyLjFoMi4yMWMtLjA3LTEuNzItMS4xMi0zLjMtMy4yMS0zLjgxVjNoLTN2Mi4xNmMtMS45NC40Mi0zLjUgMS42OC0zLjUgMy42MSAwIDIuMzEgMS45MSAzLjQ2IDQuNyA0LjEzIDIuNS42IDMgMS40OCAzIDIuNDEgMCAuNjktLjQ5IDEuNzktMi43IDEuNzktMi4wNiAwLTIuODctLjkyLTIuOTgtMi4xaC0yLjJjLjEyIDIuMTkgMS43NiAzLjQyIDMuNjggMy44M1YyMWgzdi0yLjE1YzEuOTUtLjM3IDMuNS0xLjUgMy41LTMuNTUgMC0yLjg0LTIuNDMtMy44MS00LjctNC40eiIvPiAgICA8cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIi8+PC9zdmc+);
+    --dollar-icon-inverted: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjRkZGRkZGIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+ICAgIDxwYXRoIGQ9Ik0xMS44IDEwLjljLTIuMjctLjU5LTMtMS4yLTMtMi4xNSAwLTEuMDkgMS4wMS0xLjg1IDIuNy0xLjg1IDEuNzggMCAyLjQ0Ljg1IDIuNSAyLjFoMi4yMWMtLjA3LTEuNzItMS4xMi0zLjMtMy4yMS0zLjgxVjNoLTN2Mi4xNmMtMS45NC40Mi0zLjUgMS42OC0zLjUgMy42MSAwIDIuMzEgMS45MSAzLjQ2IDQuNyA0LjEzIDIuNS42IDMgMS40OCAzIDIuNDEgMCAuNjktLjQ5IDEuNzktMi43IDEuNzktMi4wNiAwLTIuODctLjkyLTIuOTgtMi4xaC0yLjJjLjEyIDIuMTkgMS43NiAzLjQyIDMuNjggMy44M1YyMWgzdi0yLjE1YzEuOTUtLjM3IDMuNS0xLjUgMy41LTMuNTUgMC0yLjg0LTIuNDMtMy44MS00LjctNC40eiIvPiAgICA8cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIi8+PC9zdmc+);
+    --download-icon: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjMDAwMDAwIiB2aWBetween intense sessions of <a href="https://en.wikipedia.org/wiki/BanG_Dream!"><em>BanG Dream!</em></a> and blasting <a href="https://www.jrocknews.com/2018/04/dir-en-grey-teaser.html"><em>Ningen wo Kaburu</em></a> through my car's sound system I had lost track of how soon <em>The Insulated World</em> had arrived. After all, <em>Ningen wo Kaburu</em> still feels new to me.
+
+Going into a new DIR EN GREY album I get intense anxiety. It's because they are easily my favorite band and I am waiting for the day that they release another album like <em>Kai</em>. What I mean to say is something that I absolutely do not like, because a band can't be this perfect? So, I got everything queued up and ready to go. I got the best headphones I own, lights are out, just me and the sweet sounds. Blow me away, Diru.
+
+<div style="height: 7px; width: 7px; background-color: rgba(0, 0, 0, 0.5); margin: 1em auto; border-radius: 50%;"></div>
+
+<em>Keibetsu to Hajimari</em>, what a way to start an album! There isn't much to say other than the fact that this song gets it right. The boys' instrumentation is on point. These damn vocals haven't wavered at all. I get a lot of the same vibes I did from <em>Uroboros</em>. Its reminiscent of something like <em>Red Soil</em>. Of course, this is a completely new track though. Nonetheless, I have to reiterate, a killer way to open.
+
+<div style="height: 7px; width: 7px; background-color: rgba(0, 0, 0, 0.5); margin: 1em auto; border-radius: 50%;"></div>
+
+From here we go into what can only be described as too short. With a title like <em>Devote My Life</em>, I was expecting something a little different. A life is long, isn't it? But, that's really my only complaint. It's too short. I want more, thankfully there is a whole album left to go.
+
+<div style="height: 7px; width: 7px; background-color: rgba(0, 0, 0, 0.5); margin: 1em auto; border-radius: 50%;"></div>
+
+<em>Ningen wo Kaburu</em> makes a glorious return in <em>The Insulated World</em>. I'm not usually a fan of the change of pace singles tend to bring in. Even with the amazing flow of albums like <em>Uroboros</em> and <em>Dum Spiro Spero</em>, the singles felt moderately out of place. They would change the whole flow to the album. They were mainly acceptable due to their familiarity. <em>Ningen wo Kaburu</em> is different here. It fits, it fits so well, and it was a perfect setup for the next track, <em>Celebrate Empty Howls</em>.
+
+<div style="height: 7px; width: 7px; background-color: rgba(0, 0, 0, 0.5); margin: 1em auto; border-radius: 50%;"></div>
+
+The vocal work in <em>Celebrate Empty Howls</em> was phenomenal. The melodic bit towards the middle complements the title of the track almost perfectly. The experimentation in the track is a warm welcome and it stays true to the sound of the album.
+
+<div style="height: 7px; width: 7px; background-color: rgba(0, 0, 0, 0.5); margin: 1em auto; border-radius: 50%;"></div>
+
+Unfortunately, I feel I can't say the same about <em>Utafumi</em>. The changes made to the track make it an interesting listen. However, unlike <em>Ningen wo Kaburu</em>, it feels too different from the rest of the album. The changes to the vocals feel like they took a bit of the punch out of the song from back in the single.
+
+<div style="height: 7px; width: 7px; background-color: rgba(0, 0, 0, 0.5); margin: 1em auto; border-radius: 50%;"></div>
+
+Going into <em>Rubbish Heap</em>, there is a completely synthesized intro. Maybe it was some type of distortion on a guitar, maybe it was just a synth. I was a little worried that it would be just what the title described. Lucky us, it's not. It's like they knew some loser was actually going to be worried about this actually being bad. There are some interesting highs in the vocals with consistent harsh vocals by our front-man. I found this song to be one of the easier ones to get lost in. The melody transitions between beautiful and harsh in only ways DIR EN GREY can provide. The strain on Kyo's vocals is unlike anything else. It'll put you in a trance.
+
+<div style="height: 7px; width: 7px; background-color: rgba(0, 0, 0, 0.5); margin: 1em auto; border-radius: 50%;"></div>
+
+<em>Aka</em> has one of the more bass forward intros of the album. It also has some of the clearest vocals. It is reminiscent of something like <em>Lotus</em>, their single from 2011, specifically, the slower parts. Right when you think it will pick up, it lulls you back into a gentle rhythm. Situated in the middle of the tracklist, <em>Aka</em> is a safe haven. Beautifully aggressive guitar work with melodiously peaceful vocals. This stark contrast is what makes this band so versatile and easy to listen to.
+
+<div style="height: 7px; width: 7px; background-color: rgba(0, 0, 0, 0.5); margin: 1em auto; border-radius: 50%;"></div>
+
+<em>Values of Madness</em> is a really interesting track. When the promotional version was released, all I could feel was vibes of early 2000's rock. One of our writers, <a href="https://www.jrocknews.com/author/zephyr">Zephyr</a>, said the same exact thing. I can't explain it better than he did citing an early nu-metal vibe like that of the American band, Korn. I couldn't agree more with Zephyr. It's distinctly DIR EN GREY but it does bring back those feelings. The best parts of this song come in the form of hard slapping basslines and syncopated vocals.
+
+<div style="height: 7px; width: 7px; background-color: rgba(0, 0, 0, 0.5); margin: 1em auto; border-radius: 50%;"></div>
+
+<em>Downfall</em> almost felt like the band's previously released song, <em>Karma,</em> right at the start. This band doesn't make the same song twice though. Not unless they totally change it the second time around. <em>Downfall</em> has a fast non-stop feel to it. A great vocal range and some interesting pauses thrown in. The range of Kyo's highs probably shines brightest in this one.
+
+<div style="height: 7px; width: 7px; background-color: rgba(0, 0, 0, 0.5); margin: 1em auto; border-radius: 50%;"></div>
+
+I have to admit, the 80's like synth at the start of <em>Followers</em> probably had me more hyped than anything else in the album. However, this is another classic melody by DIR EN GREY. It definitely does some interesting things with the instrumentation. The work by bassist Toshiya here is oddly prominent and it's really just a beautiful song. What really sets this song apart is the almost 40 seconds of space at the end that set a mood unlike any other in a DIR EN GREY album. It's eerie and made me feel a bit uneasy going into the hard-hitting <em>Keigaku no Yoku</em>.
+
+<div style="height: 7px; width: 7px; background-color: rgba(0, 0, 0, 0.5); margin: 1em auto; border-radius: 50%;"></div>
+
+This is not what I was expecting, <em>Keigaku no Yoku</em> just felt so right. It's slow, it's fast, it had the perfect setup. Calm, angry, deep, and bellowing. I want more of this! Just before the end, this album really picked up in a way I could not foresee.
+
+<div style="height: 7px; width: 7px; background-color: rgba(0, 0, 0, 0.5); margin: 1em auto; border-radius: 50%;"></div>
+
+Staring at the cover of this album and listening to the next to last song, <em>Zetsuentai</em>, I feel like I really understand this album. As always, this is a step forward for DIR EN GREY. Each time we get a new release, there is always a change. Some welcome them more than others, I feel like I am always open to them. The gaze from the album art and the piercing guitar work go right through you. It's not a high pitched sting, it's a sustained twang and the two meld so well together. The action of this song takes place towards the middle and really feels like a journey into yourself through the hypnotizing gaze before you. All this before a beautiful end to a new chapter in DIR EN GREY history.
+
+<div style="height: 7px; width: 7px; background-color: rgba(0, 0, 0, 0.5); margin: 1em auto; border-radius: 50%;"></div>
+
+Ah, the final track, <em>Rananuculus</em>, the track that I really wasn't satisfied with. At the time it got a promotional video I was a little curious as to how <em>The Insulated World</em> was going to come together. By all means, <em>Ranunculus</em> is not a bad song, it's a beautiful track. It has beauty unmatched by any other track on the album. But, it wasn't the frustrated screaming out that I was looking for. I think this song really encapsulates this album. It's not what we had in the past. It's something beautiful, it's something deep. It evokes a desire to hear more.
+
+<strong>Did <em>The Insulated World</em> blow me away?</strong> No, it really moved me. I didn't get the intense feelings I got from the last few albums, but I got something new. It's definitely an album worth checking out and experiencing for yourself. There is so much I can't cement into place with this album, it almost feels like two stories sewn together. I'm unsure of it's staying power, it could really go either way. It's not perfect and I feel that the mixing wasn't as good as it has been in the past. But with all the things that I feel I dislike, I can't help but love it more. This one will likely grow on you.
+<h2>The Insulated World</h2>
+<table style="width: 100%;">
+<tbody>
+<tr style="height: 224px;">
+<td style="border-collapse: collapse; width: 210px; height: 224px;" valign="top"><a href="https://www.jrocknews.com/wp-content/uploads/2018/09/dir-en-grey-the-insulated-world-artwork-regular-edition.jpg"><img class="alignnone size-medium wp-image-87754" src="https://www.jrocknews.com/wp-content/uploads/2018/09/dir-en-grey-the-insulated-world-artwork-regular-edition-200x199.jpg" alt="" width="200" height="199" /></a></td>
+<td style="height: 224px;" valign="top">
+
+<strong>Regular edition</strong>
+
+<strong>CD</strong>
+<ol>
+ 	<li>Keibetsu to Hajimari (軽蔑と始まり)</li>
+ 	<li>Devote My Life</li>
+ 	<li>Ningen wo Kaburu (人間を被る)</li>
+ 	<li>Celebrate Empty Howls</li>
+ 	<li>Utafumi (詩踏み)</li>
+ 	<li>Rubbish Heap</li>
+ 	<li>Aka (赫)</li>
+ 	<li>Values of Madness</li>
+ 	<li>Downfall</li>
+ 	<li>Followers</li>
+ 	<li>Keigaku no Yoku (谿壑の欲)</li>
+ 	<li>Zetsuentai (絶縁体)</li>
+ 	<li>Ranunculus</li>
+</ol>
+<strong>Buy at <a href="http://www.cdjapan.co.jp/product/SFCD-237" target="_blank" rel="noopener">CDJapan</a>, <a href="http://www.hmv.co.jp/en/artist_DIR-EN-GREY_000000000096938/item_The-Insulated-World-2CD_8955543" target="_blank" rel="noopener">HMV</a> or <a href="https://www.amazon.co.jp/Insulated-World-%E9%80%9A%E5%B8%B8%E7%9B%A4-DIR-GREY/dp/B07F3Y59KC/ref=sr_1_7?s=music&amp;ie=UTF8&amp;qid=1533200021&amp;sr=1-7&amp;keywords=The+Insulated+World">Amazon</a></strong></td>
+</tr>
+<tr style="height: 224px;">
+<td style="border-collapse: collapse; width: 210px; height: 224px;" valign="top"><a href="https://www.jrocknews.com/wp-content/uploads/2018/09/dir-en-grey-the-insulated-world-artwork-limited-edition.jpg"><img class="alignnone size-medium wp-image-87755" src="https://www.jrocknews.com/wp-content/uploads/2018/09/dir-en-grey-the-insulated-world-artwork-limited-edition-200x178.jpg" alt="" width="200" height="178" /></a></td>
+<td style="height: 224px;" valign="top">
+
+<strong>Limited edition</strong>
+
+<strong>CD</strong>
+<ol>
+ 	<li>Keibetsu to Hajimari (軽蔑と始まり)</li>
+ 	<li>Devote My Life</li>
+ 	<li>Ningen wo Kaburu (人間を被る)</li>
+ 	<li>Celebrate Empty Howls</li>
+ 	<li>Utafumi (詩踏み)</li>
+ 	<li>Rubbish Heap</li>
+ 	<li>Aka (赫)</li>
+ 	<li>Values of Madness</li>
+ 	<li>Downfall</li>
+ 	<li>Followers</li>
+ 	<li>Keigaku no Yoku (谿壑の欲)</li>
+ 	<li>Zetsuentai (絶縁体)</li>
+ 	<li>Ranunculus</li>
+</ol>
+<strong>CD</strong>
+<ol>
+ 	<li>Kigan (鬼眼)</li>
+ 	<li>Fukai (腐海) (Live Take at SHINKIBA STUDIO COAST on June 30, 2018)</li>
+ 	<li>Beautiful Dirt (Live Take at SHINKIBA STUDIO COAST on June 30, 2018)</li>
+</ol>
+<strong>Buy at <a href="http://www.cdjapan.co.jp/product/SFCD-235" target="_blank" rel="noopener">CDJapan</a>, <a href="http://www.hmv.co.jp/en/artist_DIR-EN-GREY_000000000096938/item_The-Insulated-World_8955544" target="_blank" rel="noopener">HMV</a> or <a href="https://www.amazon.co.jp/Insulated-World-%E5%88%9D%E5%9B%9E%E7%94%9F%E7%94%A3%E9%99%90%E5%AE%9A%E7%9B%A4-DIR-GREY/dp/B07FHKS2RF/ref=sr_1_5?s=music&amp;ie=UTF8&amp;qid=1533200021&amp;sr=1-5&amp;keywords=The+Insulated+World" target="_blank" rel="noopener">Amazon</a></strong></td>
+</tr>
+<tr style="height: 224px;">
+<td style="border-collapse: collapse; width: 210px; height: 224px;" valign="top"><a href="https://www.jrocknews.com/wp-content/uploads/2018/09/dir-en-grey-the-insulated-world-artwork-limited-deluxe-edition.jpg"><img class="alignnone size-medium wp-image-87756" src="https://www.jrocknews.com/wp-content/uploads/2018/09/dir-en-grey-the-insulated-world-artwork-limited-deluxe-edition-200x269.jpg" alt="" width="200" height="269" /></a></td>
+<td style="height: 224px;" valign="top">
+
+<strong>Limited deluxe edition</strong>
+
+<strong>CD</strong>
+<ol>
+ 	<li>Keibetsu to Hajimari (軽蔑と始まり)</li>
+ 	<li>Devote My Life</li>
+ 	<li>Ningen wo Kaburu (人間を被る)</li>
+ 	<li>Celebrate Empty Howls</li>
+ 	<li>Utafumi (詩踏み)</li>
+ 	<li>Rubbish Heap</li>
+ 	<li>Aka (赫)</li>
+ 	<li>Values of Madness</li>
+ 	<li>Downfall</li>
+ 	<li>Followers</li>
+ 	<li>Keigaku no Yoku (谿壑の欲)</li>
+ 	<li>Zetsuentai (絶縁体)</li>
+ 	<li>Ranunculus</li>
+</ol>
+<strong>DVD/Blu-ray</strong>
+<ol>
+ 	<li>MUSIC CLIP Ranunculus (Promotion Edit Ver.)</li>
+</ol>
+LIVE FOOTAGE TOUR 18 Ma Sekai 2018.4.28 Sendai Bank Hall Izumi 21
+<ol start="2">
+ 	<li>DIFFERENT SENSE</li>
+ 	<li>Karasu (鴉)</li>
+ 	<li>DISABLED COMPLEXES</li>
+ 	<li>Kiri to Mayu (霧と繭)</li>
+</ol>
+<p style="text-align: left;">TOUR18 Shin Sekai 2018.6.30 Shin Kiba STUDIO COAST</p>
+
+<ol start="6">
+ 	<li>VINUSHKA</li>
+ 	<li>audience KILLER LOOP</li>
+ 	<li>REPETITION OF HATRED</li>
+ 	<li>Behind a vacant images</li>
+ 	<li>BEHIND THE SCENES OF The Insulated World</li>
+</ol>
+<strong>DVD/Blu-ray</strong>
+<ol>
+ 	<li>Kigan (鬼眼)</li>
+ 	<li>THE DEEPER VILENESS</li>
+ 	<li>Riyuu (理由)</li>
+ 	<li>Fukai (腐海) (Live Take at SHINKIBA STUDIO COAST on June 30, 2018)</li>
+ 	<li>Ash (Live Take at SHINKIBA STUDIO COAST on June 30, 2018)</li>
+ 	<li>Beautiful Dirt (Live Take at SHINKIBA STUDIO COAST on June 30, 2018)</li>
+</ol>
+<strong>Buy Blu-ray edition at <a href="http://www.cdjapan.co.jp/product/SFCD-229" target="_blank" rel="noopener">CDJapan</a>, <a href="http://www.hmv.co.jp/en/artist_DIR-EN-GREY_000000000096938/item_The-Insulated-World-Blu-spec-CD-CD-Blu-ray_8955541" target="_blank" rel="noopener">HMV</a> or <a href="https://www.amazon.co.jp/exec/obidos/ASIN/B07F3F2X4G" target="_blank" rel="noopener">Amazon</a></strong>
+
+<strong>Buy DVD edition at <a href="http://www.cdjapan.co.jp/product/SFCD-232">CDJapan</a>, <a href="http://www.hmv.co.jp/en/artist_DIR-EN-GREY_000000000096938/item_The-Insulated-World-Blu-spec-CD-CD-DVD_8955542">HMV</a> or <a href="https://www.amazon.co.jp/exec/obidos/ASIN/B07F3QSRQN/">Amazon</a></strong></td>
+</tr>
+</tbody>
+</table>
+More Info:
+<a href="http://direngrey.co.jp/">Official Website</a>
+<a href="http://direngrey.co.jp/lang_en/">Official Website</a> (English)
+<a href="http://kyo-official.jp/">Kyo Official Website</a>
+<a href="http://www.youtube.com/direngreyweb">YouTube</a>
+<a href="https://www.youtube.com/user/KyoOfficialChannel">YouTube</a> (Kyo)
+<a href="http://www.facebook.com/direngreyofficial">Facebook</a>
+<a href="https://twitter.com/direngrey_jp">Twitter</a>
+<a href="https://twitter.com/kyo_official/">Twitter</a> (Kyo)
+<a href="https://instagram.com/direngrey_official/">Instagram</a>
+<a href="https://instagram.com/shinya_official/">Instagram</a> (Shinya)V3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+ICAgIDxwYXRoIGQ9Ik0xOSA5aC00VjNIOXY2SDVsNyA3IDctN3pNNSAxOHYyaDE0di0ySDV6Ii8+ICAgIDxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz48L3N2Zz4=);
+    --download-icon-inverted: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjRkZGRkZGIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+ICAgIDxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz4gICAgPHBhdGggZD0iTTEgMjFoMjJMMTIgMiAxIDIxem0xMi0zaC0ydi0yaDJ2MnptMC00aC0ydi00aDJ2NHoiLz48L3N2Zz4=);
+    --warning-icon: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjMDAwMDAwIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+ICAgIDxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz4gICAgPHBhdGggZD0iTTEgMjFoMjJMMTIgMiAxIDIxem0xMi0zaC0ydi0yaDJ2MnptMC00aC0ydi00aDJ2NHoiLz48L3N2Zz4=);
+    --warning-icon-inverted: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjRkZGRkZGIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+ICAgIDxwYXRoIGQ9Ik0xOSA5aC00VjNIOXY2SDVsNyA3IDctN3pNNSAxOHYyaDE0di0ySDV6Ii8+ICAgIDxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz48L3N2Zz4=);
+    --thumb-up: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjMDAwMDAwIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+ICAgIDxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz4gICAgPHBhdGggZD0iTTEgMjFoNFY5SDF2MTJ6bTIyLTExYzAtMS4xLS45LTItMi0yaC02LjMxbC45NS00LjU3LjAzLS4zMmMwLS40MS0uMTctLjc5LS40NC0xLjA2TDE0LjE3IDEgNy41OSA3LjU5QzcuMjIgNy45NSA3IDguNDUgNyA5djEwYzAgMS4xLjkgMiAyIDJoOWMuODMgMCAxLjU0LS41IDEuODQtMS4yMmwzLjAyLTcuMDVjLjA5LS4yMy4xNC0uNDcuMTQtLjczdi0xLjkxbC0uMDEtLjAxTDIzIDEweiIvPjwvc3ZnPg==);
+    --thumb-up-highlight: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjNzNiYTFmIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+ICAgIDxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz4gICAgPHBhdGggZD0iTTEgMjFoNFY5SDF2MTJ6bTIyLTExYzAtMS4xLS45LTItMi0yaC02LjMxbC45NS00LjU3LjAzLS4zMmMwLS40MS0uMTctLjc5LS40NC0xLjA2TDE0LjE3IDEgNy41OSA3LjU5QzcuMjIgNy45NSA3IDguNDUgNyA5djEwYzAgMS4xLjkgMiAyIDJoOWMuODMgMCAxLjU0LS41IDEuODQtMS4yMmwzLjAyLTcuMDVjLjA5LS4yMy4xNC0uNDcuMTQtLjczdi0xLjkxbC0uMDEtLjAxTDIzIDEweiIvPjwvc3ZnPg==);
+    --chevron-right-icon: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjMDAwMDAwIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+ICAgIDxwYXRoIGQ9Ik03LjQxIDcuODRMMTIgMTIuNDJsNC41OS00LjU4TDE4IDkuMjVsLTYgNi02LTZ6Ii8+ICAgIDxwYXRoIGQ9Ik0wLS43NWgyNHYyNEgweiIgZmlsbD0ibm9uZSIvPjwvc3ZnPg==);
+    --chevron-down-icon: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjMDAwMDAwIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+ICAgIDxwYXRoIGQ9Ik04LjU5IDE2LjM0bDQuNTgtNC41OS00LjU4LTQuNTlMMTAgNS43NWw2IDYtNiA2eiIvPiAgICA8cGF0aCBkPSJNMC0uMjVoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz48L3N2Zz4=);
+    --reply-icon: url(data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+ICAgIDxwYXRoIGQ9Ik0xMCA5VjVsLTcgNyA3IDd2LTQuMWM1IDAgOC41IDEuNiAxMSA1LjEtMS01LTQtMTAtMTEtMTF6Ii8+ICAgIDxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz48L3N2Zz4=);
+}
+
+/* Dark theme */
+:root {
+
+/* Dark theme - accent color: magma */
+/* The main dark theme colors needs to be made available before the accent color */
+
+    --accent-color: #b81a1a;
+    --accent-color-darken: #a91717;
+    --accent-color-grad: linear-gradient(125deg, #c0002f 0%, #e59038 100%);
+    --report-bg-grad: linear-gradient(222deg, #eabd14 0%, #e87600 100%);
+    --button-floating-shadow: 0 3px 7px rgba(151, 38, 38, 0.82);
+
+
+/* Dark theme */
+/* Uncomment to activate the main colors for dark theme */
+
+    --top-nav-bg-color: #232323;
+    --main-bg-color: #121212;
+    --body-bg-color: #121212;
+    --menu-bg-color: #1c1c1c;
+    --sec-bg-color: #353535;
+    --box-bg-color: #232323;
+    --layer-ontop-semi-soft-color: rgba(255, 255, 255, 0.06);
+    --layer-ontop-color: rgba(255, 255, 255, 0.08);
+    --layer-ontop-soft-color: rgba(255, 255, 255, 0.02);
+    --accent-color-highlight: #1f1f1f;
+    --text-color: rgba(255, 255, 255, 0.88);
+    --text-color-inverted: #121212;
+    --text-description-color: rgba(255,255,255, 0.4);
+    --text-description-soft-color: rgba(255, 255, 255, 0.25);
+    --link-color: rgba(255, 255, 255, 0.88);
+    --input-border-color: rgba(255, 255, 255, 0.88);
+    --input-select-border-color: transparent;
+    --input-hover-bg-color: #1f1f1f;
+    --cta-btn-color: #434343;
+    --td-border: rgba(255, 255, 255, 0.06);
+    --unread-color: #dc1810;
+    --unread-soft-color: #561613;
+    --helptext-bg: rgba(255, 255, 255, 0.65);
+    --box-floating-shadow: 0 3px 6px rgba(202, 202, 202, 0.06);
+    --box-onflat-shadow: 0 1px 2px rgba(255, 255, 255,.1);
+    
+    --logo-symbol: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MjAuNSAxODgiPjxwYXRoIGZpbGw9IiNmZmYiIGQ9Ik0xOTUuNSAxNjF2LTIxaDMuNHYxOC41aDEyLjZ2Mi41ek0yMjYuNyAxNjFsOS44LTIxaDMuNmwxMC41IDIxaC0zLjhsLTMtNi40SDIzM2wtMi44IDYuNHptNy40LTguN2g4LjZsLTIuNi01LjhjLS45LTEuOC0xLjUtMy4yLTEuOS00LjRhMjMuOSAyMy45IDAgMCAxLTEuMyA0ek0yNjcuMSAxNjF2LTIxaDkuNmExNCAxNCAwIDAgMSA0LjcuNiA1LjkgNS45IDAgMCAxIDIuOCAyIDQuNSA0LjUgMCAwIDEgMSAyLjcgNC4xIDQuMSAwIDAgMS0uOSAyLjYgNi4xIDYuMSAwIDAgMS0yLjcgMiA2LjkgNi45IDAgMCAxIDMuNiAxLjggNC41IDQuNSAwIDAgMSAxLjMgMy4yIDUuMyA1LjMgMCAwIDEtLjggMi44IDUuNiA1LjYgMCAwIDEtMS45IDIgOC45IDguOSAwIDAgMS0yLjggMSAyMC4yIDIwLjIgMCAwIDEtNC4xLjN6bTMuNC0xMi4yaDUuNmExNS4yIDE1LjIgMCAwIDAgMy4yLS4zIDMuNyAzLjcgMCAwIDAgMi0xIDIuNiAyLjYgMCAwIDAgLjYtMS44IDMgMyAwIDAgMC0uNi0xLjkgMy4xIDMuMSAwIDAgMC0xLjgtMSAxNy40IDE3LjQgMCAwIDAtMy45LS40aC01djYuNHptMCA5LjdoNi40YTE5LjIgMTkuMiAwIDAgMCAyLjMgMCA2LjUgNi41IDAgMCAwIDItLjcgMy40IDMuNCAwIDAgMCAxLjMtMS4xIDMuMiAzLjIgMCAwIDAgLjUtMS44IDMgMyAwIDAgMC0uNy0yIDMuOSAzLjkgMCAwIDAtMi0xLjIgMTUgMTUgMCAwIDAtMy44LS40aC02djcuM3pNMzA0IDE1MC43YTEwLjMgMTAuMyAwIDAgMSAzLjQtOC4yIDEzIDEzIDAgMCAxIDguOS0zIDE0LjMgMTQuMyAwIDAgMSA2LjMgMS40IDEwLjEgMTAuMSAwIDAgMSA0LjQgMy45IDEwLjcgMTAuNyAwIDAgMSAxLjUgNS42IDEwLjYgMTAuNiAwIDAgMS0xLjYgNS44IDkuOCA5LjggMCAwIDEtNC40IDMuOCAxNC45IDE0LjkgMCAwIDEtNi4yIDEuMyAxNC4xIDE0LjEgMCAwIDEtNi41LTEuNCAxMC4yIDEwLjIgMCAwIDEtNS44LTkuMnptMy41IDBhNy42IDcuNiAwIDAgMCAyLjUgNiAxMCAxMCAwIDAgMCAxMi41IDAgOCA4IDAgMCAwIDIuNS02LjIgOSA5IDAgMCAwLTEtNC41IDcuMiA3LjIgMCAwIDAtMy0zIDEwLjQgMTAuNCAwIDAgMC0xMC44IDFxLTIuNyAyLTIuNyA2Ljh6TTM0Ni45IDE2MXYtMjFoMTEuM2ExOCAxOCAwIDAgMSA1LjIuNSA1LjUgNS41IDAgMCAxIDIuOSAyIDUuMiA1LjIgMCAwIDEgMSAzLjIgNC44IDQuOCAwIDAgMS0xLjcgMy43IDEwIDEwIDAgMCAxLTUuNSAyIDguOCA4LjggMCAwIDEgMiAxIDE1LjIgMTUuMiAwIDAgMSAyLjkgMi44bDQuNCA1LjhoLTQuMmwtMy40LTQuNGE0MiA0MiAwIDAgMC0yLjUtMyA3LjIgNy4yIDAgMCAwLTEuNy0xLjMgNS43IDUuNyAwIDAgMC0xLjUtLjYgMTIgMTIgMCAwIDAtMiAwaC0zLjl2OS4zem0zLjQtMTEuOGg3LjNhMTMuMyAxMy4zIDAgMCAwIDMuNi0uNCAzLjkgMy45IDAgMCAwIDItMS4yIDMgMyAwIDAgMCAuNy0yIDMgMyAwIDAgMC0xLjMtMi40IDcuMiA3LjIgMCAwIDAtNC4yLTFoLTguMXpNMzgzLjggMTYxbDkuOC0yMWgzLjdsMTAuNCAyMUg0MDRsLTMtNi40aC0xMC43bC0yLjggNi40em03LjQtOC43aDguN2wtMi43LTUuOC0xLjgtNC40YTIzLjkgMjMuOSAwIDAgMS0xLjQgNHpNNDI4LjMgMTYxdi0xOC42aC04LjV2LTIuNWgyMC4zdjIuNWgtOC41VjE2MXpNNDU1LjkgMTUwLjdhMTAuMyAxMC4zIDAgMCAxIDMuNC04LjIgMTMgMTMgMCAwIDEgOC44LTMgMTQuMyAxNC4zIDAgMCAxIDYuNCAxLjQgMTAgMTAgMCAwIDEgNC4zIDMuOSAxMC43IDEwLjcgMCAwIDEgMS41IDUuNiAxMC42IDEwLjYgMCAwIDEtMS41IDUuOCA5LjggOS44IDAgMCAxLTQuNSAzLjggMTQuOSAxNC45IDAgMCAxLTYuMiAxLjMgMTQuMSAxNC4xIDAgMCAxLTYuNS0xLjQgMTAuMiAxMC4yIDAgMCAxLTUuNy05LjJ6bTMuNSAwYTcuNiA3LjYgMCAwIDAgMi41IDYgMTAgMTAgMCAwIDAgMTIuNSAwIDggOCAwIDAgMCAyLjUtNi4yIDkuMiA5LjIgMCAwIDAtMS4xLTQuNSA3LjMgNy4zIDAgMCAwLTMtMyA5LjggOS44IDAgMCAwLTQuNy0xIDkuNyA5LjcgMCAwIDAtNi4xIDJxLTIuNiAyLTIuNiA2Ljh6TTQ5OC43IDE2MXYtMjFoMTEuNGExOCAxOCAwIDAgMSA1LjIuNSA1LjUgNS41IDAgMCAxIDIuOCAyIDUuMiA1LjIgMCAwIDEgMSAzLjIgNC44IDQuOCAwIDAgMS0xLjcgMy43IDkuOSA5LjkgMCAwIDEtNS40IDIgOC42IDguNiAwIDAgMSAyIDEgMTUuNSAxNS41IDAgMCAxIDIuOCAyLjhsNC40IDUuOEg1MTdsLTMuNC00LjQtMi40LTNhNy40IDcuNCAwIDAgMC0xLjctMS4zIDYgNiAwIDAgMC0xLjYtLjYgMTIgMTIgMCAwIDAtMS45IDBoLTMuOXY5LjN6bTMuNC0xMS44aDcuM2ExMy4yIDEzLjIgMCAwIDAgMy42LS40IDMuOCAzLjggMCAwIDAgMi0xLjIgMyAzIDAgMCAwIC43LTIgMyAzIDAgMCAwLTEuMy0yLjQgNy4xIDcuMSAwIDAgMC00LjItMWgtOHY3ek01MzkgMTYxdi0yMWgzLjR2MjF6TTU2Mi40IDE2MXYtMjFoMTguNXYyLjRoLTE1LjF2Ni41aDE0LjF2Mi40aC0xNC4xdjcuMmgxNS43djIuNXpNNTk5IDE1NC4ybDMuMi0uMmE1LjIgNS4yIDAgMCAwIDEgMi42IDUuOCA1LjggMCAwIDAgMi42IDEuNiAxMS44IDExLjggMCAwIDAgNCAuNiAxMS41IDExLjUgMCAwIDAgMy40LS40IDUgNSAwIDAgMCAyLjItMS4zIDIuNyAyLjcgMCAwIDAgLjctMS44IDIuNCAyLjQgMCAwIDAtLjctMS44IDUuMyA1LjMgMCAwIDAtMi4zLTEuMiA0OCA0OCAwIDAgMC00LjYtMSAyNi43IDI2LjcgMCAwIDEtNC45LTEuMyA2LjggNi44IDAgMCAxLTIuNy0yIDQuMiA0LjIgMCAwIDEtMS0yLjcgNC43IDQuNyAwIDAgMSAxLjItMyA2LjcgNi43IDAgMCAxIDMuMi0yIDE0LjUgMTQuNSAwIDAgMSA0LjctLjggMTUuMSAxNS4xIDAgMCAxIDUgLjggNyA3IDAgMCAxIDMuMyAyLjIgNS42IDUuNiAwIDAgMSAxLjMgMy4zbC0zLjMuMmE0LjEgNC4xIDAgMCAwLTEuNy0zIDggOCAwIDAgMC00LjUtMSA4LjQgOC40IDAgMCAwLTQuNSAxIDIuNyAyLjcgMCAwIDAtMS40IDIuMiAyLjIgMi4yIDAgMCAwIDEgMS44Yy43LjUgMi40IDEgNS4xIDEuNWEzOS43IDM5LjcgMCAwIDEgNS43IDEuNCA3LjYgNy42IDAgMCAxIDMuMyAyLjEgNC42IDQuNiAwIDAgMSAxIDMgNSA1IDAgMCAxLTEuMSAzLjIgNy41IDcuNSAwIDAgMS0zLjQgMi4zIDEzLjcgMTMuNyAwIDAgMS01IC44IDE3LjcgMTcuNyAwIDAgMS01LjctLjggOCA4IDAgMCAxLTMuNy0yLjUgNi4yIDYuMiAwIDAgMS0xLjQtMy44ek0xNTEuNCA4OS41TDEzNCA5LjFhOTQuMiA5NC4yIDAgMCAxIDQyLjggNDEuNHpNOTguMiAxNTEuN2w4MC4zLTE3LjNhOTQuMiA5NC4yIDAgMCAxLTQxLjQgNDN6TTU2LjIgMTM4bDY5IDQ0LjZhOTMuOSA5My45IDAgMCAxLTU5LjYgMXpNMzYuMiA5OC41bDE3LjMgODAuNGE5NC4yIDk0LjIgMCAwIDEtNDIuOS00MS40ek00OS45IDU2LjRsLTQ0LjUgNjlhOTQuNSA5NC41IDAgMCAxLTEtNTkuNnpNODkuMyAzNi4zTDkuMSA1My42YTk0LjIgOTQuMiAwIDAgMSA0MS4zLTQzek0xMzEuMyA1MGwtNjktNDQuNmE5My45IDkzLjkgMCAwIDEgNTkuNi0xek0yMDEgOTcuOGEzOC43IDM4LjcgMCAwIDEtMy43IDkuNSAyNS4xIDI1LjEgMCAwIDEtMTQuNyAxMS45IDM3LjMgMzcuMyAwIDAgMS0xMS40IDEuNSAyNS43IDI1LjcgMCAwIDEtMi42LS4xbC0yLjktLjRhMjkgMjkgMCAwIDEtMi43LS41IDE5LjQgMTkuNCAwIDAgMS0yLS42bDIuOC0xMS41YTExLjYgMTEuNiAwIDAgMCAxLjcuOSAxNC45IDE0LjkgMCAwIDAgMi4xLjggMjEuNyAyMS43IDAgMCAwIDIuMi41IDExLjkgMTEuOSAwIDAgMCAyLjIuMiAxMi42IDEyLjYgMCAwIDAgOC43LTNxMy40LTMgNS05LjZsOC43LTMyLjdoMTUuM3pNMjcwLjIgODAuM2ExOC4xIDE4LjEgMCAwIDEtMS43IDcuOCAxNy43IDE3LjcgMCAwIDEtNS41IDYuNSAyOC41IDI4LjUgMCAwIDEtOS40IDQuNSA0OC4yIDQ4LjIgMCAwIDEtMTMuNSAxLjdoLTkuNWwtNSAxOWgtMTUuNGwxNC41LTU1LjFoMjMuMmEzNi42IDM2LjYgMCAwIDEgMTAgMS4yIDIwLjUgMjAuNSAwIDAgMSA3IDMuMyAxMy4zIDEzLjMgMCAwIDEgNCA1IDE0LjcgMTQuNyAwIDAgMSAxLjMgNi4xem0tMTYuMi45YTYgNiAwIDAgMC0yLjYtNS4xcS0yLjctMi03LjgtMmgtNkwyMzMgOTEuNWg3YTIxIDIxIDAgMCAwIDYuMi0uOSAxMi43IDEyLjcgMCAwIDAgNC40LTIuMiA5IDkgMCAwIDAgMi41LTMuMiA5LjQgOS40IDAgMCAwIC44LTR6TTM0MC40IDg3LjRhMzIuNyAzMi43IDAgMCAxLTIuOCAxMy4xIDMyLjkgMzIuOSAwIDAgMS0zLjYgNiAzMC41IDMwLjUgMCAwIDEtNC44IDUuMyAzNS4zIDM1LjMgMCAwIDEtNS4yIDMuNyAzMy40IDMzLjQgMCAwIDEtNiAyLjggNDMuMyA0My4zIDAgMCAxLTcuMiAxLjggNTEgNTEgMCAwIDEtOC4zLjYgMzYuNyAzNi43IDAgMCAxLTEyLTEuOCAyNi4xIDI2LjEgMCAwIDEtOC45LTUgMjEuMiAyMS4yIDAgMCAxLTUuNS03LjUgMjMuMiAyMy4yIDAgMCAxLTItOS40IDMzLjQgMzMuNCAwIDAgMSAuOC03IDMwLjQgMzAuNCAwIDAgMSAyLjMtNi44IDMyIDMyIDAgMCAxIDMuOS02IDMyLjcgMzIuNyAwIDAgMSA1LjMtNS40IDM1LjIgMzUuMiAwIDAgMSA1LTMuMyAzOC42IDM4LjYgMCAwIDEgNi0yLjUgNDAuNCA0MC40IDAgMCAxIDYuOC0xLjYgNDkuMyA0OS4zIDAgMCAxIDcuOC0uNiAzOC43IDM4LjcgMCAwIDEgMTEuNSAxLjYgMjYgMjYgMCAwIDEgOSA0LjcgMjEuMyAyMS4zIDAgMCAxIDUuOCA3LjQgMjIuOSAyMi45IDAgMCAxIDIgMTB6bS0xNi4yLjRhMTUgMTUgMCAwIDAtMS01LjUgMTEuNSAxMS41IDAgMCAwLTIuOC00LjIgMTEuOSAxMS45IDAgMCAwLTQuMy0yLjYgMTcuNiAxNy42IDAgMCAwLTUuOS0xIDE4LjQgMTguNCAwIDAgMC03LjEgMS41IDE5LjQgMTkuNCAwIDAgMC02LjEgNCAxNy42IDE3LjYgMCAwIDAtMi44IDMuNSAyNS4xIDI1LjEgMCAwIDAtMi4xIDQuMyAyNi4zIDI2LjMgMCAwIDAtMS4zIDQuNSAyNC4xIDI0LjEgMCAwIDAtLjUgNC42IDE1IDE1IDAgMCAwIDEgNS42IDExIDExIDAgMCAwIDIuOCA0LjEgMTIgMTIgMCAwIDAgNC4zIDIuNiAxNyAxNyAwIDAgMCA1LjcuOSAyMC4xIDIwLjEgMCAwIDAgNy40LTEuNCAxNy4zIDE3LjMgMCAwIDAgNi4xLTQuMSAxOC42IDE4LjYgMCAwIDAgMy0zLjcgMjQgMjQgMCAwIDAgMi00LjIgMjggMjggMCAwIDAgMS4xLTQuNCAyMy4yIDIzLjIgMCAwIDAgLjUtNC41ek00MDQuNyA4MC4zYTE4IDE4IDAgMCAxLTEuOCA3LjggMTcuNiAxNy42IDAgMCAxLTUuNCA2LjUgMjguMyAyOC4zIDAgMCAxLTkuNCA0LjUgNDguMSA0OC4xIDAgMCAxLTEzLjYgMS43SDM2NWwtNSAxOWgtMTUuM2wxNC40LTU1LjFoMjMuM2EzNi42IDM2LjYgMCAwIDEgMTAgMS4yIDIwLjYgMjAuNiAwIDAgMSA3IDMuMyAxMy4yIDEzLjIgMCAwIDEgNCA1IDE0LjcgMTQuNyAwIDAgMSAxLjMgNi4xem0tMTYuMi45YTYgNiAwIDAgMC0yLjctNS4xcS0yLjYtMi03LjgtMmgtNmwtNC40IDE3LjNoN2EyMSAyMSAwIDAgMCA2LjItLjkgMTIuNiAxMi42IDAgMCAwIDQuMy0yLjIgOC45IDguOSAwIDAgMCAyLjYtMy4yIDkuNCA5LjQgMCAwIDAgLjgtNHpNNDUzLjggNzcuNGMtMS0uNS0yLTEtMy4yLTEuNGEzMyAzMyAwIDAgMC0zLjgtMS4zIDQwIDQwIDAgMCAwLTQuMi0uOSAzMC4xIDMwLjEgMCAwIDAtNC42LS4zIDE1LjIgMTUuMiAwIDAgMC00LjUuNiA5IDkgMCAwIDAtMyAxLjUgNS40IDUuNCAwIDAgMC0xLjUgMS45IDQuNSA0LjUgMCAwIDAtLjUgMS45IDUuNCA1LjQgMCAwIDAgLjUgMi4zIDYuNiA2LjYgMCAwIDAgMS41IDIgMTYuMyAxNi4zIDAgMCAwIDIuOCAybDQuMiAyLjNhNTYuOCA1Ni44IDAgMCAxIDUuNyAzLjIgMjMuMiAyMy4yIDAgMCAxIDQuMiAzLjUgMTMuMiAxMy4yIDAgMCAxIDIuNyA0IDEyLjggMTIuOCAwIDAgMSAuOSA1IDE1IDE1IDAgMCAxLS41IDMuNSAxNC4zIDE0LjMgMCAwIDEtMS41IDMuOCAxNS41IDE1LjUgMCAwIDEtMyAzLjcgMTguMiAxOC4yIDAgMCAxLTQuOCAzIDMxIDMxIDAgMCAxLTcgMi4yIDQ3IDQ3IDAgMCAxLTkuNC45IDUxLjIgNTEuMiAwIDAgMS01LjgtLjMgNTMuOCA1My44IDAgMCAxLTUuNS0xcS0yLjYtLjUtNC44LTEuMmEzOS4yIDM5LjIgMCAwIDEtMy45LTEuNGwyLjYtMTFhMzguNSAzOC41IDAgMCAwIDMuOCAyIDM4IDM4IDAgMCAwIDQuMyAxLjcgMzMuMSAzMy4xIDAgMCAwIDQuNyAxIDMwLjUgMzAuNSAwIDAgMCA0LjguNCAxOC40IDE4LjQgMCAwIDAgNC42LS41IDkuMiA5LjIgMCAwIDAgMy0xLjMgNSA1IDAgMCAwIDEuOC0yIDUuNiA1LjYgMCAwIDAgLjUtMi40IDUuMSA1LjEgMCAwIDAtLjUtMi4zIDYuMiA2LjIgMCAwIDAtMS42LTIgMjAgMjAgMCAwIDAtMy0ybC00LjYtMi4zYTQzIDQzIDAgMCAxLTUuMy0yLjggMjAuNCAyMC40IDAgMCAxLTQtMy40IDE0IDE0IDAgMCAxLTIuNy00IDEzLjIgMTMuMiAwIDAgMS0xLTUgMTQuNCAxNC40IDAgMCAxIDEuNS02LjQgMTUuNSAxNS41IDAgMCAxIDQuNi01LjUgMjQuNyAyNC43IDAgMCAxIDgtMy45IDM5LjggMzkuOCAwIDAgMSAxMS41LTEuNCA1NS4yIDU1LjIgMCAwIDEgMTQuOSAxLjlsMy44IDF6TTUxOC45IDk3LjNhNDcuOCA0Ny44IDAgMCAxLTMuNiA5LjggMjMgMjMgMCAwIDEtNiA3LjQgMjUuNCAyNS40IDAgMCAxLTkgNC42IDQ3LjQgNDcuNCAwIDAgMS0xMy4zIDEuNyAzNy43IDM3LjcgMCAwIDEtMTAuMi0xLjMgMjIuNiAyMi42IDAgMCAxLTcuNy0zLjcgMTYuNCAxNi40IDAgMCAxLTQuOS01LjggMTcuNCAxNy40IDAgMCAxLTEuNy03LjkgMjcuNiAyNy42IDAgMCAxIC40LTQuNCA0MC41IDQwLjUgMCAwIDEgMS00LjRsNy41LTI4LjdoMTUuNGwtNy42IDI4LjctMSA0LjFhMTcuNiAxNy42IDAgMCAwLS40IDMuNSA4LjggOC44IDAgMCAwIC44IDQgNy45IDcuOSAwIDAgMCAyLjMgMi44IDEwLjcgMTAuNyAwIDAgMCAzLjUgMS43IDE1IDE1IDAgMCAwIDQuNC42IDE4LjMgMTguMyAwIDAgMCA1LS42IDExLjUgMTEuNSAwIDAgMCA0LjEtMi4yIDE0IDE0IDAgMCAwIDMuMy00IDI1IDI1IDAgMCAwIDIuMy02LjFsOC42LTMyLjVoMTUuNHpNNTkzLjIgNjhsLTUuNCA0LjdxLTMgMi43LTYuNSA1LjRBOTA5LjcgOTA5LjcgMCAwIDAgNTY2IDkxLjVhNDAgNDAgMCAwIDAgMiAzLjZsMy4yIDVxMS44IDIuOCA0IDUuNmwzLjggNS43IDMuMiA1YTQwIDQwIDAgMCAxIDIgMy41aC0xOC41YTI5IDI5IDAgMCAwLTEuNS0zbC0yLjUtNC4xLTMtNC44LTMtNC45TDU1MyA5OWEyNSAyNSAwIDAgMS0xLjYtMyAxMC43IDEwLjcgMCAwIDEtLjctMS41bC0uNS0xLjNoLS4ybC02LjggMjYuNmgtMTUuNWwxNC41LTU1LjJoMTUuNGwtNi43IDI1LjdoLjJhNDEuOCA0MS44IDAgMCAxIDIuMy0yLjVsMy0yLjdjMS4yLTEuMyAyLjctMi42IDQuMy00LjFsNS4xLTQuNyA1LjItNC43cTIuNS0yLjIgNC4zLTQuMWwyLjgtMi44aDE4LjdsLTMuNiAzLjJ6TTYwNi4yIDExOS44aC0xNS40TDYwNSA2NC43aDE1LjR6Ii8+PC9zdmc+);
+    
+    --loading-spinner: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGNsYXNzPSJsZHMtZ29vZXlyaW5nIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJ4TWlkWU1pZCIgdmlld0JveD0iMCAwIDEwMCAxMDAiPiAgPGRlZnM+ICAgIDxmaWx0ZXIgaWQ9ImEiIHdpZHRoPSIzMDAlIiBoZWlnaHQ9IjMwMCUiIHg9Ii0xMDAlIiB5PSItMTAwJSIgY29sb3ItaW50ZXJwb2xhdGlvbi1maWx0ZXJzPSJzUkdCIj4gICAgICA8ZmVHYXVzc2lhbkJsdXIgaW49IlNvdXJjZUdyYXBoaWMiIHN0ZERldmlhdGlvbj0iMiIvPiAgICAgIDxmZUNvbXBvbmVudFRyYW5zZmVyIHJlc3VsdD0iY3V0b2ZmIj4gICAgICAgIDxmZUZ1bmNBIGludGVyY2VwdD0iLTUiIHNsb3BlPSIxMCIgdHlwZT0ibGluZWFyIi8+ICAgICAgPC9mZUNvbXBvbmVudFRyYW5zZmVyPiAgICA8L2ZpbHRlcj4gIDwvZGVmcz4gIDxnIGZpbHRlcj0idXJsKCNhKSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNTAgNTApIj4gICAgPGcgdHJhbnNmb3JtPSJyb3RhdGUoMjk3KSI+ICAgICAgPGNpcmNsZSBjeD0iMTciIHI9IjUiIGZpbGw9IiNjMzIwMDAiPiAgICAgICAgPGFuaW1hdGUgYXR0cmlidXRlTmFtZT0iciIgYmVnaW49Ii02LjZzIiBkdXI9IjYuNnMiIGtleVRpbWVzPSIwOzAuNTsxIiByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSIgdmFsdWVzPSIzLjU5OTk5OTk5OTk5OTk5OTY7OC4zOTk5OTk5OTk5OTk5OTk7My41OTk5OTk5OTk5OTk5OTk2Ii8+ICAgICAgPC9jaXJjbGU+ICAgICAgPGFuaW1hdGVUcmFuc2Zvcm0gYXR0cmlidXRlTmFtZT0idHJhbnNmb3JtIiBiZWdpbj0iMHMiIGR1cj0iNi42cyIga2V5VGltZXM9IjA7MSIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiIHR5cGU9InJvdGF0ZSIgdmFsdWVzPSIwOzM2MCIvPiAgICA8L2c+ICAgIDxnIHRyYW5zZm9ybT0icm90YXRlKDE5KSI+ICAgICAgPGNpcmNsZSBjeD0iMTciIHI9IjYiIGZpbGw9IiNkNjJlMmUiPiAgICAgICAgPGFuaW1hdGUgYXR0cmlidXRlTmFtZT0iciIgYmVnaW49Ii01LjI3OTk5OTk5OTk5OTk5OXMiIGR1cj0iMy4zcyIga2V5VGltZXM9IjA7MC41OzEiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIiB2YWx1ZXM9IjMuNTk5OTk5OTk5OTk5OTk5Njs4LjM5OTk5OTk5OTk5OTk5OTszLjU5OTk5OTk5OTk5OTk5OTYiLz4gICAgICA8L2NpcmNsZT4gICAgICA8YW5pbWF0ZVRyYW5zZm9ybSBhdHRyaWJ1dGVOYW1lPSJ0cmFuc2Zvcm0iIGJlZ2luPSItMS4zMTk5OTk5OTk5OTk5OTk4cyIgZHVyPSIzLjNzIiBrZXlUaW1lcz0iMDsxIiByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSIgdHlwZT0icm90YXRlIiB2YWx1ZXM9IjA7MzYwIi8+ICAgIDwvZz4gICAgPGcgdHJhbnNmb3JtPSJyb3RhdGUoMjQ0KSI+ICAgICAgPGNpcmNsZSBjeD0iMTciIHI9IjYiIGZpbGw9IiNmNDU5MGIiPiAgICAgICAgPGFuaW1hdGUgYXR0cmlidXRlTmFtZT0iciIgYmVnaW49Ii0zLjk1OTk5OTk5OTk5OTk5OTVzIiBkdXI9IjIuMTk5OTk5OTk5OTk5OTk5N3MiIGtleVRpbWVzPSIwOzAuNTsxIiByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSIgdmFsdWVzPSIzLjU5OTk5OTk5OTk5OTk5OTY7OC4zOTk5OTk5OTk5OTk5OTk7My41OTk5OTk5OTk5OTk5OTk2Ii8+ICAgICAgPC9jaXJjbGU+ICAgICAgPGFuaW1hdGVUcmFuc2Zvcm0gYXR0cmlidXRlTmFtZT0idHJhbnNmb3JtIiBiZWdpbj0iLTIuNjM5OTk5OTk5OTk5OTk5N3MiIGR1cj0iMi4xOTk5OTk5OTk5OTk5OTk3cyIga2V5VGltZXM9IjA7MSIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiIHR5cGU9InJvdGF0ZSIgdmFsdWVzPSIwOzM2MCIvPiAgICA8L2c+ICAgIDxnIHRyYW5zZm9ybT0icm90YXRlKDI1MykiPiAgICAgIDxjaXJjbGUgY3g9IjE3IiByPSI1IiBmaWxsPSIjZjZiMTAwIj4gICAgICAgIDxhbmltYXRlIGF0dHJpYnV0ZU5hbWU9InIiIGJlZ2luPSItMi42Mzk5OTk5OTk5OTk5OTk3cyIgZHVyPSIxLjY1cyIga2V5VGltZXM9IjA7MC41OzEiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIiB2YWx1ZXM9IjMuNTk5OTk5OTk5OTk5OTk5Njs4LjM5OTk5OTk5OTk5OTk5OTszLjU5OTk5OTk5OTk5OTk5OTYiLz4gICAgICA8L2NpcmNsZT4gICAgICA8YW5pbWF0ZVRyYW5zZm9ybSBhdHRyaWJ1dGVOYW1lPSJ0cmFuc2Zvcm0iIGJlZ2luPSItMy45NTk5OTk5OTk5OTk5OTk1cyIgZHVyPSIxLjY1cyIga2V5VGltZXM9IjA7MSIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiIHR5cGU9InJvdGF0ZSIgdmFsdWVzPSIwOzM2MCIvPiAgICA8L2c+ICAgIDxnIHRyYW5zZm9ybT0icm90YXRlKDQ2KSI+ICAgICAgPGNpcmNsZSBjeD0iMTciIHI9IjUiIGZpbGw9InJlZCI+ICAgICAgICA8YW5pbWF0ZSBhdHRyaWJ1dGVOYW1lPSJyIiBiZWdpbj0iLTEuMzE5OTk5OTk5OTk5OTk5OHMiIGR1cj0iMS4zMTk5OTk5OTk5OTk5OTk4cyIga2V5VGltZXM9IjA7MC41OzEiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIiB2YWx1ZXM9IjMuNTk5OTk5OTk5OTk5OTk5Njs4LjM5OTk5OTk5OTk5OTk5OTszLjU5OTk5OTk5OTk5OTk5OTYiLz4gICAgICA8L2NpcmNsZT4gICAgICA8YW5pbWF0ZVRyYW5zZm9ybSBhdHRyaWJ1dGVOYW1lPSJ0cmFuc2Zvcm0iIGJlZ2luPSItNS4yNzk5OTk5OTk5OTk5OTlzIiBkdXI9IjEuMzE5OTk5OTk5OTk5OTk5OHMiIGtleVRpbWVzPSIwOzEiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIiB0eXBlPSJyb3RhdGUiIHZhbHVlcz0iMDszNjAiLz4gICAgPC9nPiAgPC9nPjwvc3ZnPg==);
+    
+
+    
+    
+    --upload-icon: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjRkZGRkZGIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+ICAgIDxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz4gICAgPHBhdGggZD0iTTkgMTZoNnYtNmg0bC03LTctNyA3aDR6bS00IDJoMTR2Mkg1eiIvPjwvc3ZnPg==);
+    --invite-icon: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjRkZGRkZGIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+ICAgIDxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz4gICAgPHBhdGggZD0iTTE1IDEyYzIuMjEgMCA0LTEuNzkgNC00cy0xLjc5LTQtNC00LTQgMS43OS00IDQgMS43OSA0IDQgNHptLTktMlY3SDR2M0gxdjJoM3YzaDJ2LTNoM3YtMkg2em05IDRjLTIuNjcgMC04IDEuMzQtOCA0djJoMTZ2LTJjMC0yLjY2LTUuMzMtNC04LTR6Ii8+PC9zdmc+);
+    --donate-icon: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjRkZGRkZGIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+ICAgIDxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz4gICAgPHBhdGggZD0iTTE2LjUgM2MtMS43NCAwLTMuNDEuODEtNC41IDIuMDlDMTAuOTEgMy44MSA5LjI0IDMgNy41IDMgNC40MiAzIDIgNS40MiAyIDguNWMwIDMuNzggMy40IDYuODYgOC41NSAxMS41NEwxMiAyMS4zNWwxLjQ1LTEuMzJDMTguNiAxNS4zNiAyMiAxMi4yOCAyMiA4LjUgMjIgNS40MiAxOS41OCAzIDE2LjUgM3ptLTQuNCAxNS41NWwtLjEuMS0uMS0uMUM3LjE0IDE0LjI0IDQgMTEuMzkgNCA4LjUgNCA2LjUgNS41IDUgNy41IDVjMS41NCAwIDMuMDQuOTkgMy41NyAyLjM2aDEuODdDMTMuNDYgNS45OSAxNC45NiA1IDE2LjUgNWMyIDAgMy41IDEuNSAzLjUgMy41IDAgMi44OS0zLjE0IDUuNzQtNy45IDEwLjA1eiIvPjwvc3ZnPg==);
+    --user-settings-icon: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjRkZGRkZGIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+ICAgIDxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz4gICAgPHBhdGggZD0iTTE5LjQzIDEyLjk4Yy4wNC0uMzIuMDctLjY0LjA3LS45OHMtLjAzLS42Ni0uMDctLjk4bDIuMTEtMS42NWMuMTktLjE1LjI0LS40Mi4xMi0uNjRsLTItMy40NmMtLjEyLS4yMi0uMzktLjMtLjYxLS4yMmwtMi40OSAxYy0uNTItLjQtMS4wOC0uNzMtMS42OS0uOThsLS4zOC0yLjY1QzE0LjQ2IDIuMTggMTQuMjUgMiAxNCAyaC00Yy0uMjUgMC0uNDYuMTgtLjQ5LjQybC0uMzggMi42NWMtLjYxLjI1LTEuMTcuNTktMS42OS45OGwtMi40OS0xYy0uMjMtLjA5LS40OSAwLS42MS4yMmwtMiAzLjQ2Yy0uMTMuMjItLjA3LjQ5LjEyLjY0bDIuMTEgMS42NWMtLjA0LjMyLS4wNy42NS0uMDcuOThzLjAzLjY2LjA3Ljk4bC0yLjExIDEuNjVjLS4xOS4xNS0uMjQuNDItLjEyLjY0bDIgMy40NmMuMTIuMjIuMzkuMy42MS4yMmwyLjQ5LTFjLjUyLjQgMS4wOC43MyAxLjY5Ljk4bC4zOCAyLjY1Yy4wMy4yNC4yNC40Mi40OS40Mmg0Yy4yNSAwIC40Ni0uMTguNDktLjQybC4zOC0yLjY1Yy42MS0uMjUgMS4xNy0uNTkgMS42OS0uOThsMi40OSAxYy4yMy4wOS40OSAwIC42MS0uMjJsMi0zLjQ2Yy4xMi0uMjIuMDctLjQ5LS4xMi0uNjRsLTIuMTEtMS42NXpNMTIgMTUuNWMtMS45MyAwLTMuNS0xLjU3LTMuNS0zLjVzMS41Ny0zLjUgMy41LTMuNSAzLjUgMS41NyAzLjUgMy41LTEuNTcgMy41LTMuNSAzLjV6Ii8+PC9zdmc+);
+    --logout-icon: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjRkZGRkZGIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+ICAgIDxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz4gICAgPHBhdGggZD0iTTEwLjA5IDE1LjU5TDExLjUgMTdsNS01LTUtNS0xLjQxIDEuNDFMMTIuNjcgMTFIM3YyaDkuNjdsLTIuNTggMi41OXpNMTkgM0g1Yy0xLjExIDAtMiAuOS0yIDJ2NGgyVjVoMTR2MTRINXYtNEgzdjRjMCAxLjEuODkgMiAyIDJoMTRjMS4xIDAgMi0uOSAyLTJWNWMwLTEuMS0uOS0yLTItMnoiLz48L3N2Zz4=);
+    --search-icon: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjRkZGRkZGIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+ICAgIDxwYXRoIGQ9Ik0xNS41IDE0aC0uNzlsLS4yOC0uMjdDMTUuNDEgMTIuNTkgMTYgMTEuMTEgMTYgOS41IDE2IDUuOTEgMTMuMDkgMyA5LjUgM1MzIDUuOTEgMyA5LjUgNS45MSAxNiA5LjUgMTZjMS42MSAwIDMuMDktLjU5IDQuMjMtMS41N2wuMjcuMjh2Ljc5bDUgNC45OUwyMC40OSAxOWwtNC45OS01em0tNiAwQzcuMDEgMTQgNSAxMS45OSA1IDkuNVM3LjAxIDUgOS41IDUgMTQgNy4wMSAxNCA5LjUgMTEuOTkgMTQgOS41IDE0eiIvPiAgICA8cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIi8+PC9zdmc+);
+    --tags-icon: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+ICAgIDxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz4gICAgPHBhdGggZD0iTTIxLjQxIDExLjU4bC05LTlDMTIuMDUgMi4yMiAxMS41NSAyIDExIDJINGMtMS4xIDAtMiAuOS0yIDJ2N2MwIC41NS4yMiAxLjA1LjU5IDEuNDJsOSA5Yy4zNi4zNi44Ni41OCAxLjQxLjU4LjU1IDAgMS4wNS0uMjIgMS40MS0uNTlsNy03Yy4zNy0uMzYuNTktLjg2LjU5LTEuNDEgMC0uNTUtLjIzLTEuMDYtLjU5LTEuNDJ6TTUuNSA3QzQuNjcgNyA0IDYuMzMgNCA1LjVTNC42NyA0IDUuNSA0IDcgNC42NyA3IDUuNSA2LjMzIDcgNS41IDd6IiBmaWxsPSIjZmZmZmZmIi8+PC9zdmc+);
+    --sort-icon: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjRkZGRkZGIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+ICAgIDxwYXRoIGQ9Ik0zIDE4aDZ2LTJIM3Yyek0zIDZ2MmgxOFY2SDN6bTAgN2gxMnYtMkgzdjJ6Ii8+ICAgIDxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz48L3N2Zz4=);
+    --up-arrow: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjRkZGRkZGIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+ICAgIDxwYXRoIGQ9Ik0wIDBoMjR2MjRIMFYweiIgZmlsbD0ibm9uZSIvPiAgICA8cGF0aCBkPSJNNCAxMmwxLjQxIDEuNDFMMTEgNy44M1YyMGgyVjcuODNsNS41OCA1LjU5TDIwIDEybC04LTgtOCA4eiIvPjwvc3ZnPg==);
+    --down-arrow: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjRkZGRkZGIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+ICAgIDxwYXRoIGQ9Ik0wIDBoMjR2MjRIMFYweiIgZmlsbD0ibm9uZSIvPiAgICA8cGF0aCBkPSJNMjAgMTJsLTEuNDEtMS40MUwxMyAxNi4xN1Y0aC0ydjEyLjE3bC01LjU4LTUuNTlMNCAxMmw4IDggOC04eiIgZmlsbD0iI0ZGRkZGRiIvPjwvc3ZnPg==);
+    --up-down-arrow: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjRkZGRkZGIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+ICAgIDxwYXRoIGQ9Ik0xNiAxNy4wMVYxMGgtMnY3LjAxaC0zTDE1IDIxbDQtMy45OWgtM3pNOSAzTDUgNi45OWgzVjE0aDJWNi45OWgzTDkgM3oiLz4gICAgPHBhdGggZD0iTTAgMGgyNHYyNEgweiIgZmlsbD0ibm9uZSIvPjwvc3ZnPg==);
+    --dollar-icon: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjRkZGRkZGIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+ICAgIDxwYXRoIGQ9Ik0xMS44IDEwLjljLTIuMjctLjU5LTMtMS4yLTMtMi4xNSAwLTEuMDkgMS4wMS0xLjg1IDIuNy0xLjg1IDEuNzggMCAyLjQ0Ljg1IDIuNSAyLjFoMi4yMWMtLjA3LTEuNzItMS4xMi0zLjMtMy4yMS0zLjgxVjNoLTN2Mi4xNmMtMS45NC40Mi0zLjUgMS42OC0zLjUgMy42MSAwIDIuMzEgMS45MSAzLjQ2IDQuNyA0LjEzIDIuNS42IDMgMS40OCAzIDIuNDEgMCAuNjktLjQ5IDEuNzktMi43IDEuNzktMi4wNiAwLTIuODctLjkyLTIuOTgtMi4xaC0yLjJjLjEyIDIuMTkgMS43NiAzLjQyIDMuNjggMy44M1YyMWgzdi0yLjE1YzEuOTUtLjM3IDMuNS0xLjUgMy41LTMuNTUgMC0yLjg0LTIuNDMtMy44MS00LjctNC40eiIvPiAgICA8cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIi8+PC9zdmc+);
+    --dollar-icon-inverted: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjMDAwMDAwIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+ICAgIDxwYXRoIGQ9Ik0xMS44IDEwLjljLTIuMjctLjU5LTMtMS4yLTMtMi4xNSAwLTEuMDkgMS4wMS0xLjg1IDIuNy0xLjg1IDEuNzggMCAyLjQ0Ljg1IDIuNSAyLjFoMi4yMWMtLjA3LTEuNzItMS4xMi0zLjMtMy4yMS0zLjgxVjNoLTN2Mi4xNmMtMS45NC40Mi0zLjUgMS42OC0zLjUgMy42MSAwIDIuMzEgMS45MSAzLjQ2IDQuNyA0LjEzIDIuNS42IDMgMS40OCAzIDIuNDEgMCAuNjktLjQ5IDEuNzktMi43IDEuNzktMi4wNiAwLTIuODctLjkyLTIuOTgtMi4xaC0yLjJjLjEyIDIuMTkgMS43NiAzLjQyIDMuNjggMy44M1YyMWgzdi0yLjE1YzEuOTUtLjM3IDMuNS0xLjUgMy41LTMuNTUgMC0yLjg0LTIuNDMtMy44MS00LjctNC40eiIvPiAgICA8cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIi8+PC9zdmc+); 
+    --download-icon: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjRkZGRkZGIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+ICAgIDxwYXRoIGQ9Ik0xOSA5aC00VjNIOXY2SDVsNyA3IDctN3pNNSAxOHYyaDE0di0ySDV6Ii8+ICAgIDxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz48L3N2Zz4=);
+    --download-icon-inverted: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjMDAwMDAwIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+ICAgIDxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz4gICAgPHBhdGggZD0iTTEgMjFoMjJMMTIgMiAxIDIxem0xMi0zaC0ydi0yaDJ2MnptMC00aC0ydi00aDJ2NHoiLz48L3N2Zz4=);
+    --warning-icon: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjRkZGRkZGIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+ICAgIDxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz4gICAgPHBhdGggZD0iTTEgMjFoMjJMMTIgMiAxIDIxem0xMi0zaC0ydi0yaDJ2MnptMC00aC0ydi00aDJ2NHoiLz48L3N2Zz4=);
+    --warning-icon-inverted: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjMDAwMDAwIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+ICAgIDxwYXRoIGQ9Ik0xOSA5aC00VjNIOXY2SDVsNyA3IDctN3pNNSAxOHYyaDE0di0ySDV6Ii8+ICAgIDxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz48L3N2Zz4=);
+    --thumb-up: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjRkZGRkZGIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+ICAgIDxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz4gICAgPHBhdGggZD0iTTEgMjFoNFY5SDF2MTJ6bTIyLTExYzAtMS4xLS45LTItMi0yaC02LjMxbC45NS00LjU3LjAzLS4zMmMwLS40MS0uMTctLjc5LS40NC0xLjA2TDE0LjE3IDEgNy41OSA3LjU5QzcuMjIgNy45NSA3IDguNDUgNyA5djEwYzAgMS4xLjkgMiAyIDJoOWMuODMgMCAxLjU0LS41IDEuODQtMS4yMmwzLjAyLTcuMDVjLjA5LS4yMy4xNC0uNDcuMTQtLjczdi0xLjkxbC0uMDEtLjAxTDIzIDEweiIvPjwvc3ZnPg==);
+    --thumb-up-highlight: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjNzNiYTFmIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+ICAgIDxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz4gICAgPHBhdGggZD0iTTEgMjFoNFY5SDF2MTJ6bTIyLTExYzAtMS4xLS45LTItMi0yaC02LjMxbC45NS00LjU3LjAzLS4zMmMwLS40MS0uMTctLjc5LS40NC0xLjA2TDE0LjE3IDEgNy41OSA3LjU5QzcuMjIgNy45NSA3IDguNDUgNyA5djEwYzAgMS4xLjkgMiAyIDJoOWMuODMgMCAxLjU0LS41IDEuODQtMS4yMmwzLjAyLTcuMDVjLjA5LS4yMy4xNC0uNDcuMTQtLjczdi0xLjkxbC0uMDEtLjAxTDIzIDEweiIvPjwvc3ZnPg==);
+    --chevron-right-icon: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjRkZGRkZGIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+ICAgIDxwYXRoIGQ9Ik03LjQxIDcuODRMMTIgMTIuNDJsNC41OS00LjU4TDE4IDkuMjVsLTYgNi02LTZ6Ii8+ICAgIDxwYXRoIGQ9Ik0wLS43NWgyNHYyNEgweiIgZmlsbD0ibm9uZSIvPjwvc3ZnPg==);
+    --chevron-down-icon: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjRkZGRkZGIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+ICAgIDxwYXRoIGQ9Ik0xMCA2TDguNTkgNy40MSAxMy4xNyAxMmwtNC41OCA0LjU5TDEwIDE4bDYtNnoiLz4gICAgPHBhdGggZD0iTTAgMGgyNHYyNEgweiIgZmlsbD0ibm9uZSIvPjwvc3ZnPg==);
+    --reply-icon: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSIjRkZGRkZGIiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+ICAgIDxwYXRoIGQ9Ik0xMCA5VjVsLTcgNyA3IDd2LTQuMWM1IDAgOC41IDEuNiAxMSA1LjEtMS01LTQtMTAtMTEtMTF6Ii8+ICAgIDxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz48L3N2Zz4=);
+ */   
+}
+
+/***************************************************************/
+/************************** DESKTOP ****************************/
+/***************************************************************/
+
+/* Global */
+* {
+    padding: 0em;
+    margin: 0em;
+    box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+}
+
+body {
+    width: 100%;
+    /* background-image: var(--body-bg-grad-color); */
+    background-color: var(--body-bg-color);
+    font-family: 'Open Sans', arial, helvetica, sans-serif;
+    font-size: var(--fs-default);
+    color: var(--text-color);
+    min-width: 850px;
+}
+
+img {
+    border-radius: 6px;
+}
+
+/* Common elements */
+
+a {
+    text-decoration: none;
+    border: none;
+    color: var(--link-color);
+}
+
+a:hover {
+    /* color: #FF0000; */
+}
+
+#forums table.forum_post .body > .postcontent a {
+    color: var(--accent-color);
+}
+
+input {
+    font-family: 'Open Sans';
+    color: var(--text-color);
+    font-size: var(--fs-default);
+}
+
+pre, blockquote {
+    color: var(--text-description-color) !important;
+}
+
+h1,h2,h3,h4 {
+    margin: 5px 0px;
+    font-weight: bold;
+}
+
+h2 {
+    text-align: center;
+    font-size: 12pt;
+}
+
+h4 {
+    font-size: 8pt;
+}
+
+h3#general {
+    margin: 20px 0 10px 0;
+}
+
+p {
+    margin: 10px 5px;
+}
+
+li {
+    margin: 5px 15px;
+}
+
+input {
+    padding: 2px 3px;
+}
+
+/* Regular input text */
+input[type="text"], input[type="password"], input[value="masschange"], input[value="takerequest"] {
+    border: none;
+    border-bottom: 1px solid var(--input-border-color);
+    padding: 5px;
+    margin-bottom: 5px;
+    background-color: transparent;
+}
+
+input[type="text"]:focus, input[type="password"]:focus, textarea:focus {
+    outline: none;
+    border: none;
+    border-bottom: 1px solid var(--accent-color);
+}
+
+/* Dropdown styling for Order By */
+select  {
+    border: none;
+    border-bottom: 1px solid var(--input-select-border-color);
+    padding: 5px 20px 5px 5px;
+    border-radius: 2px;
+    cursor: pointer;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    font-size: var(--fs-button);
+    transition: box-shadow .1s, background-color .1s;
+    background-color: var(--sec-bg-color);
+    color: var(--text-color);
+}
+
+/* Dropdown in hover state */
+select:hover,
+select:active {
+    background-color: var(--input-hover-bg-color);
+    box-shadow: var(--box-floating-shadow);
+    border-bottom: 1px solid transparent;
+}
+
+/* Dropdown in focus */
+select:focus {
+    outline: none;
+}
+
+/* Dropdown options */
+select option {
+    background-color: var(--main-bg-color);
+    color: var(--text-color);
+}
+
+/* Front page, index page, layout styling */
+
+/* Remove borders from "Latest 5 Torrents", and "Latest 10 recommendations" */
+#index #content > .thin div:nth-child(2) td {
+    border: none;
+}
+
+/* Recommendations page gallery table */
+#index #content div.main_column .gallerycontainer table:first-of-type td {
+    text-align: center;
+}
+
+input[value="Vote!"] {
+    margin-bottom: 20px;
+}
+
+
+/* Hide "gaijin.k" image border by masking the edges */
+#content .sidebar div.box:nth-child(2) div[align="center"] a {
+    border-radius: 20px;
+    overflow: hidden;
+    width: 140px;
+    display: inline-block;
+    position: relative;
+}
+
+#content .sidebar div.box:nth-child(2) div[align="center"] a img {
+    margin-left: -5px;
+}
+
+
+
+/* -------------------------------------
+ *
+ * FILTER TORRENTS
+ *
+ * Button, and table styling
+ *
+ ------------------------------------ */
+ 
+/* Header */
+#torrents_filter #search_box > div.filter_torrents:before {
+    content: "Search torrents";
+    text-align: left;
+    font-size: var(--fs-header-xxl);
+    font-weight: bold;
+}
+
+/* Make room for Torrents page header */
+#torrents #content form#torrents_filter .filter_torrents div.box.pad {
+    margin-top: 20px;
+}
+
+#torrents #content form#torrents_filter {
+    margin-top: 20px;
+}
+
+/* "Mark all torrents old - button" */
+form#torrents_filter ~ b > center > a {
+    color: var(--accent-color);
+    padding: 10px 20px;
+    border-radius: var(--soft-corners);
+    text-transform: uppercase;
+    font-size: var(--fs-button);
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color .3s;
+}
+form#torrents_filter ~ b > center > a:hover {
+    background-color: var(--sec-bg-color);
+}
+
+/* Contract the width of the first column to make the search fields closer to the icons */
+#torrents #content div.filter_torrents table:first-of-type td.label {
+    width: 70px;
+}
+
+
+/* Torrent search/filter portlet size */
+.filter_torrents, #torrents #content #ajax_torrents {
+    width: var(--main-content-width);
+    margin: auto;
+    max-width: 1200px;
+    position: relative;
+}
+
+/* Add more spacing between search box input fields and tags */
+#search_box table:nth-child(1) {
+    --search-table1-margin-bottom: 40px;
+    --search-table1-bottom-border-offset: calc(var(--search-table1-margin-bottom) / 2);
+    
+    margin-bottom: var(--search-table1-margin-bottom);
+    position: relative;
+}
+
+/* Add more spacing between category checkboxes and tags */
+#search_box table:nth-child(2) {
+    margin-bottom: 20px;
+}
+
+/* Separator bottom border */
+#search_box table:nth-child(1):after {
+    content:"";
+    position: absolute;
+    background-color: var(--sec-bg-color);
+    width: 100%;
+    height: 1px;
+    /* Bottom border will be set to the middle of the total margin bottom, define in #search_box table:nth-child(1) */
+    bottom: calc(var(--search-table1-bottom-border-offset) * -1);
+}
+
+/* Remove search box borders */ 
+#search_box td {
+    border: none;
+}
+
+/* Search terms input field and tags input field */
+#search_box .filter_torrents > div > table:first-of-type > tbody tr:nth-child(1) td.label,
+#search_box .filter_torrents > div > table:first-of-type > tbody tr:nth-child(2) td.label {
+    /* #search_box .filter_torrents > div > table:first-of-type > tbody tr:nth-child(3) td.label  */
+    font-size: 0;
+}
+
+/* Search terms input field and tags input field */
+#search_box .filter_torrents > div > table:first-of-type > tbody tr:nth-child(1) input[type="text"],
+#search_box .filter_torrents > div > table:first-of-type > tbody tr:nth-child(2) input[type="text"],
+#artist .filter_torrents input[type="text"],
+#collages #content form table:first-of-type td:nth-child(2) input[type="text"],
+#requests form td input[name="search"], #requests form td input[name="tags"],
+#log #content input[name="search"],
+#user #content input[name="username"],
+#forums #content input[name="search"] {
+    width: 100%;
+    /* Reset font size */
+    font-size: var(--fs-default);
+    background-color: var(--sec-bg-color);
+    border: none;
+    color: var(--text-color);
+    padding: 10px 10px;
+    border-radius: var(--soft-corners);
+    text-align: left;
+    transition: box-shadow .2s;
+}
+
+/* Spacing between Tags input field and radio buttons */
+#search_box .filter_torrents > div > table:first-of-type > tbody tr:nth-child(2) input[type="text"] {
+    margin-bottom: 10px;
+}
+
+/* To no push down search button to new row */
+#log #content input[name="search"], #user #content input[name="username"] {
+    max-width: calc(100% - 160px);
+}
+
+/* Search terms input field and tags input field focus effect */
+#search_box .filter_torrents > div > table:first-of-type > tbody tr:nth-child(1) input[type="text"]:focus,
+#search_box .filter_torrents > div > table:first-of-type > tbody tr:nth-child(2) input[type="text"]:focus,
+#artist .filter_torrents input[type="text"]:focus,
+#collages #content form table:first-of-type td:nth-child(2) input[type="text"]:focus,
+#requests form td input[name="search"]:focus, #requests form td input[name="tags"]:focus,
+#log #content input[name="search"]:focus, #user input[name="username"]:focus,
+#forums #content input[name="search"]:focus {
+    cursor: text;
+    box-shadow: var(--box-floating-shadow);
+    outline: none;
+    /* Raise element z-index to sit on top of placeholder */
+    z-index: 1;
+    position: relative;
+}
+
+/* Shared properties for Search terms and Tags placeholder text */
+#search_box .filter_torrents > div > table:first-of-type > tbody tr:nth-child(1) td:nth-child(2):before,
+#search_box .filter_torrents > div > table:first-of-type > tbody tr:nth-child(2) td:nth-child(2):before,
+#artist .filter_torrents #artists_tags_filter tbody tr:first-of-type td:first-of-type:before,
+#requests form tr:nth-child(1) td:nth-child(2):before, #requests form tr:nth-child(2) td:nth-child(2):before {
+    position: absolute;
+    width: 200px;
+    height: 20px;
+    font-size: 16px;
+    padding: 10px 10px;
+    opacity: .2;
+    pointer-events: none;
+}
+
+/* Torrent page, Request page, Search terms input field placeholder text */
+#search_box .filter_torrents > div > table:first-of-type > tbody tr:nth-child(1) td:nth-child(2):before,
+#requests form tr:nth-child(1) td:nth-child(2):before {
+    content: "Search term";
+}
+
+/* Torrent page, Request page, Tags input field placeholder text */
+#search_box .filter_torrents > div > table:first-of-type > tbody tr:nth-child(2) td:nth-child(2):before,
+#requests form tr:nth-child(2) td:nth-child(2):before {
+    content: "Tags separated by comma";
+}
+
+/* Artist page, Tags input field placeholder text */
+#artist .filter_torrents #artists_tags_filter table:first-of-type tbody tr:first-of-type td:nth-child(2):before {
+    content: "Tags separated by comma";
+    position: absolute;
+    width: 200px;
+    height: 20px;
+    font-size: 16px;
+    padding: 10px 10px;
+    opacity: .2;
+    pointer-events: none;
+}
+
+/* Artist page Tags label container */
+#artist .filter_torrents #artists_tags_filter table:first-of-type tbody tr:first-of-type td:nth-child(1) {
+    padding: 0;
+    width: 30px;
+    //overflow: hidden;
+    display: inline-block;
+    position: relative;
+    color: transparent;
+    -webkit-user-select: none;  /* Chrome, Safari */
+    -moz-user-select: none;     /* Firefox */
+    -ms-user-select: none;      /* IE 10+ */
+    user-select: none;
+}
+
+/* Collages page, Tags input field placeholder text */
+#collages #content form table:first-of-type tr:first-of-type td:nth-child(2):before {
+    content: "Search term";
+    position: absolute;
+    width: 200px;
+    height: 20px;
+    font-size: 16px;
+    padding: 10px 10px;
+    opacity: .2;
+    pointer-events: none;
+    margin-left: -53px;
+}
+
+/* Artist page Tags label icon */
+#artist .filter_torrents #artists_tags_filter table:first-of-type tbody tr:first-of-type td:nth-child(1):before {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    top: 50%;
+    // left: 0;
+    left: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 6px;
+    opacity: .8;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: var(--tags-icon);
+}
+
+/* Collages page Search label icon */
+#collages #content form table:first-of-type tr:first-of-type td:nth-child(1):before {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    top: 65%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 25px;
+    height: 25px;
+    opacity: .8;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: var(--search-icon);
+}
+
+/* User page "send bonus point" container */
+body#user #content form[action="bonus.php"] {
+  padding: 0;
+}
+
+/* Artist page search button container */
+#artist .filter_torrents #artists_tags_filter table:first-of-type tbody tr:first-of-type td:nth-child(3) {
+    display: inline-block;
+    padding: 0;
+}
+
+#artist .filter_torrents #artists_tags_filter table:first-of-type tbody tr:first-of-type td:nth-child(3) > input[type="submit"] {
+    margin-top: -7px;
+}
+
+/* Revert font size of radio buttons and checkbox in Search and Tags input field */
+#search_box .filter_torrents > div > table:first-of-type > tbody tr:nth-child(1) td:nth-child(2) {
+    /* #search_box .filter_torrents > div > table:first-of-type > tbody tr:nth-child(2) td:nth-child(2) */
+    font-size: var(--fs-default);
+}
+
+/* Third input field in Search Torrents page */
+#search_box .filter_torrents > div > table:first-of-type > tbody tr:nth-child(3) td:nth-child(1) {
+    white-space: nowrap;
+    max-width: 80px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Torrent page First column of search terms, tags, order by. Limit width and hide to replace with icon */
+#search_box .filter_torrents > div > table:first-of-type > tbody tr:nth-child(1) td:nth-child(1),
+#search_box .filter_torrents > div > table:first-of-type > tbody tr:nth-child(2) td:nth-child(1) {
+    /* #search_box .filter_torrents > div > table:first-of-type > tbody tr:nth-child(3) td:nth-child(1) */
+    position: relative;
+    margin-top: 12px;
+    width: 30px;
+    height: 30px;
+    //overflow: hidden;
+    display: block;
+}
+
+/* Request page First column of search terms, tags, order by. Limit width and hide to replace with icon */
+#requests form tr:nth-child(1) td:nth-child(1), #requests form tr:nth-child(2) td:nth-child(1) {
+    position: relative;
+    margin-top: 11px;
+    width: 25px;
+    height: 25px;
+    overflow: hidden;
+    display: block;
+    color: transparent;
+    background-repeat: no-repeat;
+    -webkit-user-select: none;  /* Chrome, Safari */
+    -moz-user-select: none;     /* Firefox */
+    -ms-user-select: none;      /* IE 10+ */
+    user-select: none;
+}
+
+/* Share properties for filter torrent Search input icon, Tags, Order by input icon icon */
+#search_box .filter_torrents > div > table:first-of-type > tbody tr:nth-child(1) td:nth-child(1):before,
+#search_box .filter_torrents > div > table:first-of-type > tbody tr:nth-child(2) td:nth-child(1):before {
+    /*#search_box .filter_torrents > div > table:first-of-type > tbody tr:nth-child(3) td:nth-child(1):before */
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    top: 50%;
+    // left: 0;
+    left: 50%;
+    transform: translateY(-50%);
+    width: 25px;
+    height: 25px;
+    opacity: .8;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+/* Filter torrent, Request page, Search input field icon */
+#search_box .filter_torrents > div > table:first-of-type > tbody tr:nth-child(1) td:nth-child(1):before,
+#requests form tr:nth-child(1) td:nth-child(1) {
+    opacity: .8;
+    background-image: var(--search-icon);
+    
+}
+
+/* Filter torrent, Request page, Tags input field icon */
+#search_box .filter_torrents > div > table:first-of-type > tbody tr:nth-child(2) td:nth-child(1):before,
+#requests form tr:nth-child(2) td:nth-child(1) {
+    opacity: .8;
+    background-image: var(--tags-icon);
+}
+
+/* Filter torrent Order By input field icon */
+#search_box .filter_torrents > div > table:first-of-type > tbody tr:nth-child(3) td:nth-child(1):before {
+    /*
+    opacity: .8;
+    background-image: var(--sort-icon);
+    */
+}
+
+/* Filter "Order by" disable grouping checkbox label */
+input[name="disablegrouping"] + label > strong {
+    opacity: .8;
+    font-weight: var(--fw-default);
+}
+
+
+/* Filter torrents regular (secondary) button inputs */
+.filter_torrents input[type="submit"],
+.filter_torrents input[type="button"],
+#quickreplybuttons input[value="Preview"],
+#forums #content .thin > div.linkbox:first-of-type > a,
+#top10 #content div.linkbox:first-of-type a, #requests #content div.linkbox:first-of-type a, 
+#torrents #content input[value="Preview"],
+#collages #content div.linkbox:first-of-type a,
+input[value="Show"], input[value="Hide"],
+#bookmarks #content .thin > .linkbox a, 
+input[value="Cancel"],
+#userhistory #content .thin div.linkbox a,
+#friends #content table.forum_post tr:nth-child(2) td input,
+#inbox #content div.linkbox:first-of-type a,
+#inbox input[value="Manage conversation"],
+input[value="Editor"],
+#bonus #content .thin:first-of-type tr td:nth-child(3) > a,
+input[value="Preview"] {
+    border: none;
+    //background-color: var(--accent-color);
+    background-color: transparent;
+    color: var(--accent-color);
+    padding: 10px 20px;
+    border-radius: var(--soft-corners);
+    text-transform: uppercase;
+    font-size: var(--fs-button);
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color .3s;
+}
+
+/* Filter torrents regular (secondary) button inputs hover */
+.filter_torrents input[type="submit"]:hover,
+.filter_torrents input[type="button"]:hover,
+#quickreplybuttons input[value="Preview"]:hover,
+#forums #content .thin > div.linkbox:first-of-type > a:hover, 
+#torrents #content input[value="Preview"]:hover,
+input[value="Cancel"]:hover,
+#friends #content table.forum_post tr:nth-child(2) td input:hover,
+#inbox input[value="Manage conversation"]:hover,
+input[value="Editor"]:hover,
+#bonus #content .thin:first-of-type tr td:nth-child(3) > a:hover,
+input[value="Preview"]:hover {
+    background-color: var(--sec-bg-color);
+}
+
+/* + button for tagging, in torrent item page */
+.sidebar input[value="+"] {
+    border: none !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    color: var(--accent-color) !important;
+    text-transform: uppercase !important;
+    font-size: var(--fs-button) !important;
+    font-weight: bold !important;
+    cursor: pointer !important;
+    transition: background-color .3s !important;
+    padding: 2px !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    margin-bottom: 25px;
+}
+
+#top10 #content div.linkbox:first-of-type a:hover, 
+#requests #content div.linkbox:first-of-type a:hover,
+#collages #content div.linkbox:first-of-type a:hover,
+#bookmarks #content .thin > .linkbox a:hover,
+#userhistory #content .thin div.linkbox a:hover,
+#inbox #content div.linkbox:first-of-type a:hover {
+    background-color: var(--layer-ontop-semi-soft-color);
+    background-image: none;
+}
+
+input[type="submit"]:focus, input[type="button"] {
+    outline: none;
+}
+
+/* Primary button */
+#content input[type="submit"],
+input[value="Search"],
+input[value="Save Profile"],
+#quickreplybuttons input[value="Submit"],
+input[value="Upload Torrent"],
+input[value="Vote!"],
+input[value="Send Gift"],
+input[value="BAILOUT!"], input[value="Search users"], input[value="Search log"],
+#torrents #content input#reseed, 
+#requests #content input[value="Vote"],
+#requests #content input[value="Fill Request"],
+#reports #content input[value="Submit report"],
+#lightbox.lightbox input[value="Add Bookmark"],
+#inbox #content input[value="Send Message"],
+#inbox input[value="Delete messages"],
+input[value="Delete"],
+input[value="Create Request"],
+input[value="Update Filter"], input[value="Post"] {
+    border: none;
+    background-image: var(--accent-color-grad);
+    background-color: var(--accent-color);
+    color: var(--text-color-inverted);
+    padding: 10px 20px;
+    border-radius: var(--soft-corners);
+    text-transform: uppercase;
+    font-size: var(--fs-button);
+    font-weight: bold;
+    cursor: pointer;
+    transition: .3s;
+    box-shadow: var(--box-onflat-shadow);
+}
+
+/* Primary button hover state */
+input[value="Search"]:hover,
+input[value="Save Profile"]:hover,
+.filter_torrents input[value="Search"]:hover,
+#quickreplybuttons input[value="Submit"]:hover,
+input[value="Upload Torrent"]:hover,
+input[value="Vote!"]:hover,
+input[value="Send Gift"]:hover,
+input[value="BAILOUT!"]:hover, input[value="Search users"]:hover, input[value="Search log"]:hover,
+#torrents #content input#reseed:hover,
+#requests #content input[value="Vote"]:hover,
+#requests #content input[value="Fill Request"]:hover,
+#reports #content input[value="Submit report"]:hover,
+#lightbox.lightbox input[value="Add Bookmark"]:hover,
+#inbox #content input[value="Send Message"]:hover, 
+#inbox input[value="Delete messages"]:hover,
+input[value="Delete"]:hover, input[value="Create Request"]:hover,
+input[value="Post"]:hover {
+    background-color: var(--accent-color-darken);
+    box-shadow: var(--button-floating-shadow);
+}
+
+/* Filter torrents primary button inputs */
+.filter_torrents input[value="Search"] {
+    float: right;
+    background-color: var(--accent-color);
+    color: var(--text-color-inverted);
+    transition: .3s; 
+}
+
+/* Primary button for upload file button */
+input[type="file"] {
+/* Removing styling of upload button due to no feedback when file has been select */
+/*    position: relative;
+    top: 0;
+    left: 0;
+    font-size: 100px;
+    width: 100px;
+    height: 40px;
+    overflow: hidden;
+    border-radius: var(--soft-corners);
+    padding: 0;
+    box-shadow: var(--box-onflat-shadow);
+    color: var(--text-color);
+*/
+}
+
+/* input[type="file"]:before {
+    content: "Upload";
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 105px;
+    min-height: 45px;
+    background-image: var(--accent-color-grad);
+    background-color: var(--accent-color);
+    color: var(--text-color-inverted);
+    text-transform: uppercase;
+    font-size: var(--fs-button);
+    font-weight: bold;
+    cursor: pointer;
+    transition: .3s;
+    padding: 10px 20px;
+}*/
+
+input[type="file"]:hover {
+    background-color: var(--accent-color-darken);
+    box-shadow: var(--button-floating-shadow);
+    transition: .3s;
+}
+
+/* Category hover effect */
+.filter_torrents #taglist td:hover {
+   background-color: var(--sec-bg-color);
+   border-radius: var(--soft-corners);
+}
+
+/* Make entire category cell clickable */
+.filter_torrents #taglist td a {
+    display: block;
+}
+
+/* Remove hover effect on the last td (which is more likely to be an empty cell than something filled in) */
+.filter_torrents #taglist tr:last-of-type td:hover:last-of-type {
+    background-color: transparent;
+}
+
+
+
+
+textarea {
+    border: none;
+    border-bottom: 1px solid var(--input-border-color);
+    padding: 5px;
+    margin-bottom: 5px;
+    background-color: transparent;
+    color: var(--text-color);
+}
+
+textarea[disabled="disabled"], input[disabled="disabled"] {
+    background-color: var(--layer-ontop-color);
+    resize: none;
+    border-bottom: none;
+}
+
+textarea[disabled="disabled"], input[disabled="disabled"] {
+    cursor: not-allowed;
+}
+
+img {
+    border: none;
+}
+
+/* Ratio Colors */
+
+.r00 { color: #FF0000; }
+.r01 { color: #FF1300; }
+.r02 { color: #FF1300; }
+.r03 { color: #FF2600; }
+.r04 { color: #FF4C00; }
+.r05 { color: #FF5E00; }
+.r06 { color: #FF5E00; }
+.r07 { color: #FF7100; }
+.r08 { color: #FF9700; }
+.r09 { color: #FFAA00; }
+.r10 { color: #9fce43; }
+.r20 { color: #66cc0c; }
+.r50 { color: #66cc0c; }
+.r99 { color: #66cc0c; }
+
+#userinfo_stats .r00 { color: #FF0000 !important; }
+#userinfo_stats .r01 { color: #FF1300 !important; }
+#userinfo_stats .r02 { color: #FF1300 !important; }
+#userinfo_stats .r03 { color: #FF2600 !important; }
+#userinfo_stats .r04 { color: #FF4C00 !important; }
+#userinfo_stats .r05 { color: #FF5E00 !important; }
+#userinfo_stats .r06 { color: #FF5E00 !important; }
+#userinfo_stats .r07 { color: #FF7100 !important; }
+#userinfo_stats .r08 { color: #FF9700 !important; }
+#userinfo_stats .r09 { color: #FFAA00 !important; }
+#userinfo_stats .r10 { color: #9fce43 !important; }
+#userinfo_stats .r20 { color: #66cc0c !important; }
+#userinfo_stats .r50 { color: #66cc0c !important; }
+#userinfo_stats .r99 { color: #66cc0c !important; }
+
+/* Reset ratio classes, since generic span selection has been used for other things (e.g. .torrent_table span) */
+#content span.r00, #content span.r01, 
+#content span.r02, #content span.r03, 
+#content span.r04, #content span.r05, 
+#content span.r06, #content span.r07, 
+#content span.r08, #content span.r09, 
+#content span.r10, #content span.r20, 
+#content span.r50, #content span.r99 {
+    right: unset;
+    top: unset;
+    font-size: inherit;
+    display: unset;
+    width: unset;
+    opacity: unset;
+    visibility: unset;
+    position: unset;
+    pointer-events: unset;
+    z-index: unset;
+}
+
+
+/* Styles generated by the BBCode parser */
+
+span.size1 { font-size:0.75em; }
+span.size2 { font-size:1em; }
+span.size3 { font-size:1.25em; }
+span.size4 { font-size:1.5em; }
+span.size5 { font-size:1.75em; }
+span.size6 { font-size:2em; }
+span.size7 { font-size:2.25em; }
+span.size8 { font-size:2.5em; }
+span.size9 { font-size:2.75em; }
+span.size10 { font-size:3em; }
+
+ul.thin { margin:0px 0px 0px 25px; padding:0px; }
+ul.thin li { margin:0px 0px; padding:0px; }
+
+/* Layout (Every page) */
+
+#header {
+    margin-top: var(--top-nav-height);
+    width: 100%;
+    padding: 0px 0 0 0;
+}
+
+#content {
+    margin: auto;
+    width: calc(100% - var(--menu-width));
+    overflow: hidden;
+    margin-left: var(--menu-width);
+    padding-bottom: 20px;
+}
+
+#content > div.thin > h2 {
+    text-align: left;
+    font-size: var(--fs-header-xxl);
+    margin: 20px 0;
+}
+
+/* Hide RSS icon */
+#content .thin a > img[alt="RSS"] {
+    display: none;
+}
+
+#footer {
+    margin-top: 40px;
+    margin-left: var(--menu-width);
+    width: calc(100% - var(--menu-width));
+    text-align: center;
+    padding: 1em 0;
+    font-size: var(--fs-paragraph-xs);
+    opacity: .4;
+    color: var(--text-description-color);
+}
+
+#footer a {
+   color: var(--text-description-color); 
+}
+
+#logo {
+    --logo-width: 155px;
+    --logo-height: 38px;
+    
+    width: var(--logo-width);
+    height: var(--logo-height);
+    background: var(--logo-symbol) no-repeat top left;
+    z-index: 4;
+    background-size: contain;
+    margin: 9px 20px 0 20px;
+    display: inline-block;
+    position: fixed;
+    top: 0;
+}
+
+#logo a {
+    width: var(--logo-width);
+    height: var(--logo-height);
+    border: none;
+    display: block;
+}
+
+#logo a:hover {
+    border: none;
+}
+
+#menu {
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: var(--menu-width);
+    padding: 63px 0 0 0;
+    color: #444;
+    text-align: center;
+    background-color: var(--menu-bg-color);
+    font-weight: var(--fw-default);
+    height: 100%;
+}
+
+#menu ul {
+    /* max-height need to be set according to the height of the #userinfo height */
+    max-height: calc(100vh - 323px);
+    overflow: auto;
+}
+
+#menu ul li {
+    margin: 0px;
+    text-align: left;
+}
+
+#menu ul li a {
+    padding: 8px 20px;
+    display: block;
+}
+
+#menu ul li a:active {
+    background-color: var(--layer-ontop-color);
+}
+
+#menu ul li:hover {
+    background-color: var(--layer-ontop-color);
+}
+
+#userinfo {
+    position: fixed;
+    bottom: 0;
+    color: #444;
+    padding: 4px 0px;
+    width: var(--menu-width);
+    z-index: 4;
+    box-shadow: -3px -2px 5px rgba(0, 0, 0, 0.07);
+}
+
+#userinfo img {
+    margin-top: -5px;
+}
+
+#userinfo ul {
+
+}
+
+#userinfo ul li {
+    position: relative;
+    list-style: none;
+    margin: initial;
+    vertical-align: middle;
+}
+
+#userinfo a:hover {
+    /* text-decoration: underline; */
+}
+
+#userinfo b a {
+    font-size: 0.9em;
+    font-weight: bold;
+}
+
+#searchbars {
+    --search-left-padding: 60px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    /* width: calc(100% - var(--menu-width)); */
+    /* margin-left: var(--menu-width); */
+    background-color: var(--top-nav-bg-color);
+    height: var(--top-nav-height);
+    box-shadow: 0 0 7px rgba(0, 0, 0, 0.1);
+    z-index: 3;
+    padding-left: 205px;
+}
+
+/* Making room for search icon */
+#searchbars ul {
+    padding-left: calc(10px + var(--search-left-padding));
+}
+
+/* Search icon */
+#searchbars ul:before {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    top: 6px;
+    left: 20px;
+    width: 25px;
+    height: 25px;
+    opacity: .8;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: var(--search-icon);
+}
+
+#searchbars ul:after {
+    content: "";
+    background-color: var(--sec-bg-color);
+    height: 40px;
+    width: 550px;
+    position: absolute;
+    left: var(--search-left-padding);
+    top: -2px;
+    border-radius: var(--soft-corners);
+}
+
+#searchbars input {
+    position: relative;
+    border: none;
+    padding: 7px;
+    font-size: var(--fs-paragraph-xs);
+    color: var(--text-description-color);
+    border-radius: 50px;
+    background-color: var(--layer-ontop-color);
+    width: 70px;
+    /*transition: color .1s, background-color .2s;*/
+    text-align: center;
+    z-index: 1;
+    cursor: pointer;
+    margin: 5px 0px;
+}
+
+/* Expand search input when in focus (when user clicked the input field) */
+#searchbars input[type="text"]:focus {
+    width: 550px;
+    height: 40px;
+    padding: 10px 10px;
+    position: absolute;
+    left: var(--search-left-padding);
+    transition: width .2s;
+    color: var(--text-color);
+    border-radius: var(--soft-corners);
+    background-color: var(--sec-bg-color);
+    z-index: 2;
+    cursor: text;
+    top: -8px;
+    text-align: left;
+    font-size: var(--fs-default);
+    box-shadow: var(--box-floating-shadow);
+    outline: none;
+}
+
+#searchbars input[type="text"]:hover {
+    background-image: var(--accent-color-grad);
+    background-color: var(--accent-color);
+    color: var(--text-color-inverted);
+    box-shadow: var(--box-floating-shadow);
+}
+
+#searchbars input[type="text"]:focus:hover {
+    background-image: var(--sec-bg-color);
+    background-color: var(--sec-bg-color);
+    color: var(--text-color);
+}
+
+#searchbars ul {
+    top: 10px;
+    position: relative;
+}
+
+#searchbars ul li {
+    display: inline-block;
+    margin: -2px 0px;
+}
+
+#searchbars ul li form {
+    display: inline;
+}
+
+#alerts {
+    position: fixed;
+    top: 70px;
+    right: 15px;
+    z-index: 3;
+}
+
+#cat-selector ul {
+    width: 100%;
+}
+
+#cat-selector ul li {
+    display: inline;
+    width: 12em;
+    height: 1em;
+    float: left;
+}
+
+.alertbar {
+    background-color: var(--box-bg-color);
+    text-align: center;
+    color: var(--text-color);
+    font-weight: bold;
+    font-size: var(--fs-paragraph);
+    padding: 20px;
+    border-radius: var(--rounded-corners);
+    box-shadow: var(--box-floating-shadow);
+}
+.alertbar a {
+
+}
+
+.alertbar a:hover {
+    color: var(--text-description-color);
+}
+
+.alertbar2 {
+        border: 1px solid #8A0808;
+        background-color: #FF0000;
+        text-align: center;
+        color: #190707;
+        font-weight: bold;
+        font-size: 0.95em;
+        width: 350px;
+        margin: 0px auto 0px auto;
+        padding: 10px;
+}
+.alertbar2 a {
+        color: #08088A;
+        text-decoration: underline;
+}
+.alertbar2 a:hover {
+        color: #0080FF;
+        text-decoration: none;
+}
+
+
+/* IE doesn't appear to like a simple display:none in our header. Random things start fucking up pretty badly. */
+.hidden {
+    position: absolute;
+    left: -10000px;
+}
+
+input.hidden {
+    position: absolute;
+    display: none;
+}
+
+/* Layout (Any page) */
+
+
+.thin {
+    width: 850px;
+    margin: 0px auto;
+}
+
+#requests #content .thin,
+#collages #content .thin,
+#forums #content > .thin,
+#top10 #content > .thin,
+#artist #content > .thin,
+#index #content >.thin {
+    width: var(--main-content-width);
+    max-width: 1200px;
+    min-width: 850px;
+}
+
+#userinfo_username {
+    position: fixed;
+    top: 0px;
+    right: 20px;
+    z-index: 1;
+}
+
+#userinfo_username li {
+    display: inline-block;
+    position: relative;
+}
+
+/* User settings "Edit" */
+#userinfo_username li:nth-child(1) {
+    padding: 0 10px;
+}
+
+#userinfo_username li:nth-child(1) a {
+    display: table-cell;
+    height: var(--top-nav-height);
+    vertical-align: middle;
+}
+
+/* User settings "Edit" hover */
+#userinfo_username li:nth-child(1):hover {
+    background-color: var(--sec-bg-color);
+}
+
+/* Cog icon "Edit" and Exit icon "Logout" */
+#userinfo_username li.brackets {
+    border-radius: 50px;
+}
+
+/* Cog icon "Edit", Exit icon "Logout", hover selection effect */
+#userinfo_username li:nth-child(2):hover,
+#userinfo_username li:nth-child(3):hover {
+    background-color: var(--sec-bg-color);
+}
+
+/* Shared properties for settings cog "Edit" button, and Exit "Logout" button */
+#userinfo_username .brackets:nth-child(2):before,
+#userinfo_username .brackets:nth-child(3):before {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    margin: 10px;
+    opacity: .8;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+/* Settings cog, "Edit" button */
+#userinfo_username .brackets:nth-child(2):before {
+    background-image: var(--user-settings-icon);
+}
+
+/* Hide "Edit", "Lgout" text button */
+#userinfo_username .brackets:nth-child(2) a,
+#userinfo_username .brackets:nth-child(3) a {
+    color: transparent;
+    width: 40px;
+    height: 38px;
+    overflow: hidden;
+    display: block;
+    vertical-align: middle;
+    border-radius: 50px;
+}
+
+/* Exit, "Logout" button */
+#userinfo_username .brackets:nth-child(3):before {
+    background-image: var(--logout-icon);
+}
+
+/* User settings "Edit" & Logout */
+#userinfo_username li:nth-child(2):after, 
+#userinfo_username li:nth-child(3):after {
+    content: "";
+    opacity: 0;
+    transition: opacity .5s;
+}
+
+/* User settings "Edit" & Logout after psuedo element, helptext */
+#userinfo_username li:nth-child(2):hover:after,
+#userinfo_username li:nth-child(3):hover:after {
+    position: absolute;
+    top: 45px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: table;
+    font-size: var(--fs-paragraph-s);
+    border-radius: 7px;
+    padding: 5px 20px;
+    color: var(--text-color-inverted);
+    background-color: var(--helptext-bg);
+    transition-delay: .7s;
+    opacity: 1;
+}
+
+/* User settings icon popup bubble helptext. */
+#userinfo_username li:nth-child(2):hover:after {
+    content: "User\00a0settings";
+}
+
+/* Logout icon popup bubble helptext. */
+#userinfo_username li:nth-child(3):hover:after {
+    content: "Logout";
+}
+
+#userinfo_major {
+    padding: 0 20px;
+    text-align: center;
+}
+
+#userinfo_major li {
+    display: inline-block;
+    border-radius: 50px;
+}
+
+#userinfo_major li:nth-child(1) a,
+#userinfo_major li:nth-child(2) a,
+#userinfo_major li:nth-child(3) a {
+    max-width: 20px;
+    overflow: hidden;
+    color: transparent;
+    display: inline-block;
+    white-space: pre;
+    padding: 10px;
+    border-radius: 50px;
+    box-sizing: unset;
+}
+
+/* Upload icon, invite icon, donate icon hover background effect */
+#userinfo_major li:nth-child(1):hover,
+#userinfo_major li:nth-child(2):hover,
+#userinfo_major li:nth-child(3):hover {
+    background-color: var(--layer-ontop-color);
+    border-radius: 50px;
+}
+
+/* Upload icon, invite icon, donate icon positioning */
+#userinfo_major li:nth-child(1):before,
+#userinfo_major li:nth-child(2):before,
+#userinfo_major li:nth-child(3):before {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    margin: 10px;
+    opacity: .8;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+/* Upload icon */
+#userinfo_major li:nth-child(1):before {
+    background-image: var(--upload-icon);
+}
+
+/* Invite icon */
+#userinfo_major li:nth-child(2):before {
+    background-image: var(--invite-icon);
+}
+
+/* Donate icon */
+#userinfo_major li:nth-child(3):before {
+    background-image: var(--donate-icon);
+}
+
+/* Upload icon, Invite icon, Donate icon helptext positioning */
+#userinfo_major li:nth-child(1):after,
+#userinfo_major li:nth-child(2):after,
+#userinfo_major li:nth-child(3):after {
+    content: "";
+    opacity: 0;
+    position: absolute;
+    top: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: table;
+    font-size: var(--fs-paragraph-s);
+    border-radius: 7px;
+    padding: 5px 20px;
+    color: var(--text-color-inverted);
+    background-color: var(--helptext-bg);
+    transition: opacity .5s;
+    pointer-events: none;
+}
+
+#userinfo_major li:nth-child(1):hover:after,
+#userinfo_major li:nth-child(2):hover:after,
+#userinfo_major li:nth-child(3):hover:after {
+    transition-delay: .7s;
+    opacity: 1;
+}
+
+
+/* Upload content icon popup bubble helptext. */
+#userinfo_major li:nth-child(1):after {
+    content: "Upload";
+}
+
+/* Invite users icon popup bubble helptext. */
+#userinfo_major li:nth-child(2):after {
+    content: "Invite\00a0users";
+}
+
+/* Donate icon popup bubble helptext. */
+#userinfo_major li:nth-child(3):after {
+    content: "Donate";
+}
+
+
+
+#userinfo_stats {
+    padding: 10px 15px;
+}
+
+ul#userinfo_stats li {
+    margin-bottom: 5px !important;
+}
+
+/* User "Bonus" button link */
+#userinfo_stats li a {
+    display: block;
+}
+
+/* User "Bonus" button link hover */
+#userinfo_stats li a > span {
+    cursor: pointer;
+}
+
+
+
+/* User Upload and Seed stats */
+#userinfo_stats {
+    /* Hide the prefix "Up", "Down", "Ratio", "Bonus" */
+    font-size: 0;
+}
+
+#userinfo_stats span {
+    /* Reset font-size from 0 to default */
+    font-size: var(--fs-default);
+    display: block;
+    color: var(--text-color);
+    cursor: default;
+}
+
+/* User "Up", "Down", "Ratio" box */
+#userinfo_stats li > span {
+    padding: 10px 0 10px 32px;
+    border-radius: var(--rounded-corners);
+    background-color: var(--accent-color);
+}
+
+/* User "Up" background-color */
+#userinfo_stats li:nth-child(1) > span {
+    //background-image: var(--accent-color-grad);
+    
+    background-color: var(--layer-ontop-color);
+}
+
+/* User "Down" background-color */
+#userinfo_stats li:nth-child(2) > span {
+    //background-image: var(--accent-color-grad);
+    
+    background-color: var(--layer-ontop-color);
+}
+
+/* User "Ratio" background-color */
+#userinfo_stats li:nth-child(3) > span {
+    //background-image: var(--accent-color-grad);
+    
+    background-color: var(--layer-ontop-color);
+}
+
+/* User "Bonus" box and background-color */
+#userinfo_stats li:nth-child(4) span {
+    padding: 10px 0 10px 32px;
+    border-radius: var(--rounded-corners);
+    font-style: normal;
+    //background-color: var(--accent-color);
+    //background-image: var(--accent-color-grad);
+    
+    background-color: var(--layer-ontop-color);
+}
+
+/* User "Bonus" hover background-color */
+#userinfo_stats li:nth-child(4) span:hover {
+    background-image: var(--accent-color-grad);
+    color: var(--text-color-inverted);
+    font-weight: bold;
+}
+
+#userinfo_stats li:nth-child(4) span:hover:before {
+    background-image: var(--dollar-icon-inverted);
+}
+
+/* User stats prefix sizing, except "Ratio" */
+#userinfo_stats li span:before {
+    content: "";
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    margin-left: -22px;
+    margin-top: -1px;
+}
+
+
+/* User "Up" icon */
+#userinfo_stats li:nth-child(1) span:before {
+    background-image: var(--up-arrow);
+}
+
+/* User "Down" icon */
+#userinfo_stats li:nth-child(2) span:before {
+    background-image: var(--down-arrow);
+}
+
+/* Ratio up down arrow icon */
+#userinfo_stats li:nth-child(3) > span > span:before {
+    background-image: var(--up-down-arrow);
+}
+
+/* Bonus icon */
+#userinfo_stats li:nth-child(4) span:before {
+    background-image: var(--dollar-icon);
+}
+
+/* Hide user menu by default, hovering #userinfo_username reveals #userinfo_minor */
+#userinfo_minor {
+    top: 60px;
+    right: 95px;
+    position: fixed;
+    background-color: var(--box-bg-color);
+    border-radius: var(--rounded-corners);
+    box-shadow: var(--box-floating-shadow);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    min-width: 165px;
+    visibility: hidden;
+    opacity: 0;
+    /* transition: opacity .1s; */
+    transition-delay: .45s;
+}
+
+/* Show account menu #userinfo_minor on hover */
+#userinfo_username:hover ~ #userinfo_minor, #userinfo_minor:hover {
+    visibility: visible;
+    opacity: 1;
+    transition-delay: 0s;
+}
+
+#userinfo_minor li a {
+    box-sizing: unset;
+    display: block;
+}
+
+ul#userinfo_minor li {
+    padding: 5px 20px;
+}
+
+ul#userinfo_minor li:hover {
+    background-color: var(--sec-bg-color);
+    cursor: pointer;
+}
+
+ul#userinfo_minor li a:hover {
+    text-decoration: none;
+}
+
+div.linkbox {
+    text-align: center;
+    padding: 5px;
+    -webkit-user-select: none;  /* Chrome, Safari */
+    -moz-user-select: none;     /* Firefox */
+    -ms-user-select: none;      /* IE 10+ */
+    user-select: none;
+    /* hide separators "|" */
+    font-size: 0;
+}
+
+.linkbox a, .linkbox > strong {
+    background-color: var(--layer-ontop-semi-soft-color);
+    padding: 5px 10px;
+    font-size: var(--fs-button);
+    border-radius: 50px;
+    margin-right: 5px;
+    display: inline-block;
+    margin-top: 5px;
+    text-transform: uppercase;
+}
+
+/* Current page */
+.linkbox > strong {
+    color: var(--accent-color);
+    background-color: transparent;
+}
+
+.linkbox a:hover {
+    background-color: var(--accent-color);
+    background-image: var(--accent-color-grad);
+    color: var(--text-color-inverted);
+}
+
+/* To revert secondary button hover color, instead of showing the gradient color on secondary buttons */
+#forums .linkbox a:hover {
+    background-image: none;
+}
+
+.center {
+    text-align: center;
+}
+
+.right {
+    text-align: right;
+}
+
+.min_padding {
+    padding: 0px;
+    margin: 0px 0px;
+}
+
+p.min_padding {
+    margin: 2px 0px;
+}
+
+.pad {
+    padding: 25px 20px;
+}
+
+.vertical_space {
+    margin-bottom: 10px;
+}
+
+.box {
+    font-size: var(--fs-paragraph-s);
+    background-color: var(--box-bg-color);
+    border-radius: var(--rounded-corners);
+    /* border: 1px solid rgba(0, 0, 0, 0.15); */
+    box-shadow: var(--box-onflat-shadow);
+}
+
+.pad h3, .pad h4, .padbox h3, .padbox h4 {
+    margin-top: 0px;
+    padding-top: 0px;
+}
+
+.sidebar {
+    float: right;
+    width: 250px;
+    height: 100%;
+}
+
+.sidebar .box {
+    margin: 0px 5px 10px 5px;
+}
+
+.head {
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--td-border);
+    font-size: var(--fs-header-s);
+    font-weight: var(--fw-default);
+}
+
+.body {
+    padding: 3px 10px 10px 10px;
+    background-color: var(--box-bg-color);
+}
+
+.main_column {
+    margin: 0px 255px 10px 0px;
+    width: 580px;
+}
+
+#artist #content > .thin .main_column,
+#index #content > .thin .main_column,
+#collages #content > .thin .main_column {
+    margin: 0;
+    width: calc(100% - 260px);
+    min-width: 580px;
+}
+
+#index #content .sidebar {
+    margin-top: 5px;
+}
+
+.main_column .box, .main_column table {
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.tags {
+    font-style: italic;
+    font-size: 0;
+    margin: 10px 0;
+    -webkit-user-select: none;  /* Chrome, Safari */
+    -moz-user-select: none;     /* Firefox */
+    -ms-user-select: none;      /* IE 10+ */
+    user-select: none;
+}
+
+/* Hide tags without content (text) */
+.tags a:empty {
+    display: none;
+}
+
+.tags a {
+    background-color: var(--layer-ontop-semi-soft-color);
+    padding: 5px 12px;
+    border-radius: 50px;
+    font-size: var(--fs-label-xs);
+    font-style: normal;
+    display: inline-block;
+    margin-top: 5px;
+    margin-right: 5px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: var(--text-description-soft-color);
+}
+
+.tags a:hover {
+    color: var(--text-color-inverted);
+    background-color: var(--accent-color);
+    background-image: var(--accent-color-grad);
+}
+
+.noborder {
+    border: none;
+}
+
+ul.nobullet {
+    list-style-type: none;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    /* border: 1px solid #666666; */
+    /*
+    border: none !important;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: inset 0 0 0px 1px rgba(0, 0, 0, 0.1);
+    */
+}
+
+/* General table (actual table lists) styling */
+.torrent_table, table#requests,
+#collages #content div > table,
+#top10 #content table, 
+#artist #content > .thin h2 + table:first-of-type,
+#forums #content div.thin div.linkbox:first-of-type + table:first-of-type,
+#index #content div.main_column .gallerycontainer table:first-of-type {
+    background-color: var(--box-bg-color);
+    border-radius: var(--rounded-corners);
+    box-shadow: var(--box-onflat-shadow);
+}
+
+/* Remove border bottom from last row */
+.torrent_table tr:last-of-type td,
+table#requests tr:last-of-type td,
+#collages #content div > table tr:last-of-type td,
+#top10 #content table tr:last-of-type td, 
+#forums table tr:last-of-type td,
+#log table tr:last-of-type td,
+#artist #content > .thin h2 + table:first-of-type tr:last-of-type td {
+    border-bottom: none;
+}
+
+/* Remove colhead background-color */
+#collages #content table:first-of-type .colhead {
+    //background-color: transparent;
+}
+
+#torrents #torrent_table tr.torrent:hover, #torrents #torrent_table tr.group:hover, .torrent_table tr.group_redline:hover,
+#torrent_table tr.group_torrent:hover,
+#torrents #torrent_table tr.torrent_redline:hover, #torrents #torrent_table tr.group_torrent_redline:hover,
+#artist .torrent_table tr.torrent:hover,
+#requests table#requests tr:hover,
+#collages tr.rowa:hover, #collages tr.rowb:hover,
+#top10 #content tr.rowa:hover, #top10 #content tr.rowb:hover {
+    background-color: var(--accent-color-highlight);
+}
+
+
+
+tr.rowa, tr.rowb {
+    background-color: transparent;
+}
+
+tr.rowa strong, tr.rowb strong {
+    font-weight: var(--fw-default);
+}
+
+
+td {
+    padding: 5px;
+    text-align: left;
+    border: none;
+    border-bottom: 1px solid var(--td-border);
+}
+
+.colhead {
+    font-weight: bold;
+    text-transform: uppercase;
+    color: var(--text-color);
+    height: 60px;
+    vertical-align: middle;
+}
+
+tr.colhead:hover {
+    //background: var(--box-bg-color) !important;
+}
+
+/* Override " .torrent_table tr td strong " and set to default text color  */
+#discog_table.torrent_table strong {
+    color: var(--text-color);
+}
+
+/* Highlight "Freeleech" */
+table td a[href^="torrents.php?"] + strong {
+  color: var(--accent-color) !important;
+  font-weight: bold;
+}
+
+.colhead td {
+    border: none;
+}
+
+.forum_group_header {
+    background-color: var(--body-bg-color);
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+tr.forum_group_header:hover {
+    background-color: var(--body-bg-color) !important;
+}
+
+td.colhead, .colhead td {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.colhead .sign, .colhead_dark .sign {
+    padding: 0px 8px 0px 8px;
+    vertical-align:middle;
+    text-align:center;
+    font-size: 12pt;
+    font-weight: bold;
+}
+
+
+.colhead .sign {
+    padding: 0px 8px 0px 8px;
+    font-size: 12pt;
+    font-weight: bold;
+}
+
+.colhead_dark {
+
+}
+
+td.label {
+    font-weight: bold;
+    text-align: right;
+    //width: 180px;
+}
+
+table.slice {
+    margin-top: -1px;
+}
+
+.error_message {
+    padding: 15px 10px;
+    margin: 0 10px;
+    border-left: 5px solid var(--error-color);
+    background-color: var(--error-color-highlight);
+    color: var(--error-color);
+    font-weight: bold;
+}
+
+.save_message {
+    padding: 15px 10px;
+    margin: 0 10px;
+    border-left: 5px solid var(--accent-color);
+    background-color: var(--accent-color-highlight);
+    color: var(--text-color);
+    font-weight: bold;
+}
+
+.elem_error {
+    border: 3px solid var(--error-color);
+}
+
+.hide {
+    display:none;
+}
+
+
+/* Layout (home page) */
+ul.stats {
+    padding: 15px 7px;
+}
+
+ul.stats li {
+    padding: 0px 0px 1px 0px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+ul.poll li {
+    padding: 0px 0px 0px 10px;
+    margin: 0px;
+}
+
+ul.poll li.graph {
+    margin-bottom: 3px;
+    padding-left: 10px;
+    padding-top: 5px;
+}
+
+/* Layout (Torrents page) */
+
+
+/* Shared properties for Show/Hide torrent icon */
+.show_torrents, .hide_torrents {
+    width: 25px;
+    height: 25px;
+    border-radius: 50px;
+    margin-left: 5px;
+}
+
+/* Show torrent icon */
+.show_torrents {
+    background: var(--chevron-down-icon) no-repeat center center;
+}
+
+/* Hide torrent icon */
+.hide_torrents {
+    background: var(--chevron-right-icon) no-repeat center center;
+}
+
+/* Show/Hide torrent hover effect */
+.show_torrents:hover, .hide_torrents:hover {
+    background-color: var(--layer-ontop-color);
+}
+
+.show_torrents_link {
+    border: none;
+    width: 25px;
+    height: 25px;
+    display: block;
+}
+
+/* Advance search button contatiner */
+.filter_torrents > h3:first-of-type {
+    float: right;
+    margin-top: 10px;
+    margin-right: 8px;
+    color: var(--accent-color);
+    padding: 10px 20px;
+    border-radius: var(--soft-corners);
+    text-transform: uppercase;
+    font-size: var(--fs-button);
+    font-weight: bold;
+    cursor: default;
+    transition: background-color .3s;
+    display: flex;
+    justify-content: flex-end;
+    position: absolute;
+    right: 0;
+    top: 213px;
+    z-index: 2;
+}
+
+/* Advance search button contatiner hover state */
+.filter_torrents > h3:first-of-type:hover {
+    background-color: var(--sec-bg-color);
+}
+
+/* Advance search button */
+.filter_torrents > h3:first-of-type > a {
+    color: var(--accent-color);
+}
+
+.filter_torrents .submit {
+    text-align: right;
+    padding-top: 5px;
+    -webkit-user-select: none;  /* Chrome, Safari */
+    -moz-user-select: none;     /* Firefox */
+    -ms-user-select: none;      /* IE 10+ */
+    user-select: none;
+}
+
+.cat_list tr td {
+    border: none;
+}
+
+#ajax_torrents, #ajax_artists {
+    width: var(--main-content-width);
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+#ajax_artists > div.linkbox > strong:first-of-type {
+    color: var(--text-color);
+    font-weight: var(--fw-default);
+}
+
+.torrent_table {
+    font-size: var(--fs-label-s);
+    margin-top: 20px;
+    margin-bottom: 20px;
+    box-shadow: var(--box-onflat-shadow);
+}
+
+/* Remove padding-left to make room for the column icons */
+table#torrent_table .colhead td.sign:nth-child(8),
+table#torrent_table .colhead td.sign:nth-child(9), 
+table#torrent_table .colhead td.sign:nth-child(10),
+#torrents table.torrent_table tr.colhead_dark:first-of-type td.sign:nth-child(3),
+#torrents table.torrent_table tr.colhead_dark:first-of-type td.sign:nth-child(4),
+#torrents table.torrent_table tr.colhead_dark:first-of-type td.sign:nth-child(5),
+#collages #content table#discog_table tr.colhead_dark td.sign:nth-child(5),
+#collages #content table#discog_table tr.colhead_dark td.sign:nth-child(6),
+#collages #content table#discog_table tr.colhead_dark td.sign:nth-child(7),
+#top10 #content tr.colhead td:nth-child(5), 
+#top10 #content tr.colhead td:nth-child(6),
+#top10 #content tr.colhead td:nth-child(7),
+#artist table#torrents_album tr.colhead_dark td.sign:nth-child(3),
+#artist table#torrents_album tr.colhead_dark td.sign:nth-child(4),
+#artist table#torrents_album tr.colhead_dark td.sign:nth-child(5),
+#artist table#torrents_pv tr.colhead_dark td.sign:nth-child(3),
+#artist table#torrents_pv tr.colhead_dark td.sign:nth-child(4),
+#artist table#torrents_pv tr.colhead_dark td.sign:nth-child(5),
+#artist table tr.colhead_dark td.sign:nth-child(3),
+#artist table tr.colhead_dark td.sign:nth-child(4),
+#artist table tr.colhead_dark td.sign:nth-child(5) {
+    padding-left: 0px;
+    text-align: left;
+    
+}
+
+table#torrent_table .colhead td.sign:nth-child(10) {
+    padding-right: 20px;
+}
+
+/*BEGIN TEST */
+
+/* Hide default icon SNATCHES icon */
+table#torrent_table .colhead td.sign:nth-child(8) a > img,
+#torrents table.torrent_table tr.colhead_dark:first-of-type td.sign:nth-child(3) > img,
+#collages #content table#discog_table tr.colhead_dark td.sign:nth-child(5) > img,
+#top10 #content tr.colhead td:nth-child(5) > img,
+#artist table#torrent_table tr.colhead td.sign:nth-child(7) > a > img,
+#artist table#torrents_album tr.colhead_dark td.sign:nth-child(3) > img,
+#artist table#torrents_pv tr.colhead_dark td.sign:nth-child(3) > img,
+#artist table tr.colhead_dark td.sign:nth-child(3) > img {
+    //width: 20px;
+    opacity: 0;
+}
+
+/* Keep absolute positioned SNATCHES icons in place */
+table#torrent_table .colhead td.sign:nth-child(8) a,
+#torrents table.torrent_table tr.colhead_dark:first-of-type td.sign:nth-child(3),
+#collages #content table#discog_table tr.colhead_dark td.sign:nth-child(5),
+#top10 #content tr.colhead td:nth-child(5),
+#artist table#torrent_table tr.colhead td.sign:nth-child(7) > a,
+#artist table#torrents_album tr.colhead_dark td.sign:nth-child(3),
+#artist table#torrents_pv tr.colhead_dark td.sign:nth-child(3),
+#artist table tr.colhead_dark td.sign:nth-child(3) {
+    position: relative;
+}
+
+/* Torrent page, Torrent item page, Collages item page, Top 10 page, Artist page, SNATCHES icon */
+table#torrent_table .colhead td.sign:nth-child(8) > a:before,
+#torrents table.torrent_table tr.colhead_dark:first-of-type td.sign:nth-child(3):before,
+#collages #content table#discog_table tr.colhead_dark td.sign:nth-child(5):before,
+#top10 #content tr.colhead td:nth-child(5):before {
+    content: "";
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    background-image: var(--download-icon);
+    background-repeat: no-repeat;
+    z-index: 1;
+}
+
+/* Hover effect on table SNATCHES icon */
+table#torrent_table .colhead td.sign:nth-child(8) > a:hover:after,
+#artist table#torrent_table tr.colhead td.sign:nth-child(7) > a:hover:after {
+    content: "";
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    background-color: var(--sec-bg-color);
+    left: -5px;
+    padding: 5px;
+    top: -5px;
+    border-radius: 50px;
+}
+
+
+/* Hide default icon SEED icon */
+table#torrent_table .colhead td.sign:nth-child(9) > a > img,
+#torrents table.torrent_table tr.colhead_dark:first-of-type td.sign:nth-child(4) > img,
+#collages #content table#discog_table tr.colhead_dark td.sign:nth-child(6) > img,
+#top10 #content tr.colhead td:nth-child(6) > img,
+#artist table#torrents_album tr.colhead_dark td.sign:nth-child(4) > img,
+#artist table#torrents_pv tr.colhead_dark td.sign:nth-child(4) > img,
+#artist table tr.colhead_dark td.sign:nth-child(4) > img {
+    opacity: 0;
+}
+
+/* Keep absolute positioned SEED icons in place */
+table#torrent_table .colhead td.sign:nth-child(9) > a,
+#torrents table.torrent_table tr.colhead_dark:first-of-type td.sign:nth-child(4),
+#collages #content table#discog_table tr.colhead_dark td.sign:nth-child(6),
+#top10 #content tr.colhead td:nth-child(6),
+#artist table#torrents_album tr.colhead_dark td.sign:nth-child(4),
+#artist table#torrents_pv tr.colhead_dark td.sign:nth-child(4),
+#artist table tr.colhead_dark td.sign:nth-child(4) {
+    position: relative;
+}
+
+
+/* Torrent page, Torrent item page, Collages item page, Top 10 page, Artist page, SEED icon */
+table#torrent_table .colhead td.sign:nth-child(9) > a:before,
+#torrents table.torrent_table tr.colhead_dark:first-of-type td.sign:nth-child(4):before,
+#collages #content table#discog_table tr.colhead_dark td.sign:nth-child(6):before,
+#top10 #content tr.colhead td:nth-child(6):before,
+#artist table#torrents_album tr.colhead_dark td.sign:nth-child(4):before,
+#artist table#torrents_pv tr.colhead_dark td.sign:nth-child(4):before,
+#artist table tr.colhead_dark td.sign:nth-child(4):before {
+    content: "";
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    background-image: var(--up-arrow);
+    background-repeat: no-repeat;
+    z-index: 1;
+}
+
+/* Hover effect on table SEED icon */
+table#torrent_table .colhead td.sign:nth-child(9):hover > a:after {
+    content: "";
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    background-color: var(--sec-bg-color);
+    left: -5px;
+    padding: 5px;
+    top: -5px;
+    border-radius: 50px;
+}
+
+/* Hide default icon LEECH icon */
+table#torrent_table .colhead td.sign:nth-child(10) > a > img,
+#torrents table.torrent_table tr.colhead_dark:first-of-type td.sign:nth-child(5) > img,
+#collages #content table#discog_table tr.colhead_dark td.sign:nth-child(7) > img,
+#top10 #content tr.colhead td:nth-child(7) > img,
+#artist table#torrents_album tr.colhead_dark td.sign:nth-child(5) > img,
+#artist table#torrents_pv tr.colhead_dark td.sign:nth-child(5) > img,
+#artist table tr.colhead_dark td.sign:nth-child(5) > img {
+    opacity: 0;
+}
+
+/* Keep absolute positioned LEECH icons in place */
+table#torrent_table .colhead td.sign:nth-child(10) > a,
+#torrents table.torrent_table tr.colhead_dark:first-of-type td.sign:nth-child(5),
+#collages #content table#discog_table tr.colhead_dark td.sign:nth-child(7),
+#top10 #content tr.colhead td:nth-child(7),
+#artist table#torrents_album tr.colhead_dark td.sign:nth-child(5),
+#artist table#torrents_pv tr.colhead_dark td.sign:nth-child(5),
+#artist table tr.colhead_dark td.sign:nth-child(5) {
+    position: relative;
+}
+
+/* Torrent page, Torrent item page, Collages item page, Top 10 page, Artist page, LEECH icon */
+table#torrent_table .colhead td.sign:nth-child(10) > a:before,
+#torrents table.torrent_table tr.colhead_dark:first-of-type td.sign:nth-child(5):before,
+#collages #content table#discog_table tr.colhead_dark td.sign:nth-child(7):before,
+#top10 #content tr.colhead td:nth-child(7):before,
+#artist table#torrents_album tr.colhead_dark td.sign:nth-child(5):before,
+#artist table#torrents_pv tr.colhead_dark td.sign:nth-child(5):before,
+#artist table tr.colhead_dark td.sign:nth-child(5):before {
+    content: "";
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    background-image: var(--down-arrow);
+    background-repeat: no-repeat;
+    z-index: 1;
+}
+
+/* Hover effect on table LEECH icon */
+table#torrent_table .colhead td.sign:nth-child(10):hover > a:after {
+    content: "";
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    background-color: var(--sec-bg-color);
+    left: -5px;
+    padding: 5px;
+    top: -5px;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+/* Reserve padding space for hover effect bg */
+#content table .colhead td a,
+#content table .colhead_dark td a {
+    padding: 4px 6px;
+}
+
+/* Add hover effect to all clickable table heads */
+table#torrent_table .colhead td a:hover,
+#content table .colhead td a:hover,
+#content table .colhead_dark td a:hover {
+    background-color: var(--sec-bg-color);
+    border-radius: var(--rounded-corners);
+}
+
+/* Add hover effect circle on all clickable table icons (snatched/seed/leech) */
+table#torrent_table .colhead td.sign a:hover:before,
+#artist table#torrent_table tr.colhead td.sign:nth-child(7) > a:hover:before {
+ /*   background-color: var(--sec-bg-color);
+    padding: 10px;
+    border-radius: 50px;
+    content: "";
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    top: -10px;
+    left: -25%;
+
+    z-index: -1;*/
+}
+
+/* Allow the hover effect circle to stay in place on clickable table icons (snatched/seed/leech) */
+table#torrent_table .colhead td.sign a,
+#artist table#torrent_table tr.colhead td.sign:nth-child(7) > a {
+    position: relative;
+    z-index: 1;
+    /* Counter "global hover th effect" */
+    margin-top: unset;
+    margin-left: unset;
+    padding: 0;
+    border-radius: 0;
+    background-color: transparent;
+}
+
+#content table .colhead_dark td,
+#content table .colhead td {
+    font-size: var(--fs-label-s);
+    text-transform: uppercase;
+}
+
+#forums #content table .colhead_dark td,
+#forums #content table .colhead td {
+    font-size: var(--fs-label-s);
+    text-transform: none;
+}
+
+
+.torrent_table tr.torrent, .torrent_table tr.group {
+    /* font-weight: bold; */
+}
+
+.torrent_table tr.torrent_redline, .torrent_table tr.group_redline {
+    /* font-weight: bold; */
+}
+
+/* Highlight Freeleech */
+.torrent_table tr td a[href^="torrents.php?"] > strong {
+    color: var(--accent-color);
+    font-weight: bold;
+}
+
+.torrent_table tr.group {
+    background-color: var(--box-bg-color);
+}
+.torrent_table tr.group_torrent {
+    /* background-color: #ffffff; */
+}
+.torrent_table tr.torrent {
+    background-color: var(--box-bg-color);
+}
+
+.torrent_table tr.group_redline > td:first-of-type,
+.torrent_table tr.torrent_redline > td:first-of-type,
+tr.unreadpm > td:first-of-type {
+    box-shadow: inset 5px 0px var(--unread-color);
+    //background-color: var(--box-bg-color);
+}
+
+.torrent_table tr.group_torrent_redline > td:first-of-type {
+    box-shadow: inset 5px 0px var(--unread-soft-color);
+}
+
+.torrent_table div.tags {
+    font-weight: var(--fw-default);
+}
+
+.torrent_table tr .center {
+    vertical-align: middle;
+    text-align: center;
+}
+
+.group_torrent span {
+    float: right;
+}
+
+.group_torrent_redline span {
+    float: right;
+}
+
+/* Push grouped item rows content to align with their parent row */
+.torrent_table tr[class^="groupid_"] > td:first-of-type,
+.torrent_table tr[class^=" groupid_"] > td:first-of-type,
+.torrent_table tr[class*=" groupid_"] > td:first-of-type {
+    padding-left: 50px;
+}
+
+/* Hover to show [DL | RP] */
+.torrent_table tr:hover span,
+tr:hover.group_torrent.rowa td > span,
+tr:hover.group_torrent.rowb td > span {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+}
+
+/* Hide [DL | RP] until table row hover, and position the buttons */
+.torrent_table span, .torrent_redline span, .torrent_table span[class^="groupid_"],
+tr.group_torrent.rowa td > span,
+tr.group_torrent.rowb td > span {
+    font-weight: var(--fw-default);
+    /* float: right; */
+    position: absolute;
+    top: 5px;
+    /* right: 5px; */
+    right: -400px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Artist page .torrent_table positioning of [DL | RP] buttons*/
+.main_column .torrent_table span, .main_column  .torrent_redline span,
+.main_column .torrent_table span[class^="groupid_"] {
+    right: -145px;
+    top: -7px;
+}
+
+
+/* Top 10 page, hide [DL | RP] until table row hover, and set specific position for Top 10 DL button */
+tr.group_torrent.rowa td > span,
+tr.group_torrent.rowb td > span {
+    right: -200px;
+}
+
+/* Collages page, hide [DL | RP] until table row hover, and set specific position for Collages DL button */
+#discog_table.torrent_table tr td > span {
+    top: 7px;
+}
+
+/* Hide [DL | RP] until table row hover, specific positioning for grouped list items */
+.torrent_table tr[class*="groupid_"] > td > span {
+     top: -8px !important;
+ }
+
+/* To keep [DL | RP] within the table cell */
+.torrent_table td,
+.group_torrent.rowa td,
+.group_torrent.rowb td {
+    position: relative;
+    padding: 10px 5px;
+}
+
+#torrents .torrent_table .torrent td,
+#torrents .torrent_table .group td {
+    padding: 25px 5px;
+}
+
+/* Torrent item page, position [DL | RP] button */
+#torrents .main_column .torrent_table span {
+    //right: -290px;
+}
+
+/* Hide square brackets in [DL | RP] labels */
+.torrent_table tr[class*="groupid_"] > td > span,
+.torrent_table span,
+.group_torrent.rowa td > span,
+.group_torrent.rowb td > span {
+    font-size: 0;
+    /* Reverse button order */
+    display: flex;
+    width: auto;
+    flex-flow: row-reverse;
+}
+
+/* Hide [DL | RP] labels, and reserve space for icons */
+.torrent_table tr[class*="groupid_"] > td > span a,
+.torrent_table span a,
+.group_torrent.rowa td > span a,
+.group_torrent.rowb td > span a {
+    /*color: transparent;*/
+    box-sizing: unset;
+    position: relative;
+    width: 20px;
+    height: 20px;
+    overflow: hidden;
+    margin: 5px;
+    padding: 10px 0 10px 12px;
+    border-radius: 50px;
+    background-color: var(--cta-btn-color);
+    box-shadow: var(--box-floating-shadow);
+    /* Force size due to usage of flexbox */
+    min-width: 72px; /* Width of [RP] Report button */
+    /* Reset font size */
+    font-size: var(--fs-label);
+    
+    /* test */
+    padding-left: 35px;
+    /* Hide original label */
+    font-size: 0;
+}
+
+/* Width of [DL] Download button */
+.torrent_table tr[class*="groupid_"] > td > span a:nth-child(1),
+.torrent_table span a:nth-child(1),
+.group_torrent.rowa td > span a:nth-child(1),
+.group_torrent.rowb td > span a:nth-child(1) {
+    width: 95px;
+}
+
+/* Hover state, background-color of [DL] */
+.torrent_table tr[class*="groupid_"] > td > span a:nth-child(1):hover,
+.torrent_table span a:nth-child(1):hover,
+.group_torrent.rowa td > span a:nth-child(1):hover,
+.group_torrent.rowb td > span a:nth-child(1):hover {
+    background-color: var(--accent-color);
+    background-image: var(--accent-color-grad);
+}
+
+/* Hover state, background-color of [RP] */
+.torrent_table tr[class*="groupid_"] > td > span a:nth-child(2):hover,
+.torrent_table span a:nth-child(2):hover {
+    background-color: #ff0844;
+    background-image: var(--report-bg-grad);
+}
+
+/* Hover state, text color of [DL | RP] */
+.torrent_table tr[class*="groupid_"] > td > span a:hover:after,
+.torrent_table span a:hover:after,
+.group_torrent.rowa td > span a:hover:after,
+.group_torrent.rowb td > span a:hover:after {
+    color: var(--text-color-inverted) !important;
+}
+
+/** 
+ * Shared properties for [DL | RP] icons
+ *
+ * Due to the container has been set to flex-flow: reverse, the order of elements is reversed.
+ * [DL] is nth-child(1)
+ * [RP] is nth-child(2)
+ */
+.torrent_table tr[class*="groupid_"] > td > span a:nth-child(1):before,
+.torrent_table tr[class*="groupid_"] > td > span a:nth-child(2):before,
+.torrent_table span a:nth-child(1):before,
+.torrent_table span a:nth-child(2):before,
+.group_torrent.rowa td > span a:nth-child(1):before,
+.group_torrent.rowb td > span a:nth-child(1):before {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    //margin: 10px;
+    opacity: .8;
+    display: inline-block;
+    background-size: contain;
+    background-repeat: no-repeat;
+    
+    /* test */
+    left: 12px;
+}
+ 
+/* Replace [DL] text with icon */
+.torrent_table tr[class*="groupid_"] > td > span a:nth-child(1):before,
+.torrent_table span a:nth-child(1):before,
+.group_torrent.rowa td > span a:nth-child(1):before,
+.group_torrent.rowb td > span a:nth-child(1):before {
+    /* Black icon */
+    background-image: var(--download-icon);
+}
+
+/* Replace [RP] text with icon */
+.torrent_table tr[class*="groupid_"] > td > span a:nth-child(2):before,
+.torrent_table span a:nth-child(2):before {
+    /* Black icon */
+    background-image: var(--warning-icon);
+}
+
+/* Replace [DL] text with icon, hover state */
+.torrent_table tr[class*="groupid_"] > td > span a:nth-child(1):hover:before,
+.torrent_table tr span a:nth-child(1):hover:before,
+.group_torrent.rowa td > span a:nth-child(1):hover:before,
+.group_torrent.rowb td > span a:nth-child(1):hover:before {
+    /* White icon */
+    background-image: var(--warning-icon-inverted);
+    opacity: 1;
+}
+
+/* Replace [RP] text with icon, hover state */
+.torrent_table tr[class*="groupid_"] > td > span a:nth-child(2):hover:before,
+.torrent_table tr span a:nth-child(2):hover:before {
+    /* White icon */
+    background-image: var(--download-icon-inverted);
+    opacity: 1;
+}
+
+
+
+/* Add [DL] icon label text */
+.torrent_table tr[class*="groupid_"] > td > span a:nth-child(1):after,
+.torrent_table span a:nth-child(1):after,
+.group_torrent.rowa td > span a:nth-child(1):after,
+.group_torrent.rowb td > span a:nth-child(1):after {
+    content: "Download";
+    color: var(--text-color);
+    padding-left: 2px;
+    vertical-align: middle;
+    font-size: var(--fs-default);
+}
+
+/* Add [RP] icon label text */
+.torrent_table tr[class*="groupid_"] > td > span a:nth-child(2):after,
+.torrent_table span a:nth-child(2):after  {
+    content: "Report";
+    padding-left: 2px;
+    vertical-align: middle;
+    font-size: var(--fs-default);
+}
+
+/* Force enlarge thumbnail */
+.torrent_table center img {
+    max-width: 100px !important;
+    max-height: 200px !important;
+    width: 90px !important;
+    height: auto !important;
+}
+
+/* Detrude group rows from table */
+.torrent_table tr.group_torrent > td,
+.torrent_table tr.group_torrent_redline td {
+    background-color: var(--layer-ontop-soft-color);
+    border: none;
+}
+
+.torrent span {
+    font-weight: var(--fw-default);
+    /* float: right; */
+}
+
+.torrent_redline span {
+    /* font-weight: var(--fw-default);
+    float: right;
+    */
+}
+
+.nobr {
+    white-space: nowrap;
+}
+
+
+/* Collages page */
+
+/* Collages search portlet area */
+#collages #content form:first-of-type,
+#bonus #content div.thin > div.thin {
+    font-size: var(--fs-paragraph-s);
+    background-color: var(--box-bg-color);
+    border-radius: var(--rounded-corners);
+    box-shadow: var(--box-onflat-shadow);
+    padding: 20px;
+}
+
+#collages table tr.colhead td {
+    padding-left: 20px;
+    padding-right: 10px;
+}
+
+/* Collage table row size */
+#collages table tr.rowa, #collages table tr.rowb {
+    min-height: 50px;
+}
+
+/* Collage table td padding */
+#collages table tr.rowa td, #collages table tr.rowb td {
+    padding: 20px;
+}
+
+#collages .linkbox {
+    padding: 20px;
+}
+
+#collages #content .center {
+    text-align: left;
+}
+
+#collages #content form table:first-of-type td {
+    border: none;
+    position: relative;
+}
+
+/* Collages search field label, hide label and replace with icon later */
+#collages #content form table:first-of-type tr:first-of-type td:nth-child(1) {
+    padding: 0;
+    width: 30px;
+    overflow: hidden;
+    display: inline-block;
+    position: relative;
+    color: transparent;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Collages search field */
+#collages #content form table:first-of-type tr:first-of-type td:nth-child(2) input[type="text"] {
+    width: calc(100% + 53px);
+    /* Counter table column width */
+    margin-left: -53px;
+}
+
+/* Collages search tools option label */
+#collages #content form table:first-of-type tr:nth-child(2) td.label {
+    width: 90px;
+}
+
+/* force left align text of search tools option label */
+#collages #content form table:first-of-type tr:nth-child(2) td.label strong {
+    display: table-cell;
+}
+
+/* Collages search tools options */
+#collages #content form table:first-of-type tr:nth-child(2) td:nth-child(2) {
+    width: 180px;
+}
+
+/* Collages, search button */
+#collages form td input[value="Search"]{
+    float: right;
+}
+
+
+/* Requests layout */
+
+table#requests, #forums #content table:first-of-type {
+    margin: 20px 0;
+}
+
+#requests #content form:first-of-type {
+    font-size: var(--fs-paragraph-s);
+    background-color: var(--box-bg-color);
+    border-radius: var(--rounded-corners);
+    box-shadow: var(--box-onflat-shadow);
+    padding: 20px;
+    margin-bottom: 40px;
+}
+
+#requests table#requests .colhead_dark td {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    white-space: nowrap;
+}
+
+#requests form:first-of-type table td {
+    border: none;
+}
+
+/* Requests page table, add padding to the left side of the table */
+#requests table#requests tr > td:first-of-type {
+    padding: 10px 5px 10px 20px;
+}
+/* Requests page table, add padding to the right side of the table */
+#requests table#requests tr > td:last-of-type {
+    padding: 10px 20px 10px 5px;
+}
+
+/* Search button alignment */
+#requests #content form td.center {
+    text-align: right;
+}
+
+#requests .colhead_dark:hover {
+    background-color: transparent !important;
+}
+
+/* Replace requests (+) with thumbs up icon */
+#requests table#requests tr.rowa td:nth-child(2) a:before,
+#requests table#requests tr.rowb td:nth-child(2) a:before {
+    content: "";
+    width: 20px;
+    height: 20px;
+    background-image: var(--thumb-up);
+    opacity: .8;
+    position: absolute;
+}
+
+/* Thumbs up  icon regular state */
+#requests table#requests tr.rowa td:nth-child(2) a,
+#requests table#requests tr.rowb td:nth-child(2) a {
+    padding: 10px;
+    display: inline-block;
+    border-radius: 50px;
+    width: 20px;
+    height: 20px;
+    box-sizing: unset;
+    -webkit-user-select: none;  /* Chrome, Safari */
+    -moz-user-select: none;     /* Firefox */
+    -ms-user-select: none;      /* IE 10+ */
+    user-select: none;
+    color: transparent;
+}
+
+/* Hover bg of (+) thumbs up icon */
+#requests table#requests tr.rowa td:nth-child(2) a:hover,
+#requests table#requests tr.rowb td:nth-child(2) a:hover {
+    background-color: var(--layer-ontop-color);
+}
+
+/* Hover color of thumbs up icon */
+#requests table#requests tr.rowa td:nth-child(2) a:hover:before, 
+#requests table#requests tr.rowb td:nth-child(2) a:hover:before {
+    background-image: var(--thumb-up-highlight);
+}
+
+
+/* Make a request page */
+
+#requests #content div.box.pad form:first-of-type {
+    font-size: var(--fs-default);
+    background-color: var(--box-bg-color);
+    border-radius: var(--rounded-corners);
+    box-shadow: none;
+    padding: 20px;
+    margin-bottom: unset;
+}
+
+#requests #content div.box.pad {
+    padding: 0;
+}
+
+
+
+/* BEGIN Requests page, release request */
+#requests #content > .thin div.linkbox + table:first-of-type {
+    font-size: var(--fs-paragraph-s);
+    background-color: var(--box-bg-color);
+    border-radius: var(--rounded-corners);
+    box-shadow: var(--box-onflat-shadow);
+    padding: 20px;
+} 
+
+#requests #content > .thin table:first-of-type tr:first-of-type td:first-of-type {
+    padding-top: 40px;
+}
+
+#requests #content > .thin table:first-of-type tr:last-of-type td:first-of-type {
+    padding-bottom: 20px;
+    padding-left: 20px;
+}
+
+#requests #content > .thin table:first-of-type td {
+    border: none;
+}
+
+#requests #content > .thin table:first-of-type td.center strong {
+    display: flex;
+    padding-left: 15px;
+}
+
+#requests #content > .thin table:first-of-type td form {
+    box-shadow: none;
+}
+/* END Requests page, release request */
+
+
+/* Top10 layout */
+
+/* Top10 page table, add padding to the left side of the table */
+#top10 #content table tr > td:first-of-type {
+    padding: 10px 10px 10px 20px !important;
+}
+
+/* Top10 page table, add padding to the right side of the table */
+#top10 #content table tr > td:last-of-type {
+   padding: 10px 20px 10px 5px; 
+   white-space: nowrap;
+}
+
+/* Add circle around top 10 torrent ranking */
+#top10 #content table tr.group_torrent > td:first-of-type strong {
+   /*
+    padding: 5px !important;
+    border-radius: 50px;
+    width: 34px;
+    height: 34px;
+    font-weight: bold;
+    display: inline-block;
+    color: var(--text-color-inverted);
+    background-color: var(--accent-color);
+    */
+    background-color: transparent !important;
+}
+
+/** 
+ * Since td in peeps, forums, tags, messes up torrents ranking circle,
+ * accommodate the torrents ranking circle to the others instead.
+ */
+ #top10 #content table tr.group_torrent td:first-of-type {
+    margin-top: 50% !important;
+    margin-right: 10px;
+ }
+
+
+#top10 #content div.thin:first-of-type table tr.rowa > td:first-of-type,
+#top10 #content div.thin:first-of-type table tr.rowb > td:first-of-type{
+    padding: 5px !important;
+    border-radius: 50px;
+    width: 34px;
+    height: 34px;
+    font-weight: bold;
+    margin-top: 17%;
+    margin-left: 22px;
+    margin-bottom: 10px;
+    display: inline-block;
+    background-color: var(--sec-bg-color);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: var(--text-color-inverted);
+    background-color: var(--accent-color);
+} 
+
+
+
+/* Layout (Forums) */
+
+/* Forums portal (forum start page) rows styling */
+#forums #content div > table .rowa, #forums #content div > table .rowb {
+    background-color: var(--box-bg-color);
+    box-shadow: var(--box-onflat-shadow);
+}
+
+/* General bg color for column head */
+#forums #content div > table .colhead td {
+    background-color: var(--box-bg-color);
+}
+
+#forums #content div > table .colhead {
+    box-shadow: var(--box-onflat-shadow);
+}
+
+/* Round left side of column head */
+#forums #content div > table .colhead td:first-of-type {
+    border-top-left-radius: var(--rounded-corners);
+}
+
+/* Round right side of column head */
+#forums #content div > table .colhead td:last-of-type {
+    border-top-right-radius: var(--rounded-corners);
+}
+
+/* New thread button positioning */
+#forums #content .thin > div.linkbox:first-of-type {
+    text-align: right;
+    padding-right: 0;
+}
+/* New thread button positioning */
+#forums #content .thin > div.linkbox:first-of-type a {
+    margin: 0;
+}
+
+#forums .box .body {
+    background-color: transparent;
+    color: var(--text-color);
+}
+
+#forums tr.forum_group_header td {
+    border: none;
+}
+
+#forums table td, #torrents table.forum_post td {
+    padding: 10px 20px;
+    font-size: var(--fs-paragraph-s); 
+}
+
+#forums tr.forum_group_header td {
+    padding: 10px 0;
+}
+
+#forums tr.rowa h4, #forums tr.rowb h4 {
+    font-size: var(--fs-paragraph);
+    color: var(--text-description-color);
+    border-radius: var(--soft-corners);
+    text-align: center;
+    z-index: 1;
+    cursor: pointer;
+    display: inline-block;
+    padding-bottom: 0;
+    padding-top: 5px;
+}
+
+#forums tr.rowa td:nth-child(2), #forums tr.rowb td:nth-child(2) {
+    color: var(--text-description-color);
+}
+
+/* Forums search result */
+#forums #content form:first-of-type {
+    font-size: var(--fs-paragraph-s);
+    background-color: var(--box-bg-color);
+    border-radius: var(--rounded-corners);
+    box-shadow: var(--box-onflat-shadow);
+    padding: 20px;
+    margin-bottom: 40px;
+}
+
+/* Remove border bottom inside forums search section */
+#forums #content form:first-of-type td {
+    border-bottom: none;
+}
+
+/* Reply in forums topic, reset style */
+#forums #content form#quickpostform {
+    box-shadow: none;
+    margin: 0;
+    border-radius: 0;
+    background-color: transparent;
+    font-size: var(--fs-default);
+}
+
+
+#forums #content form:first-of-type td.center {
+    text-align: right;
+}
+
+/* Make a topic in forums page, reset box style */
+#forums #content div.thin div.box.pad.center form#quickpostform .box.pad {
+    box-shadow: unset;
+    font-size: var(--fs-default);
+    background-color: transparent;
+    border-radius: unset;
+    border: none;
+    box-shadow: none;
+}
+
+/* Reset form style */
+#forums #content div.thin div.box.pad.center form#quickpostform {
+    font-size: var(--fs-default);
+    background-color: transparent;
+    border-radius: unset;
+    box-shadow: none;
+    padding: 0;
+    margin-bottom: 0;
+}
+
+/* left align title input headline in new topic page */
+#forums #content div.thin div.box.pad.center form#quickpostform h3:first-of-type {
+    text-align: left;
+}
+
+/* Title input field in new topic page */
+#forums #content div.thin div.box.pad.center form#quickpostform input[type="text"] {
+    padding: 0;
+    width: 100%;
+}
+
+/* Position "view unread posts" button container */
+#forums #content > .thin div.linkbox + div.thin {
+    width: 100%;
+}
+
+/* Forum post entry header */
+#forums table.forum_post.box tr.colhead_dark {
+    color: var(--text-description-color);
+}
+
+/* Forum post entry header post id */
+#forums table.forum_post.box tr.colhead_dark td:first-of-type > span:first-of-type > a:first-of-type {
+    color: var(--text-description-color) !important;
+}
+
+/* Forum post entry header post id */
+#forums table.forum_post.box tr:nth-child(3) td {
+    color: var(--text-description-color);
+}
+
+/* Forum post entry header [TOP], hide text button */
+#forums table.forum_post.box tr.colhead_dark td:first-of-type > span:last-of-type > a:first-of-type {
+    width: 20px;
+    height: 20px;
+    padding: 2px;
+    border-radius: 50px;
+    color: transparent;
+    overflow: hidden;
+    display: inline-block;
+    max-width: 20px;
+}
+
+/* [TOP] help text hover container */
+#forums table.forum_post.box tr.colhead_dark td:first-of-type > span {
+    position: relative;
+    width: 20px;
+}
+
+/* [QUOTE] help text hover container */
+#forums table.forum_post.box tr.colhead_dark td:first-of-type > span:first-of-type {
+    /* Allow more space for reply (quote) button to be positioned to, but leave room for "back to top" icon */
+    width: calc(100% - 40px);
+}
+
+/* [TOP] helptext hidden */
+#forums table.forum_post.box tr.colhead_dark td:first-of-type > span:last-of-type:after,
+#forums table.forum_post.box tr.colhead_dark td:first-of-type > span:first-of-type > a:nth-child(3):after {
+    opacity: 0;
+    position: absolute;
+    top: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: var(--fs-paragraph-s);
+    border-radius: 7px;
+    padding: 5px 20px !important;
+    color: var(--text-color-inverted);
+    background-color: var(--helptext-bg);
+    transition: opacity .5s;
+    pointer-events: none;
+    white-space: nowrap;
+    text-align: center;
+    display: inline-block;
+    text-transform: none;
+    transition-delay: .7s;
+}
+
+/* [TOP] helptext label */
+#forums table.forum_post.box tr.colhead_dark td:first-of-type > span:last-of-type:after {
+    content: "Back to top";
+}
+
+/* [TOP], [QUOTE] helptext reveal on hover */
+#forums table.forum_post.box tr.colhead_dark td:first-of-type > span:last-of-type:hover:after,
+#forums table.forum_post.box tr.colhead_dark td:first-of-type > span:first-of-type > a:nth-child(3):hover:after {
+    opacity: 1;
+}
+
+/* [QUOTE] helptext label */
+#forums table.forum_post.box tr.colhead_dark td:first-of-type > span:first-of-type > a:nth-child(3):after {
+    content: "Reply";
+}
+
+/* [QUOTE] helptext reveal on hover */
+#forums table.forum_post.box tr.colhead_dark td:first-of-type > span:first-of-type > a:nth-child(3):hover:after {
+    opacity: 1;
+}
+
+/* Forum post entry header [QUOTE] button WITHOUT icon, move it right */
+#forums table.forum_post.box tr.colhead_dark td:first-of-type > span:first-of-type > a:nth-child(3) {
+    font-size: 0;
+    box-sizing: content-box;
+    width: 17px;
+    height: 17px;
+    padding: 2px;
+    border-radius: 50px;
+    position: relative;
+    /* Push it to the right side */
+    float: right;
+}
+
+/* Add icon to [QUOTE] button icon */
+#forums table.forum_post.box tr.colhead_dark td:first-of-type > span:first-of-type > a:nth-child(3):before {
+    content:"";
+    width: 17px;
+    height: 17px;
+    position: absolute;
+    background-image: var(--reply-icon);
+    background-repeat: no-repeat;
+}
+
+/* Add icon to [TOP] button */
+#forums table.forum_post.box tr.colhead_dark td:first-of-type > span:last-of-type > a:first-of-type:before {
+    content:"";
+    width: 17px;
+    height: 17px;
+    position: absolute;
+    background-image: var(--up-arrow);
+    background-repeat: no-repeat;  
+}
+
+/* Forums entry header [REPORT] text button, [EDIT] text button (if it is your own post entry) */
+#forums table.forum_post.box tr.colhead_dark td:first-of-type > span:first-of-type > a:nth-child(4),
+#forums table.forum_post.box tr.colhead_dark td:first-of-type > span:first-of-type > a:nth-child(5) {
+    color: var(--text-description-color);
+}
+
+/* Edit forums post entry */
+#forums table.forum_post.box td.body span[id^="bar"] {
+    /* Reverse content, to make it easier to manage their position later */
+    display: flex;
+    position: relative;
+    justify-content: flex-end;
+}
+
+/* Edit forum post entry preview button */
+#forums table.forum_post.box td.body span[id^="bar"] input[value="Preview"] {
+
+}
+
+/* Edit forum post entry post button */
+#forums table.forum_post.box td.body span[id^="bar"] input[value="Post"] {
+    float: right;
+}
+
+/* Edit forum post entry cancel button */
+#forums table.forum_post.box td.body span[id^="bar"] input[value="Cancel"] {
+    position: absolute;
+    left: 0;
+}
+
+#quickreplybuttons {
+    text-align: right;
+}
+
+#quickreplytext {
+    text-align: left;
+}
+
+#quickreplytext textarea,
+#reports textarea {
+    width: 100%;
+    max-width: 1200px;
+    margin-bottom: 10px;
+}
+
+form#quickpostform div.box.pad {
+    text-align: left;
+}
+
+#reports #content > .thin .box.pad.center > form {
+    text-align: right;
+}
+
+
+table.forum_post {
+    margin: 20px 0px;
+    box-shadow: var(--box-onflat-shadow);
+}
+
+/* Forum post entry header */
+table.forum_post tr.colhead_dark > td {
+    padding: 15px;
+}
+
+table.forum_post td.body {
+    background-color: transparent;
+}
+
+table.forum_unread {
+    position: relative;
+}
+
+table.forum_unread:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 5px;
+    display: inline-block;
+    z-index: 1;
+    background-color: var(--unread-color);
+    border-top-left-radius: var(--rounded-corners);
+    border-bottom-left-radius: var(--rounded-corners);
+}
+
+
+/* User settings page layout */
+
+#user #content form {
+    padding: 20px;
+    background-color: var(--box-bg-color);
+    border-radius: var(--rounded-corners);
+}
+
+#user #content form table td {
+    border: none;
+}
+
+/* User settings section headline */
+#user #content table .colhead_dark td strong {
+    color: var(--text-color);
+    font-size: var(--fs-header);
+}
+
+/* User profile table column head, override */
+#user .main_column tr.colhead_dark td strong {
+    font-size: var(--fs-default) !important;
+}
+
+/* User profile table padding */
+#user .main_column tr.colhead_dark td {
+    padding: 10px;
+}
+
+#user #content table .colhead_dark {
+    border-bottom: 1px solid var(--layer-ontop-color);
+}
+
+/* User settings section headline margin */
+#user #content table .colhead_dark:nth-child(n+2) td {
+    padding-top: 45px;
+}
+
+/* Add spacing on the very first td on each section, aka below each .colhead_dark */
+#user #content table tr.colhead_dark + tr > td {
+    padding-top: 20px;
+}
+
+/* Left column, label text */
+#user #content .thin tr td:nth-child(1) {
+    color: var(--text-description-color);
+    width: 250px;
+    padding-right: 10px;
+    font-size: var(--fs-paragraph-s);
+}
+
+/* Revert style for User search result page, to display "username" column normally */
+#user #content div.box.pad.center table:first-of-type tr.colhead:first-of-type td:first-of-type {
+    color: var(--text-color);
+}
+
+/* User settings search result page */
+#user #content form[action="user.php"] tr td:nth-child(1) {
+    width: unset;
+}
+
+/* Make one-line th labels */
+#user #content tr.colhead_dark {
+    white-space: nowrap;
+}
+
+
+
+
+td.avatar {
+    width: 150px;
+    padding: 0px;
+}
+
+table.forum_post td.body {
+    width: 690px;
+}
+
+blockquote {
+    margin: 10px;
+    padding: 10px;
+    border: 1px dashed #666;
+}
+
+/* Counter hidden span, to display uploaded date within blockquote in #torrents (album page) */
+blockquote span {
+    font-size: unset !important;
+    right: unset !important;
+    top: unset !important;
+    left: unset !important;
+    display: unset !important;
+    position: unset !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+
+/* Layout (Inbox) */
+
+
+tr.unreadpm {
+    //background-color: #ECC;
+}
+
+/* Layout (Permission Page) */
+
+.permission_head {
+    width:400px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.permissions {
+    width:930px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.permission_container {
+    float:left;
+    width:300px;
+    padding:5px;
+}
+.permission_container input {
+    margin:0px 3px 5px 0px;
+    vertical-align:top;
+}
+
+.submit_container {
+    clear:both;
+    text-align:right;
+}
+
+/* Layout (Invite tree) */
+
+ul .invitetree {
+    margin: 0px 0px 0px 25px;
+}
+
+.invitetree li {
+    list-style: none;
+    margin: 10px 2px;
+}
+
+/* Artist layout */
+
+/**
+ * Artist page search box, hide box properties and style 
+ * the parent div (the form element #artists_tags_filter) 
+ * to a box instead.
+ */
+#artist .filter_torrents table.box {
+    background-color: transparent;
+    box-shadow: none;
+}
+
+#artist .filter_torrents table.box td {
+    border-bottom: none;
+}
+
+/* Same styling as .box */
+#artist .filter_torrents form#artists_tags_filter {
+    font-size: var(--fs-paragraph-s);
+    background-color: var(--box-bg-color);
+    border-radius: var(--rounded-corners);
+    box-shadow: var(--box-onflat-shadow);
+    padding: 20px;
+}
+
+/* Artist page, Category list */
+#artist .filter_torrents table#taglist {
+    margin-top: 20px;
+}
+
+#artist .filter_torrents table#taglist.hide {
+    margin-top: 0;
+}
+
+/* Add spacing between Tags input field and radio buttons */
+#artist .filter_torrents table:first-of-type td input[type="radio"] {
+    margin-top: 10px;
+}
+
+/* Artist page, Left padding on table */
+#artist .torrent_table tr > td:first-of-type {
+    padding: 10px 5px 10px 20px;
+}
+
+#artist .torrent_table tr > td:last-of-type {
+    padding: 10px 20px 10px 5px;
+}
+
+
+/* Artist page, within an artist's discography */
+#artist .colhead_dark strong, #artist .torrent_table tr.group td strong {
+    color: var(--text-color);
+}
+
+#artist .colhead_dark td {
+    padding: 10px;
+}
+
+/* Staff, Rules, IRC page */
+
+#staff .box.pad, #rules .box.pad, #irc .box.pad {
+    padding: 20px !important;
+    margin-bottom: 20px;
+}
+
+#staff .box.pad td, #rules .box.pad td, #irc .box.pad td {
+    border: none;
+}
+
+
+/* Site log search result layout */
+
+#log #content div.center > form {
+    background-color: var(--box-bg-color);
+    border-radius: var(--rounded-corners);
+    box-shadow: var(--box-onflat-shadow);
+    padding: 20px;
+}
+
+#log #content div.center > form td {
+    border: none;
+}
+
+#log #content .thin > table {
+    background-color: var(--box-bg-color);
+    border-radius: var(--rounded-corners);
+    box-shadow: var(--box-onflat-shadow);
+}
+
+/* Bookmark page layout */
+#bookmarks #content .thin > .linkbox:first-of-type {
+    /* Padding to allow psuedo element instructional text below */
+    padding-bottom: 70px;
+    position: relative;
+}
+
+/* Remove box shadow in bookmark page. */
+#bookmarks #content table.forum_post {
+    box-shadow: none;
+}
+
+/**
+ * Readding instructional text (since the buttons have font-size: 0 
+ * (to hide the square bracket [] around the buttons])) 
+ */
+#bookmarks #content .thin > .linkbox:first-of-type:before {
+    content: "To use the bookmarks system drag the above bookmarklet to your bookmarks bar. \AYou can then call up the bookmark dialogue on any page.";
+    position: absolute;
+    color: var(--text-color);
+    width: 100%;
+    height: 60px;
+    left: 0;
+    top: 60px;
+    z-index: 1;
+    display: inline-block;
+    opacity: 1;
+    visibility: visible;
+    font-size: var(--fs-default);
+    white-space: pre;
+}
+
+
+/* Bookmark lightbox (dialog) */
+#lightbox.lightbox {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: unset;
+    height: unset;
+    z-index: 101;
+}
+
+#lightbox.lightbox table:first-of-type {
+    -webkit-animation: slide-up .4s forwards;
+    -moz-animation:    slide-up .4s forwards;
+    -o-animation:      slide-up .4s forwards;
+    animation:         slide-up .4s forwards;
+}
+
+#lightbox.lightbox table:first-of-type {
+    border-radius: var(--rounded-corners);
+    padding: 20px;
+    background: var(--box-bg-color);
+    box-shadow: 0 5px 20px 1px rgba(0, 0, 0, 0.34);
+}
+
+#lightbox.lightbox:before {
+/*    position: fixed;
+    z-index: -1;
+    top: -300%;
+    left: -100%;
+    height: 300vh;
+    width: 300vw;
+    background-color: rgba(58, 58, 58, 0.5);
+    content: "";
+    */
+}
+
+#lightbox.lightbox td {
+    padding: 20px;
+}
+
+/* Reverse order of buttons */
+#lightbox.lightbox table:first-of-type tr:nth-child(3) > td.center {
+    display: flex;
+    flex-flow: row-reverse; 
+    justify-content: center;   
+}
+
+/* Friends page layout */
+#friends #content td.colhead, #friends #content table.forum_post,
+#friends #content table.forum_post:last-of-type td {
+    border: none;
+    box-shadow: none;
+}
+
+
+/* Upload page layout */
+#upload #content .thin form {
+    background-color: var(--box-bg-color);
+    padding: 20px;
+    border-radius: var(--rounded-corners);
+    box-shadow: var(--box-onflat-shadow);
+}
+
+
+/* Inbox page layout */
+#inbox input[value="Delete messages"] {
+    margin-top: 20px;
+    display: flex;
+    margin-left: auto;
+}
+
+
+/* Bonus page layout */
+
+/* Center align "not enough points" and all the other last columns */
+#bonus #content .thin:first-of-type tr td:last-of-type {
+    color: var(--text-description-color);
+    text-align: center;
+}
+
+/* Requests page layout */
+/** 
+ * Remove styled big input fields and icons on "Make a Reuqest page", 
+ * to counter the front page of Requests search box
+ */
+#requests #content div.box.pad form td:before {
+    content: unset;
+ }
+ 
+#requests #content div.box.pad form input[name="tags"] {
+    font-size: var(--fs-default);
+    background-color: transparent;
+    border: unset;
+    border-bottom: 1px solid var(--input-border-color);
+    padding: 5px;
+    border-radius: 0;
+    transition: none;
+}
+
+#requests #content div.box.pad form tr:nth-child(1) td:nth-child(1),
+#requests #content div.box.pad form tr:nth-child(2) td:nth-child(1) {
+    background-image: none;
+    position: inherit;
+    margin-top: unset;
+    width: auto;
+    height: auto;
+    overflow: unset;
+    color: unset;
+    -webkit-user-select: auto;
+    -moz-user-select: auto;
+    -ms-user-select: auto;
+    user-select: auto;
+}
+
+#requests #content div.box.pad form table tr:nth-last-child(2) td.center {
+    text-align: left;
+}
+
+
+
+/* MiSC */
+/* No user select elements */
+
+#userinfo_major, #userinfo_username li.brackets {
+    -webkit-user-select: none;  /* Chrome, Safari */
+    -moz-user-select: none;     /* Firefox */
+    -ms-user-select: none;      /* IE 10+ */
+    user-select: none;
+}
+
+
+/* Loading spinner icon */
+#ajax_torrents_loading img {
+    /* Hide default loading spinner */
+    display: none;
+}
+
+/* Loading spinner container */
+#ajax_torrents_loading {
+    position: relative;
+    font-size: 0;
+    margin-top: 50px;
+    min-height: 200px;
+    min-width: 150px;
+}
+
+#ajax_torrents_loading:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-image: var(--loading-spinner);
+    background-repeat: no-repeat;
+    width: 150px;
+    height: 250px;
+}
+
+
+
+/* Layout (MISC) */
+
+#left_poll {
+    /*
+    width: 2px;
+    height: 15px;
+    background: var(--accent-color);
+    float: left;
+    margin: 0px;
+    padding: 0px;
+    */
+    width: 0px;
+}
+
+#center_poll {
+    height: 15px;
+    background: var(--accent-color);
+    background-image: var(--accent-color-grad);
+    float: left;
+    margin: 0px;
+    padding: 0px;
+    border-radius: var(--soft-corners);
+    /* No need to use left and right poll with min-width */
+    min-width: 4px;
+}
+
+#right_poll {
+    /*
+    width: 2px;
+    height: 15px;
+    background: var(--accent-color);
+    float: left;
+    margin: 0px;
+    padding: 0px;
+    */
+    width: 0px;
+}
+
+.curtain {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--main-bg-color);
+    z-index: 100;
+    -moz-opacity: 0.7;
+    opacity: .7;
+    filter: alpha(opacity=70);
+    -webkit-animation: fadein-semi .4s forwards;
+    -moz-animation:    fadein-semi .4s forwards;
+    -o-animation:      fadein-semi .4s forwards;
+    animation:         fadein-semi .4s forwards;
+}
+
+.lightbox {
+    /*
+    display: none;
+    position: fixed;
+    text-align: center;
+    top: 5%;
+    left: 5%;
+    width: 90%;
+    height: 90%;
+    padding: 0px;
+    z-index:1002;
+    overflow: auto;
+    */
+}
+
+a.permission_1,.permission_1 {
+    color: #e82929;
+}
+a.permission_2,.permission_2 {
+    color: var(--text-color);
+}
+#forums a.permission_2,#forums .permission_2 {
+    color: var(--text-description-color);
+}
+a.permission_3,.permission_3 {
+    color: var(--text-color);
+}
+#forums a.permission_3,#forums .permission_3 {
+    color: var(--text-description-color);
+}
+a.permission_4,.permission_4 {
+    color: #4DD0FF;
+}
+a.permission_5,.permission_5 {
+    color: #3366CC;
+}
+a.permission_6,.permission_6 {
+    color: #bebb1a;
+}
+a.permission_7,.permission_7 {
+    color: #FFFF66;
+}
+a.permission_8,.permission_8 {
+    color: #e89f51;
+}
+a.permission_9,.permission_9 {
+    color: #99FFFF;
+}
+a.permission_10,.permission_10 {
+    color: #FFFF66;
+    }
+a.permission_11,.permission_11 {
+    color: #5f73df;
+}
+a.permission_12,.permission_12 {
+    color: #CC0000;
+}
+a.permission_13,.permission_13 {
+    color: #996666;
+}
+a.permission_14,.permission_14 {
+    color: #c74242;
+}
+a.permission_15,.permission_15 {
+    color: #dd0fa6;
+}
+a.permission_20,.permission_20 {
+    color: #23bc7f;
+}
+a.permission_21,.permission_21 {
+        color: var(--text-description-soft-color);
+}
+a.permission_22,.permission_22 {
+        color: #e1bf32;
+}
+
+.signature { margin: 2em 0 0 0; padding: .5em 0 0 0; border-top: 1px dotted #666; }
+
+
+
+
+
+/***************************************************************/
+/************************** MOBILE *****************************/
+/***************************************************************/
+
+@media only screen and (max-width: 980px) {
+    
+    .box img {
+        max-width: 100%;
+    }
+    
+    #header {
+        margin-top: calc(var(--top-nav-height) + 50px);
+    }
+    
+    #index #footer {
+        margin-left: 0px;
+        margin-bottom: 200px;
+        padding: 10px;
+        width: initial;
+    }
+
+    /* Main content */
+    #content {
+        margin-left: 0;
+        width: 100%;
+    }
+    
+    /* Left nav menu */
+    #menu {
+        background-color: var(--top-nav-bg-color);
+        width: 100%;
+        height: 100px;
+        bottom: 75px;
+        top: initial;
+        font-size: 30px;
+        box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.1);
+    }
+    
+    #menu ul {
+        /* height: 50px; */
+        width: 100%;
+        overflow: overlay;
+        white-space: nowrap;
+        background-color: var(--top-nav-bg-color);
+    }
+    
+    #menu ul li {
+        display: inline-block;
+    }
+    
+    /* Main menu buttons */
+    #menu ul li a {
+        padding: 35px 20px;
+    }
+    
+    /* User info container */
+    #userinfo {
+        position: initial;
+        bottom: initial;
+        padding: initial;
+        width: 100%;
+    }
+    
+    /* User settings menu */
+    #userinfo_minor {
+        top: 110px;
+    }
+    
+    #userinfo_username:hover ~ #userinfo_minor, #userinfo_minor:hover {
+        z-index: 1;
+    }
+    
+    /* User info top nav */
+    #userinfo_username {
+        font-size: 30px;
+        z-index: 4;
+        height: 100px;
+        display: flex;
+        align-items: center;
+    }
+    
+    /* Username */
+    #userinfo_username li:first-of-type {
+        /*right: 115px;*/
+    }
+    
+    /* User settings icon container, and link */
+    #userinfo_major, #userinfo_username li.brackets,
+    #userinfo_username .brackets:nth-child(2) a, #userinfo_username .brackets:nth-child(3) a {
+        width: 80px;
+        height: 80px;
+    }
+    
+    /* User settings icons */
+    #userinfo_username .brackets:nth-child(2):before, #userinfo_username .brackets:nth-child(3):before {
+        width: 40px;
+        height: 40px;
+        margin: 20px;
+    }
+    
+    /* User settings icon tool tips */
+    #userinfo_username li:nth-child(2):after, #userinfo_username li:nth-child(3):after {
+        margin-top: 30px;
+    }
+    
+    #userinfo_stats {
+        position: fixed;
+        width: 100%;
+        bottom: 100px;
+        z-index: 5;
+    }
+
+    /* User info stats, up/down/ratio/bonus */
+    ul#userinfo_stats li {
+        display: inline-block;
+        width: calc(25% - 15px);
+        margin-right: 20px;
+    }
+    
+    ul#userinfo_stats li:nth-child(4) {
+        /* No margin on last item in row */
+        margin-right: 0px;
+    }
+    
+    /* User contribution buttons, upload/invite/donate */
+    #userinfo_major {
+        /*
+        position: fixed;
+        top: 10px;
+        z-index: 4;
+        right: 80px;
+        */
+        display: none;
+    }
+    
+    /* Search bar container */
+    #searchbars {
+        padding-left: 170px;
+        height: 100px;
+        box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Searchbar content */
+    #searchbars ul {
+        /* Hide search bar */
+        display: none;
+    }
+    
+    /* Search bar field */
+    #searchbars ul:after {
+        width: 430px;
+    }
+    
+    /* Search bar category bubble buttons */
+    #searchbars input {
+        width: 65px;
+    }
+
+    #logo {
+        margin: 15px 20px 0 20px;
+    }
+
+    #logo, #logo a {
+        width: 215px;
+        height: 70px;
+    }
+
+    /* Do not let SEED icon overlap bottom navigation buttons */
+    table#torrent_table .colhead td.sign:nth-child(9) > a:before,
+    #torrents table.torrent_table tr.colhead_dark:first-of-type td.sign:nth-child(4):before,
+    #collages #content table#discog_table tr.colhead_dark td.sign:nth-child(6):before,
+    #top10 #content tr.colhead td:nth-child(6):before,
+    #artist table#torrents_album tr.colhead_dark td.sign:nth-child(4):before,
+    #artist table#torrents_pv tr.colhead_dark td.sign:nth-child(4):before,
+    #artist table tr.colhead_dark td.sign:nth-child(4):before {
+        z-index: 0;
+    }
+
+    /* Do not let LEECH icon overlap bottom navigation buttons */
+    table#torrent_table .colhead td.sign:nth-child(10) > a:before,
+    #torrents table.torrent_table tr.colhead_dark:first-of-type td.sign:nth-child(5):before,
+    #collages #content table#discog_table tr.colhead_dark td.sign:nth-child(7):before,
+    #top10 #content tr.colhead td:nth-child(7):before,
+    #artist table#torrents_album tr.colhead_dark td.sign:nth-child(5):before,
+    #artist table#torrents_pv tr.colhead_dark td.sign:nth-child(5):before,
+    #artist table tr.colhead_dark td.sign:nth-child(5):before {
+        z-index: 0;
+    }
+
+    /* Do not let SNATCHES icon overlap bottom navigation buttons */
+    table#torrent_table .colhead td.sign:nth-child(8) > a:before,
+    #torrents table.torrent_table tr.colhead_dark:first-of-type td.sign:nth-child(3):before,
+    #collages #content table#discog_table tr.colhead_dark td.sign:nth-child(5):before,
+    #top10 #content tr.colhead td:nth-child(5):before {
+        z-index: 0;
+    }
+}
+
+
+/***************************************************************/
+/************************** KEYFRAMES *****************************/
+/***************************************************************/
+
+
+@-webkit-keyframes fadein-semi {
+  0%   { opacity: 0; }
+  100% { opacity: .7; }
+}
+@-moz-keyframes fadein-semi {
+  0%   { opacity: 0; }
+  100% { opacity: .7; }
+}
+@-o-keyframes fadein-semi {
+  0%   { opacity: 0; }
+  100% { opacity: .7; }
+}
+@keyframes fadein-semi {
+  0%   { opacity: 0; }
+  100% { opacity: .7; }
+}
+
+@-webkit-keyframes slide-up {
+  0%   { margin-top: 30px; opacity: 0; }
+  100% { margin-top: 0; opacity: 1; }
+}
+@-moz-keyframes slide-up {
+  0%   { margin-top: 30px; opacity: 0; }
+  100% { margin-top: 0; opacity: 1; }
+}
+@-o-keyframes slide-up {
+  0%   { margin-top: 30px; opacity: 0; }
+  100% { margin-top: 0; opacity: 1; }
+}
+@keyframes slide-up {
+  0%   { margin-top: 30px; opacity: 0; }
+  100% { margin-top: 0; opacity: 1; }
+}
